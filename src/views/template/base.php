@@ -3,36 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIAOH</title>
+    <title>Miaoh</title>
+    <link rel="icon" href="<?php echo IMAGE_PATH; ?>icons/favicon.ico" type="image/x-icon">
+
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="public/style/bootstrap.min.css">
 
     <link rel="stylesheet" href="public/style/template.css">
 </head>
 <body>
-    <header class="bg-primary text-white p-3">
-        <div class="container">
-            <h1 class="display-4">MIAOH</h1>
-            <nav class="navbar navbar-expand-lg navbar-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/about">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contact">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+    <header class="d-flex align-items-center justify-content-between px-3 py-2">
+        <!-- Menu Button (pulsante menu a tendina) -->
+        <button class="btn btn-outline-primary menu-button" data-bs-toggle="collapse" data-bs-target="#menu">
+            ☰
+        </button>
+
+        <!-- Logo accanto al titolo -->
+        <div class="d-flex align-items-center">
+            <!-- Logo -->
+            <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" alt="Logo" class="logo">
+            
+            <!-- Site Name -->
+            <h1 class="m-0 text-center flex-grow-1" style="font-size: 1.25rem; color: #6f42c1">MIAOH</h1>
         </div>
+
+        <!-- User Image -->
+        <img src="<?php echo IMAGE_PATH; ?>icons/profilePic.png" alt="User" class="user-img">
     </header>
+
+    <!-- Menu Dropdown -->
+    <div id="menu" class="collapse bg-light">
+        <ul class="list-unstyled m-0 p-3">
+            <li><a href="#" class="d-block py-2 text-decoration-none">Home</a></li>
+            <li><a href="#" class="d-block py-2 text-decoration-none">Shop</a></li>
+            <li><a href="#" class="d-block py-2 text-decoration-none">Cart</a></li>
+            <li><a href="#" class="d-block py-2 text-decoration-none">Profile</a></li>
+        </ul>
+    </div>
     <main class="container mt-4">
         <?php include($content); ?>
     </main>

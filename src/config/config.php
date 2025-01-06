@@ -10,5 +10,7 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'miaoh_db');
 
+define('IMAGE_PATH', 'public/assets/images/');
+
 //Load Config
 include("connection.php");

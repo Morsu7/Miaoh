@@ -13,9 +13,87 @@ header {
   .menu-button {
     font-size: 1.5rem;
   }
-  .user-img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
+
+  /* Stile per il logo */
+.logo {
+    max-height: 2.5rem;  /* La stessa altezza del font */
+    width: auto;  /* Mantieni le proporzioni */
+    margin-right: 10px;  /* Distanza tra il logo e il nome del sito */
+}
+
+/* Stile per l'immagine dell'utente */
+.user-img {
+    max-height: 2rem;  /* Imposta l'altezza dell'immagine dell'utente */
+    width: auto;
+    border-radius: 50%;  /* Rende l'immagine circolare */
+}
+
+/* Cambia il colore del testo dei link */
+a, a:hover, a:focus {
+    color: #6a0dad;  /* Colore viola */
+}
+
+/* Cambia il colore dei link attivi */
+a:active {
+    color: #4b0082;  /* Colore viola scuro */
+}
+
+/* Cambia il colore di fondo e testo dei pulsanti Bootstrap */
+.btn-primary {
+    background-color: #6a0dad; /* Colore viola */
+    border-color: #6a0dad;     /* Colore del bordo viola */
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #4b0082;  /* Colore viola scuro al passaggio del mouse */
+    border-color: #4b0082;      /* Colore del bordo viola scuro */
+}
+
+/* Cambia il colore di sfondo della navbar (barra di navigazione) */
+.navbar, .navbar-light .navbar-nav .nav-link {
+    color: #6a0dad;  /* Colore del testo dei link nella navbar */
+}
+
+.navbar-light .navbar-toggler-icon {
+    background-color: #6a0dad;  /* Colore dell'icona del menu */
+}
+
+/* Cambia il colore degli sfondi dei componenti come i modali e altri elementi */
+.card, .modal-content, .alert, .dropdown-menu {
+    border-color: #6a0dad;  /* Colore del bordo degli elementi */
+}
+
+/* Cambia il colore del focus sui form (input, select, textarea) */
+input:focus, select:focus, textarea:focus {
+    border-color: #6a0dad;  /* Colore viola per il bordo quando è a fuoco */
+    box-shadow: 0 0 0 0.25rem rgba(106, 13, 173, 0.25);  /* Ombra viola */
+}
+
+/* Cambia il colore del pulsante outline-primary a viola */
+.btn-outline-primary {
+    color: #6a0dad; /* Colore del testo del pulsante (viola) */
+    border-color: #6a0dad; /* Colore del bordo del pulsante (viola) */
+}
+
+/* Cambia il colore del pulsante outline-primary quando passa sopra */
+.btn-outline-primary:hover {
+    color: #fff; /* Colore del testo quando hover (bianco) */
+    background-color: #6a0dad; /* Colore di sfondo viola */
+    border-color: #6a0dad; /* Colore del bordo viola */
+}
+
+/* Cambia il colore del pulsante outline-primary quando è in focus */
+.btn-outline-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(106, 13, 173, 0.5); /* Ombra viola per il focus */
+    color: #fff; /* Colore del testo quando focus (bianco) */
+    background-color: #6a0dad; /* Colore di sfondo viola */
+    border-color: #6a0dad; /* Colore del bordo viola */
+}
+
+/* Cambia il colore del pulsante outline-primary quando è attivo (cliccato) */
+.btn-outline-primary:active {
+    color: #fff; /* Colore del testo quando cliccato (bianco) */
+    background-color: #6a0dad !important; /* Colore di sfondo viola, aggiungi !important per forzare la priorità */
+    border-color: #6a0dad !important; /* Colore del bordo viola, aggiungi !important per forzare la priorità */
+    box-shadow: none; /* Rimuovi l'ombra attiva predefinita */
+}
