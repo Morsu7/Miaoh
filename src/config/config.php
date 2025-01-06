@@ -11,5 +11,4 @@ define('DB_PASS', '');
 define('DB_NAME', 'miaoh_db');
 
 //Load Config
-include("include.php");
 include("connection.php");
