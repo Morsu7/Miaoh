@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__.'/../src/config/config.php';
 
-
 //Controllo i parametri passati in GET
 if (isset($_GET['action'])){
     $action = $_GET['action'];

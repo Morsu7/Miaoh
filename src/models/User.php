@@ -1,5 +1,6 @@
 <?php
-namespace src\models;
+
+
 class User
 {
   protected $id;

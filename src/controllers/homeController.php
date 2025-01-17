@@ -1,6 +1,7 @@
 <?php
 
-namespace src\controllers;
+include('../src/models/Product.php');
+include('../src/models/Products.php');
 
 //Recuperare l'azione da svolgere
 if (isset($_GET['subAction'])){
@@ -13,6 +14,8 @@ if (isset($_GET['subAction'])){
 switch ($subAction) {
     case 'home':
     default:
+        $productsManager = new Products();
+        $allProducts = $productsManager->getAllProducts();
         $content = '../src/views/home/home.php';
         break;
 }

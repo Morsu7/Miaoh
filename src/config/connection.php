@@ -1,4 +1,5 @@
 <?php
+
 /************************************************************************
  Definisco la class Connection che rappresenta la connessione verso il database,
  l' obbiettivo è quello di creare una sola volta la connessione ed usarla per
@@ -8,7 +9,8 @@
 class Connection {
   public static $db;
   public function __construct() {
-    self::$db = new mysqli('127.0.0.1', 'root', '', 'miaoh_db');
+    self::$db = new \mysqli('127.0.0.1', 'root', '', 'miaoh_db');
+    mysqli_set_charset(self::$db,'utf8mb4');
   }
 }
 /* Definita la classe provvedo ad utilizzarla */

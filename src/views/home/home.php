@@ -5,34 +5,35 @@
         <a href="#" class="btn btn-primary">Scopri di più</a>
     </div>
 </section>
+
 <section class="products py-5">
     <div class="container">
         <h2 class="text-center mb-4">Prodotti in evidenza</h2>
+
         <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="product1.jpg" class="card-img-top" alt="Prodotto 1">
-                    <div class="card-body">
-                        <h3 class="card-title">Prodotto 1</h3>
-                        <p class="card-text">Descrizione del prodotto 1</p>
-                        <p class="card-text">€19.99</p>
-                        <a href="#" class="btn btn-primary">Aggiungi al carrello</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="product2.jpg" class="card-img-top" alt="Prodotto 2">
-                    <div class="card-body">
-                        <h3 class="card-title">Prodotto 2</h3>
-                        <p class="card-text">Descrizione del prodotto 2</p>
-                        <p class="card-text">€29.99</p>
-                        <a href="#" class="btn btn-primary">Aggiungi al carrello</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Aggiungi altri prodotti qui -->
+            <?php
+            // Ciclo attraverso i prodotti
+            foreach ($allProducts as $index => $product) {
+                // Se sono 2 prodotti nella stessa riga
+                if ($index % 2 == 0 && $index > 0) {
+                    echo '</div><div class="row">'; // Chiudi la riga precedente e ne apri una nuova
+                }
+
+                // Stampa il prodotto
+                echo '
+                    <article class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="' . htmlspecialchars($product->getImg1()) . '" class="card-img-top" alt="' . htmlspecialchars($product->getNome()) . '">
+                            <div class="card-body">
+                                <h3 class="card-title">' . htmlspecialchars($product->getNome()) . '</h3>
+                                <p class="card-text">' . htmlspecialchars($product->getDescrizione()) . '</p>
+                                <p class="card-text">€' . number_format($product->getPrezzo(), 2, ',', '.') . '</p>
+                                <a href="#" class="btn btn-primary">Aggiungi al carrello</a>
+                            </div>
+                        </div>
+                    </article>';
+            }
+            ?>
         </div>
     </div>
 </section>
-
