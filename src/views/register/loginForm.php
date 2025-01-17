@@ -13,8 +13,8 @@
     <?php endif; ?>
 
     <form action="?action=login&subAction=auth-login" method="POST">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="email" autocomplete="email" name="email" placeholder="Email" required>
+        <input type="password" autocomplete="current-password" name="password" placeholder="Password" required>
 
         <a href="#" class="forgot-password">Forgot Password?</a>
         <button type="submit">Login</button>

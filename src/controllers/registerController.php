@@ -1,6 +1,8 @@
 <?php
 
-include "../src/models/auth/AuthService.php";
+require_once "../src/models/auth/AuthService.php";
+require_once "../src/models/users/User.php";
+require_once "../src/models/users/Users.php";
 
 //Recuperare l'azione da svolgere
 if (isset($_GET['subAction'])){
@@ -24,6 +26,7 @@ switch ($subAction) {
             $result = AuthService::auth_login($_POST['email'], $_POST['password']);
 
             if($result == 'success'){
+                $_SESSION['email'] = $_POST['email'];
                 header('Location: /Miaoh/#');
                 exit;
             }else{
@@ -45,6 +48,7 @@ switch ($subAction) {
             $result = AuthService::auth_register($_POST['email'], $_POST['password']);
 
             if($result == 'success'){
+                $_SESSION['email'] = $_POST['email'];
                 header('Location: /Miaoh/#');
                 exit;
             }else{

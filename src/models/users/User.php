@@ -1,5 +1,5 @@
 <?php
-namespace src\models;
+
 class User
 {
   protected $id;
@@ -8,6 +8,16 @@ class User
   protected $password_hash;
   protected $name;
   protected $surname;
+
+  function __construct($id, $username, $email, $password_hash, $name, $surname) {
+    $this->id = $id;
+    $this->username = $username;
+    $this->email = $email;
+    $this->password_hash = $password_hash;
+    $this->name = $name;
+    $this->surname = $surname;
+}
+
   // GET METHODS
   public function getId()
   {
@@ -33,30 +43,8 @@ class User
   {
     return $this->surname;
   }
-  // SET METHODS
-  public function setUsername(string $username)
-  {
-    $this->username = $username;
-  }
-  public function setEmail(string $email)
-  {
-    $this->email = $email;
-  }
-  public function setPassword(string $password)
-  {
-    $this->password_hash = $password;
-  }
-  // CRUD OPERATIONS
-  public function create(array $data)
-  {
-  }
-  public function read(int $id)
-  {
-  }
-  public function update(int $id, array $data)
-  {
-  }
-  public function delete(int $id)
-  {
+
+  public function getProfilePicture(){
+    return IMAGE_PATH . "icons/profilePic.png";
   }
 }

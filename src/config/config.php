@@ -16,3 +16,5 @@ $show_header = true;
 
 //Load Config
 include("connection.php");
+
+if(session_status() === PHP_SESSION_NONE) session_start();
