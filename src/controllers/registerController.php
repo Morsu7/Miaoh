@@ -65,6 +65,8 @@ switch ($subAction) {
             }else{
                 if($result == 'email_already_exists')
                     $error_message = 'L\'email inserita risulta già presente all\'interno del sito';
+                if($result == 'username_already_exists')
+                    $error_message = 'L\'username inserito risulta già occupato da un altro utente';
             }
         }else{
             // form manipolato

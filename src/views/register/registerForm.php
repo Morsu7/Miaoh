@@ -14,7 +14,7 @@
 
     <form action="?action=login&subAction=auth-register" method="POST" enctype="multipart/form-data">
         <label for="image">Personalizza la tua immagine di profilo:</label>
-        <input type="file" name="image" id="image" accept="image/*" required>
+        <input type="file" name="image" id="image" accept="image/*">
 
         <input type="text" name="username" placeholder="Username" required>
         <input type="text" name="name" placeholder="Nome" required>

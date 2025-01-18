@@ -25,8 +25,9 @@ switch ($subAction) {
         if(session_status() === PHP_SESSION_NONE) session_start();
         session_unset();
         session_destroy();
-        $content = '../src/views/home/home.php';
-        break;
+
+        header('Location: /Miaoh/#');
+        exit;
 }
 
 ?>
