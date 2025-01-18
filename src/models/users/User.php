@@ -8,14 +8,16 @@ class User
   protected $password_hash;
   protected $name;
   protected $surname;
+  protected $imageExtension;
 
-  function __construct($id, $username, $email, $password_hash, $name, $surname) {
+  function __construct($id, $username, $email, $password_hash, $name, $surname, $imageExtension) {
     $this->id = $id;
     $this->username = $username;
     $this->email = $email;
     $this->password_hash = $password_hash;
     $this->name = $name;
     $this->surname = $surname;
+    $this->imageExtension = $imageExtension;
 }
 
   // GET METHODS
@@ -44,7 +46,7 @@ class User
     return $this->surname;
   }
 
-  public function getProfilePicture(){
-    return IMAGE_PATH . "icons/profilePic.png";
+  public function getImageExtension(){
+    return $this->imageExtension;
   }
 }

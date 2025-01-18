@@ -4,13 +4,13 @@ class AuthService {
 
     private static $USER_TABLE = "user";
 
-    public static function auth_register($email, $password){
+    public static function auth_register($email, $password, $username){
         // Verifica che email e password non siano vuoti
-        if (empty($email) || empty($password)) {
-            return "error"; // Email e password sono obbligatori
+        if (empty($email) || empty($password) || empty($username)) {
+            return "incomplete_data";
         }
 
-        // Connessione al database tramite mysqli (assumendo che Connection::$db sia già configurato)
+        // Connessione al database tramite mysqli
         $db = Connection::$db;
 
         // Verifica che l'email non esista già nel database
@@ -24,12 +24,21 @@ class AuthService {
             return "email_already_exists"; // L'email è già registrata
         }
 
+        // Verifica che l'username non esista già nel database
+        $stmt = $db->prepare("SELECT username FROM " . self::$USER_TABLE . " WHERE username = ? LIMIT 1");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $stmt->store_result();
+        if ($stmt->num_rows > 0) {
+            return "username_already_exists";
+        }
+
         // Se l'email non esiste, procedi con la registrazione
         $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Crittografa la password
 
         // Prepara la query per inserire il nuovo utente
-        $stmt = $db->prepare("INSERT INTO " . self::$USER_TABLE . " (email, password_hash) VALUES (?, ?)");
-        $stmt->bind_param("ss", $email, $hashed_password); // "ss" per due stringhe
+        $stmt = $db->prepare("INSERT INTO " . self::$USER_TABLE . " (email, password_hash, username) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $email, $hashed_password, $username); // "ss" per due stringhe
 
         // Esegui la query di inserimento
         if ($stmt->execute()) {

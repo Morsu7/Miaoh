@@ -44,11 +44,22 @@ switch ($subAction) {
         $content = '../src/views/register/loginForm.php';
         break;
     case 'auth-register':
-        if (!empty($_POST['email']) && !empty($_POST['password'])){
-            $result = AuthService::auth_register($_POST['email'], $_POST['password']);
+        if (!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['username']) && !empty($_POST['name']) && !empty($_POST['surname'])){
+            $email = $_POST['email'];
+            $result = AuthService::auth_register($email, $_POST['password'], $_POST['username']);
 
             if($result == 'success'){
-                $_SESSION['email'] = $_POST['email'];
+                $_SESSION['email'] = $email;
+
+                // Registrazione avvenuta con successo
+                if(isset($_FILES['image'])){
+                    // Viene anche aggiunta la foto profilo, se valida
+                    Users::updateImage($email, $_FILES['image']);
+                }
+
+                Users::updateName($email, $_POST['name']);
+                Users::updateSurname($email, $_POST['surname']);
+
                 header('Location: /Miaoh/#');
                 exit;
             }else{
@@ -57,7 +68,7 @@ switch ($subAction) {
             }
         }else{
             // form manipolato
-            $error_message = 'Inserisci email e password.';
+            $error_message = 'Inserisci tutti i dati richiesti.';
         }
 
         $content = '../src/views/register/registerForm.php';

@@ -12,7 +12,13 @@
         </div>
     <?php endif; ?>
 
-    <form action="?action=login&subAction=auth-register" method="POST">
+    <form action="?action=login&subAction=auth-register" method="POST" enctype="multipart/form-data">
+        <label for="image">Personalizza la tua immagine di profilo:</label>
+        <input type="file" name="image" id="image" accept="image/*" required>
+
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" name="name" placeholder="Nome" required>
+        <input type="text" name="surname" placeholder="Cognome" required>
         <input type="email" name="email" placeholder="Email" required>
         <input id="password" type="password" name="password" placeholder="Password" required>
         <small class="help-block" id="password-text"></small>
@@ -21,7 +27,7 @@
         <!-- Messaggio che mostra la robustezza della password -->
         <p id="strength-text"></p>
 
-        <button type="submit">Login</button>
+        <button type="submit">Registrati</button>
     </form>
     I already have an account - <a href="?action=login&subAction=login" class="signup-link">Sign in</a>
 
