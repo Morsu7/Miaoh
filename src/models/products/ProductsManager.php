@@ -7,47 +7,70 @@ class ProductsManager
     private static $INTERACTION_TABLE = "interazione";
 
     public static function getTrendingProducts($count){
-        // Query per ottenere gli id dei prodotti più richiesti negli ultimi 10 giorni
+        // Prima query: ottieni gli ID dei prodotti ordinati per numero di interazioni
         $stmt = Connection::$db->prepare("
-            SELECT p.id, COUNT(i.id_prodotto) AS numero_interazioni 
-            FROM " . self::$PRODUCT_TABLE . " p 
-            JOIN interazione i ON p.id = i.id_prodotto 
-            WHERE i.timestamp >= NOW() - INTERVAL 10 DAY 
-            GROUP BY p.id 
-            ORDER BY numero_interazioni DESC 
-            LIMIT ?");
+            SELECT p.id, COUNT(i.id_prodotto) AS numero_interazioni
+            FROM " . self::$PRODUCT_TABLE . " p
+            JOIN interazione i ON p.id = i.id_prodotto
+            WHERE i.timestamp >= NOW() - INTERVAL 10 DAY
+            GROUP BY p.id
+            ORDER BY numero_interazioni DESC
+            LIMIT ?
+        ");
         $stmt->bind_param("i", $count);
         $stmt->execute();
         $result = $stmt->get_result();
-        // Cicla attraverso le righe risultanti
+    
+        // Cicla attraverso le righe risultanti e salva gli ID dei prodotti e il numero di interazioni
+        $productIds = [];
+        $interactionCounts = [];
         while ($row = $result->fetch_assoc()) {
             $productIds[] = $row['id'];
+            $interactionCounts[$row['id']] = $row['numero_interazioni']; // Salva anche il numero di interazioni per ogni prodotto
         }
-
+    
         // Se ci sono ID di prodotto, esegui una seconda query per ottenere i dettagli
         if (!empty($productIds)) {
-            // Prepara la query per ottenere i dettagli dei  prodotti
+            // Prepara la query per ottenere i dettagli dei prodotti
             $placeholders = implode(',', array_fill(0, count($productIds), '?')); // crea la stringa '?'
             $stmt = Connection::$db->prepare("
-                SELECT * 
-                FROM " . self::$PRODUCT_TABLE . "
+                SELECT * FROM " . self::$PRODUCT_TABLE . "
                 WHERE id IN ($placeholders)
             ");
-
+    
             // Lega i parametri dinamici per la seconda query
             $stmt->bind_param(str_repeat('i', count($productIds)), ...$productIds); // Passa gli ID come parametri
-            // Esegui la seconda query
             $stmt->execute();
             $result = $stmt->get_result();
+    
+            // Crea un array di oggetti Product
+            $products = [];
+            while ($row = $result->fetch_assoc()) {
+                $products[] = new Product(
+                    $row['id'],
+                    $row['nome'],
+                    $row['descrizione'],
+                    $row['quantita'],
+                    $row['prezzo'],
+                    $row['sconto'],
+                    $row['fine_sconto'],
+                    $row['img1'],
+                    $row['img2'],
+                    $row['tipoProdotto_id']
+                );
+            }
+    
+            // Ordina i prodotti in base al numero di interazioni
+            usort($products, function($a, $b) use ($interactionCounts) {
+                $aInteractions = $interactionCounts[$a->getId()];
+                $bInteractions = $interactionCounts[$b->getId()];
+                return $bInteractions - $aInteractions; // Ordina in ordine decrescente
+            });
+    
+            return $products;
         }
-
-        $products = [];
-
-        while ($row = $result->fetch_assoc()) {
-            $products[] = new Product($row['id'], $row['nome'], $row['descrizione'], $row['quantita'], $row['prezzo'], $row['sconto'], $row['fine_sconto'], $row['img1'], $row['img2'], $row['tipoProdotto_id'], );
-        }
-
-        return $products;
+    
+        return [];
     }
 
     public static function getRandomProducts($count){
@@ -62,7 +85,7 @@ class ProductsManager
         $result = $stmt->get_result();
 
         $products = [];
-        
+
         while ($row = $result->fetch_assoc()) {
             $products[] = new Product($row['id'], $row['nome'], $row['descrizione'], $row['quantita'], $row['prezzo'], $row['sconto'], $row['fine_sconto'], $row['img1'], $row['img2'], $row['tipoProdotto_id'], );
         }
