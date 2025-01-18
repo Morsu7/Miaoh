@@ -1,11 +1,11 @@
 <?php
 $user = Users::fromEmail($_SESSION['email']);
-$picture = IMAGE_PATH . "profilepictures/" . $user->getUsername() . "." . $user->getImageExtension();
+$picture = $picture = ImageManager::getUserImagePath($_SESSION['email']);
 ?>
 
 <article class="profile">
     <h1>Profilo utente</h1>
-    <section class="profile-image text-center mb-4">
+    <section class="profile-image-big text-center mb-4">
         <!-- Foto profilo (verifica che la foto esista nel percorso specificato) -->
         <img src="<?php echo $picture; ?>" 
                 alt="Foto Profilo" class="img-fluid rounded-circle" width="150" height="150">

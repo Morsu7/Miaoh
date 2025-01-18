@@ -1,5 +1,7 @@
 <?php
 
+require_once "../src/models/users/User.php";
+
 class Users{
 
     private static $USER_TABLE = "user";
@@ -22,23 +24,11 @@ class Users{
 
     public static function updateImage($email, $image){
         if($image['error'] === UPLOAD_ERR_OK){
-            print_r($image);
-            $fileTmpPath = $image['tmp_name'];
             $fileName = $image['name'];
-            $fileSize = $image['size'];
-            $fileType = $image['type'];
             $fileNameCmps = explode(".", $fileName);
             $fileExtension = strtolower(end($fileNameCmps));
 
-            $allowedfileExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-            if (in_array($fileExtension, $allowedfileExtensions)) {
-                $user = self::fromEmail($email);
-
-                $dest_path = "assets/images/profilepictures/" . $user->getUsername() . "." . $fileExtension;
-
-                move_uploaded_file($fileTmpPath, $dest_path);
-                self::updateImageExtension($email, $fileExtension);
-            }
+            self::updateImageExtension($email, $fileExtension);
         }
     }
 

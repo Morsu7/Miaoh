@@ -1,10 +1,8 @@
 <?php 
 if(isset($_SESSION['email'])){
-    require_once "../src/models/users/User.php";
-    require_once "../src/models/users/Users.php";
+    require_once "../src/models/images/ImageManager.php";
 
-    $user = Users::fromEmail($_SESSION['email']);
-    $picture = IMAGE_PATH . "profilepictures/" . $user->getUsername() . "." . $user->getImageExtension();
+    $picture = ImageManager::getUserImagePath($_SESSION['email']);
 }else{
     $picture = IMAGE_PATH . "/icons/profilePic.png";
 }
@@ -17,7 +15,7 @@ if(isset($_SESSION['email'])){
         </button>
 
         <!-- Logo accanto al titolo -->
-        <a href="?#" class="d-block py-2 text-decoration-none">
+        <a href="?#" class="d-block py-2 text-decoration-none logo-header">
             <div class="d-flex align-items-center">
                 <!-- Logo -->
                 <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" alt="Logo" class="logo">
@@ -40,3 +38,5 @@ if(isset($_SESSION['email'])){
         <li><a href="?action=profile" class="d-block py-2 text-decoration-none">Profile</a></li>
     </ul>
 </div>
+
+<script src="public/script/header.js"></script>

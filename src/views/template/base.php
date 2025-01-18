@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="public/style/bootstrap.min.css">
 
     <link rel="stylesheet" href="public/style/template.css">
+    <link rel="stylesheet" href="public/style/common.css">
 </head>
 <body>
     <?php if($show_header)  include('header.php'); ?>

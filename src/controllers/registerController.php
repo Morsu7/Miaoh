@@ -3,6 +3,8 @@
 require_once "../src/models/auth/AuthService.php";
 require_once "../src/models/users/User.php";
 require_once "../src/models/users/Users.php";
+require_once "../src/models/images/ImageManager.php";
+
 
 //Recuperare l'azione da svolgere
 if (isset($_GET['subAction'])){
@@ -54,7 +56,8 @@ switch ($subAction) {
                 // Registrazione avvenuta con successo
                 if(isset($_FILES['image'])){
                     // Viene anche aggiunta la foto profilo, se valida
-                    Users::updateImage($email, $_FILES['image']);
+                    if(ImageManager::saveProfileImage($email, $_FILES['image']))
+                        Users::updateImage($email, $_FILES['image']);   // Aggiorna l'estensione nel db se il salvataggio è andato a buon fine
                 }
 
                 Users::updateName($email, $_POST['name']);
