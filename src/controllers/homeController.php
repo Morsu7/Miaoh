@@ -1,5 +1,4 @@
 <?php
-
 include('../src/models/Product.php');
 include('../src/models/Products.php');
 

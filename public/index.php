@@ -11,6 +11,12 @@ if (isset($_GET['action'])){
 switch ($action) {
     case 'prova':
         break;
+    case 'profile':
+        include('../src/controllers/profileController.php');
+        break;
+    case 'login':
+        include('../src/controllers/registerController.php');
+        break;
     case 'home':
     default:
         include('../src/controllers/homeController.php');

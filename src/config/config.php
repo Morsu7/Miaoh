@@ -12,5 +12,9 @@ define('DB_NAME', 'miaoh_db');
 
 define('IMAGE_PATH', 'public/assets/images/');
 
+$show_header = true;
+
 //Load Config
 include("connection.php");
+
+if(session_status() === PHP_SESSION_NONE) session_start();
