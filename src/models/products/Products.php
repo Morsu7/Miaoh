@@ -68,4 +68,8 @@ class Products
         }
         return null;
     }
+
+    public function getTrendingProducts(){
+        
+    }
 }

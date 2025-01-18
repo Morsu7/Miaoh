@@ -1,6 +1,7 @@
 <?php
-include('../src/models/Product.php');
-include('../src/models/Products.php');
+include('../src/models/products/Product.php');
+include('../src/models/products/Products.php');
+require_once('../src/models/products/ProductsManager.php');
 
 //Recuperare l'azione da svolgere
 if (isset($_GET['subAction'])){
@@ -13,8 +14,10 @@ if (isset($_GET['subAction'])){
 switch ($subAction) {
     case 'home':
     default:
-        $productsManager = new Products();
-        $allProducts = $productsManager->getAllProducts();
+        //$productsManager = new Products();
+        //$allProducts = $productsManager->getAllProducts();
+        $trending_products = ProductsManager::getTrendingProducts(4);
+        $products = ProductsManager::getRandomProducts(20);
         $content = '../src/views/home/home.php';
         break;
 }

@@ -25,5 +25,6 @@
 
     <!-- Include Bootstrap JS -->
     <script src="public/script/bootstrap.bundle.min.js"></script>
+    <script src="public/script/interazioni.js"></script>
 </body>
 </html>
