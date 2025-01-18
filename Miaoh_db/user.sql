@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 18, 2025 alle 16:09
+-- Creato il: Gen 18, 2025 alle 16:10
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 8.2.0
 
@@ -27,7 +27,6 @@ SET time_zone = "+00:00";
 -- Struttura della tabella `user`
 --
 
-DROP TABLE 'user';
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(64) NOT NULL,
