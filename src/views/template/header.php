@@ -17,13 +17,15 @@ if(isset($_SESSION['email'])){
         </button>
 
         <!-- Logo accanto al titolo -->
-        <div class="d-flex align-items-center">
-            <!-- Logo -->
-            <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" alt="Logo" class="logo">
-            
-            <!-- Site Name -->
-            <h1 class="m-0 text-center flex-grow-1" style="font-size: 1.25rem; color: #6f42c1">MIAOH</h1>
-        </div>
+        <a href="?#" class="d-block py-2 text-decoration-none">
+            <div class="d-flex align-items-center">
+                <!-- Logo -->
+                <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" alt="Logo" class="logo">
+                
+                <!-- Site Name -->
+                <h1 class="m-0 text-center flex-grow-1" style="font-size: 1.25rem; color: #6f42c1">MIAOH</h1>
+            </div>
+        </a>
 
         <!-- User Image -->
         <a href="?action=profile" class="d-block py-2 text-decoration-none"><img src="<?php echo $picture ?>" alt="User" class="user-img"/></a>
