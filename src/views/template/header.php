@@ -13,7 +13,7 @@ if(isset($_SESSION['email'])){
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand d-flex align-items-center" href="?#">
+        <a class="navbar-brand d-flex align-items-center mx-auto" href="?#">
             <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" width="50" height="50" class="me-2"/>
             <span>MIAOH</span>
         </a>
@@ -40,12 +40,12 @@ if(isset($_SESSION['email'])){
                 <a class="nav-link" href="?action=profile">Profilo</a>
             </li>
         </ul>
-        </div>
-
-        <a class="navbar-brand" href="?action=profile">
-            <img src="<?php echo $picture ?>" alt="User" class="user-img"/>
-        </a>
     </div>
+
+    <!-- User image aligned to the top-right, vertically centered -->
+    <a class="navbar-brand d-flex align-items-center position-absolute top-50 end-0 translate-middle-y p-2" href="?action=profile">
+        <img src="<?php echo $picture ?>" alt="User" class="user-img" width="60" height="60"/>
+    </a>
 </nav>
 
 <script src="public/script/header.js"></script>

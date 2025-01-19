@@ -25,7 +25,7 @@ a.navbar-brand:visited {
 
 /* Stile per l'immagine dell'utente */
 .user-img {
-    max-height: 2rem;  /* Imposta l'altezza dell'immagine dell'utente */
+    max-height: 2.5rem;  /* Imposta l'altezza dell'immagine dell'utente */
     width: auto;
     border-radius: 50%;  /* Rende l'immagine circolare */
 }
