@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="public/style/common.css">
 </head>
 <body>
+    <!-- Include Bootstrap JS -->
+    <script src="public/script/bootstrap.bundle.min.js"></script>
     <?php if($show_header)  include('header.php'); ?>
 
     <main class="container mt-4">
@@ -23,9 +25,6 @@
             <p>&copy; <?php echo date('Y'); ?> Your Company</p>
         </div>
     </footer>
-
-    <!-- Include Bootstrap JS -->
-    <script src="public/script/bootstrap.bundle.min.js"></script>
     <script src="public/script/interazioni.js"></script>
 </body>
 </html>

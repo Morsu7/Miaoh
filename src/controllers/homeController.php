@@ -16,7 +16,7 @@ switch ($subAction) {
     default:
         //$productsManager = new Products();
         //$allProducts = $productsManager->getAllProducts();
-        $trending_products = ProductsManager::getTrendingProducts(4);
+        $trending_products = ProductsManager::getTrendingProducts(8);
         $products = ProductsManager::getRandomProducts(20);
         $content = '../src/views/home/home.php';
         break;
