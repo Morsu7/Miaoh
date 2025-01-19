@@ -1,3 +1,30 @@
 .profile-image-big img {
     border: 3px solid #333;
 }
+
+/* Stile base per le immagini */
+.product-image {
+    width: 100%; /* L'immagine occupa tutta la larghezza del contenitore */
+    height: auto; /* L'altezza si adatta automaticamente */
+    max-height: 300px; /* Altezza massima per evitare immagini troppo alte */
+    object-fit: contain; /* Mantiene l'intera immagine visibile senza deformarla */
+    border-radius: 8px; /* Arrotonda gli angoli dell'immagine */
+}
+
+/* Adatta l'immagine su schermi più piccoli (tablet) */
+@media (max-width: 768px) {
+    .product-image {
+        max-height: 250px; /* Limita l'altezza per schermi medi (tablet) */
+    }
+}
+
+/* Ulteriore adattamento su schermi piccoli (smartphone) */
+@media (max-width: 576px) {
+    .product-image {
+        max-height: 200px; /* Riduce ulteriormente l'altezza su schermi molto piccoli */
+        object-fit: contain; /* Mantiene l'immagine senza tagli anche sui dispositivi mobili */
+    }
+}
+
+
+
