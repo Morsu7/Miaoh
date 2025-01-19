@@ -1,7 +1,7 @@
 <?php
 
 if(!isset($_SESSION['email'])){
-    header('Location: /Miaoh/?action=login');
+    header('Location: ?action=login');
     exit;
 }
 
@@ -26,7 +26,7 @@ switch ($subAction) {
         session_unset();
         session_destroy();
 
-        header('Location: /Miaoh/#');
+        header('Location: ?#');
         exit;
 }
 

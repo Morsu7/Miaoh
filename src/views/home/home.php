@@ -53,17 +53,21 @@
 
                 // Stampa il prodotto
                 echo '
-                    <article class="col-md-6 mb-4">
-                        <div class="card">
-                            <img src="' . htmlspecialchars($product->getImg1()) . '" class="card-img-top" alt="' . htmlspecialchars($product->getNome()) . '">
-                            <div class="card-body">
-                                <h3 class="card-title">' . htmlspecialchars($product->getNome()) . '</h3>
-                                <p class="card-text">' . htmlspecialchars($product->getDescrizione()) . '</p>
-                                <p class="card-text">€' . number_format($product->getPrezzo(), 2, ',', '.') . '</p>
-                                <a href="#" class="btn btn-primary interaction cart" data-id="' . htmlspecialchars($product->getId()) . '">Aggiungi al carrello</a>
-                            </div>
+                <article class="col-md-6 mb-4">
+                    <div class="card">
+                        <img src="public/assets/images/productImage/' . htmlspecialchars($product->getId()) . '.' . htmlspecialchars($product->getImg1()) . '" 
+                            class="card-img-top product-image" 
+                            alt="' . htmlspecialchars($product->getNome()) . '">
+                        <div class="card-body">
+                            <h3 class="card-title">' . htmlspecialchars($product->getNome()) . '</h3>
+                            <p class="card-text">' . htmlspecialchars($product->getDescrizione()) . '</p>
+                            <p class="card-text">€' . number_format($product->getPrezzo(), 2, ',', '.') . '</p>
+                            <a href="#" class="btn btn-primary interaction cart" data-id="' . htmlspecialchars($product->getId()) . '">
+                                Aggiungi al carrello
+                            </a>
                         </div>
-                    </article>';
+                    </div>
+                </article>';
             }
             ?>
         </div>
@@ -83,17 +87,21 @@
 
                 // Stampa il prodotto
                 echo '
-                    <article class="col-md-6 mb-4">
-                        <div class="card">
-                            <img src="' . htmlspecialchars($product->getImg1()) . '" class="card-img-top" alt="' . htmlspecialchars($product->getNome()) . '">
-                            <div class="card-body">
-                                <h3 class="card-title">' . htmlspecialchars($product->getNome()) . '</h3>
-                                <p class="card-text">' . htmlspecialchars($product->getDescrizione()) . '</p>
-                                <p class="card-text">€' . number_format($product->getPrezzo(), 2, ',', '.') . '</p>
-                                <a href="#" class="btn btn-primary interaction cart" data-id="' . htmlspecialchars($product->getId()) . '">Aggiungi al carrello</a>
-                            </div>
+                <article class="col-md-6 mb-4">
+                    <div class="card">
+                        <img src="public/assets/images/productImage/' . htmlspecialchars($product->getId()) . '.' . htmlspecialchars($product->getImg1()) . '" 
+                            class="card-img-top product-image" 
+                            alt="' . htmlspecialchars($product->getNome()) . '">
+                        <div class="card-body">
+                            <h3 class="card-title">' . htmlspecialchars($product->getNome()) . '</h3>
+                            <p class="card-text">' . htmlspecialchars($product->getDescrizione()) . '</p>
+                            <p class="card-text">€' . number_format($product->getPrezzo(), 2, ',', '.') . '</p>
+                            <a href="#" class="btn btn-primary interaction cart" data-id="' . htmlspecialchars($product->getId()) . '">
+                                Aggiungi al carrello
+                            </a>
                         </div>
-                    </article>';
+                    </div>
+                </article>';
             }
             ?>
         </div>

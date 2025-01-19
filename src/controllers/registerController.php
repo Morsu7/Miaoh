@@ -29,7 +29,7 @@ switch ($subAction) {
 
             if($result == 'success'){
                 $_SESSION['email'] = $_POST['email'];
-                header('Location: /Miaoh/#');
+                header('Location: ?#');
                 exit;
             }else{
                 if($result == 'invalid_email')
@@ -63,7 +63,7 @@ switch ($subAction) {
                 Users::updateName($email, $_POST['name']);
                 Users::updateSurname($email, $_POST['surname']);
 
-                header('Location: /Miaoh/#');
+                header('Location: ?#');
                 exit;
             }else{
                 if($result == 'email_already_exists')
