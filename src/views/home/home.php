@@ -54,7 +54,7 @@
             // Ciclo attraverso i prodotti
             foreach ($products as $index => $product) {
                 // Se sono 2 prodotti nella stessa riga
-                if ($index % 2 == 0 && $index > 0) {
+                if ($index % 3 == 0 && $index > 0) {
                     echo '</div><div class="row">'; // Chiudi la riga precedente e ne apri una nuova
                 }
             ?>
