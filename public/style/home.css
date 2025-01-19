@@ -1,3 +1,77 @@
 .transparent-white{
     background-color: rgba(255, 255, 255, 0.6); /* 0.6 for 60% opacity */
 }
+
+
+/* Stile base per le immagini */
+.product-image {
+    width: 100%; /* L'immagine occupa tutta la larghezza del contenitore */
+    height: auto; /* L'altezza si adatta automaticamente */
+    max-height: 300px; /* Altezza massima per evitare immagini troppo alte */
+    object-fit: contain; /* Mantiene l'intera immagine visibile senza deformarla */
+    border-radius: 8px; /* Arrotonda gli angoli dell'immagine */
+}
+
+/* Adatta l'immagine su schermi più piccoli (tablet) */
+@media (max-width: 768px) {
+    .product-image {
+        max-height: 250px; /* Limita l'altezza per schermi medi (tablet) */
+    }
+}
+
+/* Ulteriore adattamento su schermi piccoli (smartphone) */
+@media (max-width: 576px) {
+    .product-image {
+        max-height: 200px; /* Riduce ulteriormente l'altezza su schermi molto piccoli */
+        object-fit: contain; /* Mantiene l'immagine senza tagli anche sui dispositivi mobili */
+    }
+}
+
+/* Stile generale per il carosello */
+.carousel-item {
+    height: 500px; /* Altezza aumentata per desktop */
+}
+
+.carousel-item img {
+    object-fit: contain; /* Mantiene l'intera immagine visibile senza tagliarla */
+    width: 100%; /* L'immagine occupa tutta la larghezza */
+    height: 100%; /* L'immagine occupa tutta l'altezza */
+}
+
+/* Aumentiamo ulteriormente la dimensione su schermi desktop larghi */
+@media (min-width: 1200px) {
+    .carousel-item {
+        height: 600px; /* Altezza maggiore per schermi molto larghi */
+    }
+
+    .carousel-item img {
+        width: 110%; /* Aumentiamo leggermente la larghezza */
+    }
+}
+
+/* Su schermi più piccoli (tablet e smartphone), altezza ridotta */
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 300px; /* Altezza ridotta per tablet */
+    }
+
+    .carousel-item img {
+        width: 100%; /* Manteniamo la larghezza al 100% */
+        height: 100%;
+    }
+}
+
+/* Su smartphone */
+@media (max-width: 576px) {
+    .carousel-item {
+        height: 250px; /* Altezza più piccola per smartphone */
+    }
+
+    .carousel-item img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+
