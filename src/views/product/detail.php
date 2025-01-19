@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="public/style/detail.css">
+
 <div class="container mt-5">
     <!-- Card del prodotto -->
     <section class="product-details">
@@ -20,7 +22,7 @@
                 <!-- Prezzo scontato se valido -->
                 <?php if ($product->isScontoValido()): ?>
                     <p><strong>Sconto:</strong> <?= $product->getSconto() ?>%</p>
-                    <p><strong>Prezzo Scontato:</strong> <?= number_format($product->calcolaPrezzoScontato(), 2, ',', '.') ?> EUR</p>
+                    <p><strong>Prezzo Scontato:</strong> <span class="sconto"><?= number_format($product->calcolaPrezzoScontato(), 2, ',', '.') ?> EUR</span></p>
                     <p><small>Offerta valida fino al: <?= $product->getFineSconto() ?></small></p>
                 <?php else: ?>
                     <p><strong>Sconto non valido</strong></p>
@@ -51,14 +53,38 @@
             <!-- Carosello di prodotti -->
             <div class="product-carousel d-flex flex-nowrap overflow-auto">
                 <?php foreach ($products as $product): ?>
-                    <div class="card" style="width: 18rem; margin-right: 20px;">
-                        <img src="<?= ImageManager::getProductImagePath($product->getId()); ?>" class="card-img-top" alt="<?= htmlspecialchars($product->getNome()) ?>" style="height: 200px; object-fit: cover;">
+                    <!-- Card del prodotto -->
+                    <div class="card h-100" style="width: 18rem; margin-right: 20px;">
+                        <!-- Modulo per l'immagine -->
+                        <form action="?action=product" method="POST" class="d-block" id="product-form-<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
+                            <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
+                            
+                            <!-- Immagine cliccabile -->
+                            <img src="public/assets/images/productimages/<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>.<?php echo htmlspecialchars($product->getImg1(), ENT_QUOTES, 'UTF-8'); ?>" 
+                                class="card-img-top product-image img-fluid" 
+                                alt="<?php echo htmlspecialchars($product->getNome(), ENT_QUOTES, 'UTF-8'); ?>" 
+                                style="cursor: pointer;" onclick="submitForm(<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>)">
+                        </form>
+                        
                         <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($product->getNome()) ?></h5>
-                            <p class="card-text"><?= number_format($product->getPrezzo(), 2, ',', '.') ?> EUR</p>
-                            <a href="#" class="btn btn-primary btn-sm">Dettagli</a>
+                            <!-- Modulo per il titolo -->
+                            <form action="?action=product" method="POST" class="d-block">
+                                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
+                                
+                                <!-- Bottone stile titolo -->
+                                <button type="submit" class="btn p-0 border-0 bg-transparent text-decoration-none d-block">
+                                    <h3 class="card-title text-dark"><?php echo htmlspecialchars($product->getNome(), ENT_QUOTES, 'UTF-8'); ?></h3>
+                                </button>
+                            </form>
+                            
+                            <p class="card-text"><?php echo htmlspecialchars($product->getDescrizione(), ENT_QUOTES, 'UTF-8'); ?></p>
+                            <p class="card-text">€<?php echo number_format($product->getPrezzo(), 2, ',', '.'); ?></p>
+                            <a href="#" class="btn btn-primary interaction cart" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
+                                Aggiungi al carrello
+                            </a>
                         </div>
                     </div>
+
                 <?php endforeach; ?>
             </div>
 
@@ -68,88 +94,4 @@
     </section>
 </div>
 
-<!-- Aggiungi il CSS per la personalizzazione -->
-<style>
-    .product-carousel {
-        display: flex;
-        gap: 15px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .product-carousel .card {
-        flex-shrink: 0;
-        scroll-snap-align: start;
-        width: 18rem;
-    }
-
-    /* Frecce minimali, senza aloni */
-    .carousel-control-prev, .carousel-control-next {
-        background-color: transparent;
-        color: black;
-        border: none;
-        font-size: 2rem;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 2;
-    }
-
-    /* Posizionamento delle frecce vicino al carosello */
-    .carousel-control-prev {
-        left: -30px;
-    }
-
-    .carousel-control-next {
-        right: -30px;
-    }
-
-    /* Modifica le card per tablet e mobile */
-    @media (max-width: 1024px) {
-        .product-carousel .card {
-            width: 45%;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .product-carousel .card {
-            width: 90%;
-        }
-    }
-</style>
-
-<!-- Aggiungi il JavaScript per la funzionalità dello scorrimento -->
-<script>
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const productCarousel = document.querySelector(".product-carousel");
-
-    prevBtn.addEventListener("click", () => {
-        productCarousel.scrollBy({ left: -300, behavior: 'smooth' });
-    });
-
-    nextBtn.addEventListener("click", () => {
-        productCarousel.scrollBy({ left: 300, behavior: 'smooth' });
-    });
-
-    productCarousel.addEventListener('touchstart', handleTouchStart, false);
-    productCarousel.addEventListener('touchend', handleTouchEnd, false);
-    let x1 = null;
-    
-    function handleTouchStart(e) {
-        const firstTouch = e.touches[0];
-        x1 = firstTouch.clientX;
-    }
-
-    function handleTouchEnd(e) {
-        if (!x1) return;
-        let x2 = e.changedTouches[0].clientX;
-        let xDiff = x2 - x1;
-        if (xDiff > 0) {
-            prevBtn.click();
-        } else {
-            nextBtn.click();
-        }
-        x1 = null;
-    }
-</script>
+<script src="public/script/detail.js"></script>

@@ -1,0 +1,323 @@
+/* Carosello e scorrimento */
+.product-carousel {
+    display: flex;
+    gap: 15px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.product-carousel .card {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    width: 18rem;
+}
+
+/* Frecce minimali, senza aloni */
+.carousel-control-prev, .carousel-control-next {
+    background-color: transparent;
+    color: black;
+    border: none;
+    font-size: 2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+/* Posizionamento delle frecce vicino al carosello */
+.carousel-control-prev {
+    left: -30px;
+}
+
+.carousel-control-next {
+    right: -30px;
+}
+
+/* Modifica le card per tablet e mobile */
+@media (max-width: 1024px) {
+    .product-carousel .card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-carousel .card {
+        width: 90%;
+    }
+}
+
+.transparent-white {
+    background-color: rgba(255, 255, 255, 0.6); /* 0.6 per 60% di opacità */
+}
+
+/* Stili per la griglia */
+.row {
+    margin-right: 0;
+    margin-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centra le card nella riga */
+}
+
+/* Titolo delle card */
+.card .card-title {
+    font-size: 1.25rem; /* Modifica la dimensione del titolo */
+    font-weight: bold;
+    color: #333; /* Colore scuro per il titolo */
+    margin-bottom: 10px;
+    text-align: center; /* Centra il titolo */
+}
+
+/* Pulsante Aggiungi al carrello */
+.card .btn-primary {
+    background-color: #6f42c1; /* Colore viola */
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out;
+    display: block;
+    margin: 0 auto; /* Centra il bottone orizzontalmente */
+}
+
+.card .btn-primary:hover {
+    background-color: #563d7c; /* Colore più scuro al passaggio del mouse */
+}
+
+/* Evita che gli elementi si sovrappongano */
+.card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    height: 100%;
+    align-items: center; /* Centra il contenuto orizzontalmente */
+}
+
+/* Card */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    max-width: 320px;
+    margin: 15px;
+}
+
+/* Hover sulle card */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Immagine delle card */
+.card .card-img-top {
+    width: 100%; /* Occupa tutta la larghezza del contenitore */
+    height: 220px; /* Imposta un'altezza fissa per tutte le immagini */
+    object-fit: contain; /* Mantiene il rapporto dell'immagine senza tagliarla */
+    display: block;
+    margin: 0 auto; /* Centra l'immagine orizzontalmente */
+    position: relative;
+    background-color: transparent; /* Rimuove lo sfondo grigio */
+}
+
+/* Adattamenti per dispositivi piccoli */
+@media (max-width: 576px) {
+    .card .card-img-top {
+        height: 180px; /* Altezza ridotta su schermi più piccoli */
+    }
+}
+
+/* Corpo della card */
+.card .card-body {
+    text-align: center;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Testo descrizione della card */
+.card .card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Adattamento per la griglia */
+.col-12,
+.col-sm-6,
+.col-md-6,
+.col-lg-4 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Altezza uniforme delle card */
+.card h3,
+.card p {
+    margin-bottom: 10px;
+}
+
+/* Stile per il carosello */
+.carousel-item {
+    height: 500px; /* Altezza aumentata per desktop */
+}
+
+.carousel-item img {
+    object-fit: contain; /* Mantiene l'intera immagine visibile senza tagliarla */
+    width: 100%; /* L'immagine occupa tutta la larghezza */
+    height: 100%; /* L'immagine occupa tutta l'altezza */
+}
+
+/* Aumentiamo ulteriormente la dimensione su schermi desktop larghi */
+@media (min-width: 1200px) {
+    .carousel-item {
+        height: 600px; /* Altezza maggiore per schermi molto larghi */
+    }
+
+    .carousel-item img {
+        width: 110%; /* Aumentiamo leggermente la larghezza */
+    }
+}
+
+/* Su schermi più piccoli (tablet e smartphone), altezza ridotta */
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 300px; /* Altezza ridotta per tablet */
+    }
+
+    .carousel-item img {
+        width: 100%; /* Manteniamo la larghezza al 100% */
+        height: 100%;
+    }
+}
+
+/* Su smartphone */
+@media (max-width: 576px) {
+    .carousel-item {
+        height: 250px; /* Altezza più piccola per smartphone */
+    }
+
+    .carousel-item img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+
+/* Card del prodotto (contenitore principale) */
+.product-details {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 30px;
+}
+
+/* Immagine principale del prodotto */
+.product-image {
+    max-height: 500px; /* Limita l'altezza per evitare immagini troppo grandi */
+    object-fit: contain;
+    margin-bottom: 20px; /* Spazio sotto l'immagine */
+    border-radius: 8px; /* Rende gli angoli più morbidi */
+}
+
+/* Gestione delle immagini secondarie */
+.product-details .img-fluid.mt-3 {
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Dettagli del prodotto (descrizione, prezzo, sconto) */
+.product-details .col-md-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 30px;
+}
+
+/* Titolo del prodotto */
+.product-details h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Paragrafi del prodotto */
+.product-details p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+/* Stile per il prezzo scontato */
+.product-details .sconto {
+    color: #e74c3c; /* Rosso per il prezzo scontato */
+    font-weight: bold;
+}
+
+/* Bottone "Aggiungi al carrello" */
+.product-details .btn-primary {
+    background-color: #6f42c1;
+    border: none;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.product-details .btn-primary:hover {
+    background-color: #563d7c;
+}
+
+/* Sezione Tipo di prodotto */
+.product-details footer {
+    margin-top: 30px;
+    font-size: 1rem;
+    color: #333;
+    border-top: 2px solid #eee;
+    padding-top: 15px;
+}
+
+/* Ottimizzazioni per schermi piccoli (tablet e smartphone) */
+@media (max-width: 768px) {
+    .product-details .row {
+        flex-direction: column;
+    }
+
+    .product-details .col-md-6 {
+        padding-left: 0;
+        padding-top: 20px;
+    }
+
+    .product-image {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .product-details h2 {
+        font-size: 1.5rem;
+    }
+
+    .product-details .btn-primary {
+        width: 100%; /* Il bottone prende tutta la larghezza */
+    }
+}
+
