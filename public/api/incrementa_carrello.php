@@ -20,9 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
         ");
         $stmt->bind_param("ii", $userId, $productId);
         $stmt->execute();
-
-        if($stmt->num_rows === 1){
-            $stmt->close();
+        $result = $stmt->get_result();
+        if($result->num_rows === 1){
             // L'utente ha già il prodotto nel carrello, incremento la quantità di 1
             $stmt = Connection::$db->prepare("
                 UPDATE " . $CART_TABLE . "
@@ -30,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
                 WHERE id_utente = ? AND id_prodotto = ?;
             ");
         }else{
-            $stmt->close();
             // L'utente non ha il prodotto nel carrello, lo aggiungo
             $stmt = Connection::$db->prepare("
                 INSERT INTO " . $CART_TABLE . " (id_utente, id_prodotto, quantita)

@@ -31,7 +31,7 @@
                 <p><strong>Quantità Disponibile:</strong> <?= $product->getQuantita() ?></p>
 
                 <!-- Bottone di acquisto -->
-                <button class="btn btn-primary mt-3">Aggiungi al carrello</button>
+                <button class="btn btn-primary mt-3 add-to-cart-btn" data-id="<?= $product->getId() ?>">Aggiungi al carrello</button>
             </div>
         </div>
 
