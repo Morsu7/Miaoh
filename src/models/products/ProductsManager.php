@@ -111,14 +111,14 @@ class ProductsManager
         return $products;
     }
 
-    public static function getRelatedProducts($type,$count){
+    public static function getRelatedProducts($type,$count,$id){
         $stmt = Connection::$db->prepare("
                 SELECT * 
                 FROM " . self::$PRODUCT_TABLE . "
-                WHERE tipoProdotto_id = ?
+                WHERE  tipoProdotto_id = ? && id != ?
                 LIMIT ?;
             ");
-        $stmt->bind_param("ii", $type,$count);
+        $stmt->bind_param("iii", $type,$id,$count);
         $stmt->execute();
         $result = $stmt->get_result();
 

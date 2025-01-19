@@ -16,7 +16,7 @@ switch ($subAction) {
     case 'detail':
     default:
         $product = ProductsManager::fromId($_POST['product_id']);
-        $products = ProductsManager::getRelatedProducts($product->getTipoProdottoId(), 10);
+        $products = ProductsManager::getRelatedProducts($product->getTipoProdottoId(), 10,$product->getId());
         $content = '../src/views/product/detail.php';
         break;
 }
