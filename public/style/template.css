@@ -1,12 +1,12 @@
-.menu-button {
-    font-size: 1.5rem;
-  }
 
-  /* Stile per il logo */
-.logo {
-    max-height: 2.5rem;  /* La stessa altezza del font */
-    width: auto;  /* Mantieni le proporzioni */
-    margin-right: 10px;  /* Distanza tra il logo e il nome del sito */
+.navbar-brand {
+    color: #6a0dad;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+a.navbar-brand:visited {
+    color: inherit; /* Keeps the text color unchanged */
 }
 
 /* Stile per l'immagine dell'utente */

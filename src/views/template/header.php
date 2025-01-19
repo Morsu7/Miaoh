@@ -13,14 +13,9 @@ if(isset($_SESSION['email'])){
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="?#">
-            <div class="d-flex align-items-center">
-                <!-- Logo -->
-                <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" alt="Logo" class="logo">
-                
-                <!-- Site Name -->
-                <h1 class="m-0 text-center flex-grow-1" style="font-size: 1.25rem; color: #6f42c1">MIAOH</h1>
-            </div>
+        <a class="navbar-brand d-flex align-items-center" href="?#">
+            <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" width="50" height="50" class="me-2"/>
+            <span>MIAOH</span>
         </a>
         <a class="navbar-brand" href="?action=profile">
             <img src="<?php echo $picture ?>" alt="User" class="user-img"/>
