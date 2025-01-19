@@ -2,30 +2,111 @@
     background-color: rgba(255, 255, 255, 0.6); /* 0.6 for 60% opacity */
 }
 
-
-/* Stile base per le immagini */
-.product-image {
-    width: 100%; /* L'immagine occupa tutta la larghezza del contenitore */
-    height: auto; /* L'altezza si adatta automaticamente */
-    max-height: 300px; /* Altezza massima per evitare immagini troppo alte */
-    object-fit: contain; /* Mantiene l'intera immagine visibile senza deformarla */
-    border-radius: 8px; /* Arrotonda gli angoli dell'immagine */
+/* Stile per la griglia delle card */
+.row {
+    margin-right: 0;
+    margin-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centra le card nella riga */
 }
 
-/* Adatta l'immagine su schermi più piccoli (tablet) */
-@media (max-width: 768px) {
-    .product-image {
-        max-height: 250px; /* Limita l'altezza per schermi medi (tablet) */
-    }
+/* Card */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    max-width: 320px;
+    margin: 15px;
 }
 
-/* Ulteriore adattamento su schermi piccoli (smartphone) */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Immagini nelle card */
+.card-img-top {
+    width: 100%; /* Occupa tutta la larghezza del contenitore */
+    height: 220px; /* Imposta un'altezza fissa per tutte le immagini */
+    object-fit: contain; /* Mantiene il rapporto dell'immagine senza tagliarla */
+    display: block;
+    margin: 0 auto; /* Centra l'immagine orizzontalmente */
+    position: relative;
+    background-color: transparent; /* Rimuove lo sfondo grigio */
+}
+
+/* Adattamenti per dispositivi piccoli */
 @media (max-width: 576px) {
-    .product-image {
-        max-height: 200px; /* Riduce ulteriormente l'altezza su schermi molto piccoli */
-        object-fit: contain; /* Mantiene l'immagine senza tagli anche sui dispositivi mobili */
+    .card-img-top {
+        height: 180px; /* Altezza ridotta su schermi più piccoli */
     }
 }
+
+/* Corpo della card */
+.card-body {
+    text-align: center;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Titolo */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Testo descrizione */
+.card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Pulsante */
+.btn-primary {
+    background-color: #6f42c1; /* Viola */
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #563d7c; /* Viola più scuro */
+}
+
+/* Adattamento per la griglia */
+.col-12,
+.col-sm-6,
+.col-md-6,
+.col-lg-4 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Altezza uniforme delle card */
+.card h3,
+.card p {
+    margin-bottom: 10px;
+}
+
 
 /* Stile generale per il carosello */
 .carousel-item {

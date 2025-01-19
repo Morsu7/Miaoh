@@ -6,6 +6,24 @@ class ProductsManager
     private static $PRODUCT_TABLE = "prodotto";
     private static $INTERACTION_TABLE = "interazione";
 
+    public static function fromId($id){
+        $stmt = Connection::$db->prepare("
+            SELECT * FROM " . self::$PRODUCT_TABLE . "
+            WHERE id = ?
+        ");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows === 1) {
+            $row = $result->fetch_assoc();
+
+            return new Product($row['id'], $row['nome'], $row['descrizione'], $row['quantita'], $row['prezzo'], $row['sconto'], $row['fine_sconto'], $row['img1'], $row['img2'], $row['tipoProdotto_id']);
+        }
+
+        return null;
+    }
+    
     public static function getTrendingProducts($count){
         // Prima query: ottieni gli ID dei prodotti ordinati per numero di interazioni
         $stmt = Connection::$db->prepare("

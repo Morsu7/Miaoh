@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="public/style/home.css">
 
+
 <section class="hero text-center py-5 bg-light">
     <div class="container">
         <h2>Scopri le nostre offerte speciali!</h2>
@@ -50,35 +51,52 @@
 
         <div class="row">
             <?php
-
             // Ciclo attraverso i prodotti
             foreach ($products as $index => $product) {
                 // Se sono 2 prodotti nella stessa riga
                 if ($index % 2 == 0 && $index > 0) {
                     echo '</div><div class="row">'; // Chiudi la riga precedente e ne apri una nuova
                 }
-
-                // Stampa il prodotto
-                echo '
-                <article class="col-md-6 mb-4">
-                    <div class="card">
-                        <img src="public/assets/images/productimages/' . htmlspecialchars($product->getId()) . '.' . htmlspecialchars($product->getImg1()) . '" 
-                            class="card-img-top product-image" 
-                            alt="' . htmlspecialchars($product->getNome()) . '">
-                        <div class="card-body">
-                            <h3 class="card-title">' . htmlspecialchars($product->getNome()) . '</h3>
-                            <p class="card-text">' . htmlspecialchars($product->getDescrizione()) . '</p>
-                            <p class="card-text">€' . number_format($product->getPrezzo(), 2, ',', '.') . '</p>
-                            <a href="#" class="btn btn-primary interaction cart" data-id="' . htmlspecialchars($product->getId()) . '">
-                                Aggiungi al carrello
-                            </a>
-                        </div>
+            ?>
+            <article class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <!-- Modulo per l'immagine -->
+                    <form action="?action=product" method="POST" class="d-block" id="product-form-<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
+                        <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
+                        
+                        <!-- Immagine cliccabile -->
+                        <img src="public/assets/images/productimages/<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>.<?php echo htmlspecialchars($product->getImg1(), ENT_QUOTES, 'UTF-8'); ?>" 
+                             class="card-img-top product-image img-fluid" 
+                             alt="<?php echo htmlspecialchars($product->getNome(), ENT_QUOTES, 'UTF-8'); ?>" 
+                             style="cursor: pointer;" onclick="submitForm(<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>)">
+                    </form>
+                    
+                    <div class="card-body">
+                        <!-- Modulo per il titolo -->
+                        <form action="?action=product" method="POST" class="d-block">
+                            <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
+                            
+                            <!-- Bottone stile titolo -->
+                            <button type="submit" class="btn p-0 border-0 bg-transparent text-decoration-none d-block">
+                                <h3 class="card-title text-dark"><?php echo htmlspecialchars($product->getNome(), ENT_QUOTES, 'UTF-8'); ?></h3>
+                            </button>
+                        </form>
+                        
+                        <p class="card-text"><?php echo htmlspecialchars($product->getDescrizione(), ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p class="card-text">€<?php echo number_format($product->getPrezzo(), 2, ',', '.'); ?></p>
+                        <a href="#" class="btn btn-primary interaction cart" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
+                            Aggiungi al carrello
+                        </a>
                     </div>
-                </article>';
+                </div>
+            </article>
+            <?php
             }
             ?>
         </div>
     </div>
 </section>
+
+
 
 <script src="public/script/home.js"></script>

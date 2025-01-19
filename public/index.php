@@ -17,6 +17,9 @@ switch ($action) {
     case 'login':
         include('../src/controllers/registerController.php');
         break;
+    case 'product':
+        include('../src/controllers/productController.php');
+        break;
     case 'home':
     default:
         include('../src/controllers/homeController.php');
