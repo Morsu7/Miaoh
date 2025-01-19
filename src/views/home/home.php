@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="public/style/home.css">
+
 <section class="hero text-center py-5 bg-light">
     <div class="container">
         <h2>Scopri le nostre offerte speciali!</h2>
@@ -10,7 +12,35 @@
     <div class="container">
         <?php if(count($trending_products) > 0){ ?>
         <h2 class="text-center mb-4">Prodotti in evidenza</h2>
+        <!-- Container for the image gallery -->
+        <div class="container">
 
+            <!-- Full-width images with number text -->
+            <?php foreach($trending_products as $product){ ?>
+                <div class="trending-slide">
+                    <img src="<?php echo IMAGE_PATH . 'productimages/' . $product->getId() . '.' . $product->getImg1(); ?>" style="width:100%">
+                </div>
+            <?php } ?>
+
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            <!-- Image text -->
+            <div class="caption-container">
+                <p id="caption"></p>
+            </div>
+
+            <!-- Thumbnail images -->
+            <div class="row">
+                <?php $count = 1; foreach($trending_products as $product){ ?>
+                    <div class="column">
+                        <img  class="demo cursor"  src="<?php echo IMAGE_PATH . 'productimages/' . $product->getId() . '.' . $product->getImg1(); ?>" style="width:100%" onclick="currentSlide(<?php echo $count++; ?>)" alt="product-<?php echo $product->getId()?>"/>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+        
         <div class="row">
             <?php
 
@@ -69,3 +99,5 @@
         </div>
     </div>
 </section>
+
+<script src="public/script/home.js"></script>
