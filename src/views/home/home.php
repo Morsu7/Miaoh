@@ -69,7 +69,7 @@
                             <h3 class="card-title">' . htmlspecialchars($product->getNome()) . '</h3>
                             <p class="card-text">' . htmlspecialchars($product->getDescrizione()) . '</p>
                             <p class="card-text">€' . number_format($product->getPrezzo(), 2, ',', '.') . '</p>
-                            <a href="#" class="btn btn-primary interaction cart" data-id="' . htmlspecialchars($product->getId()) . '">
+                            <a href="#" class="btn btn-primary interaction cart add-to-cart-btn" data-id="' . htmlspecialchars($product->getId()) . '">
                                 Aggiungi al carrello
                             </a>
                         </div>

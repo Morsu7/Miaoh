@@ -1,1 +1,1 @@
-const carousel = new bootstrap.Carousel('#carouselExampleCaptions')
+const carousel = new bootstrap.Carousel('#carouselExampleCaptions');

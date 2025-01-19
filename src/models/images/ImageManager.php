@@ -35,4 +35,15 @@ class ImageManager{
 
         return IMAGE_PATH . "/icons/profilePic.png";
     }
+
+    public static function getProductImagePath($id){
+        require_once "../src/models/products/ProductsManager.php";
+
+        $product = ProductsManager::fromId($id);
+        if($product->getImg1() != ""){
+            return IMAGE_PATH . "productimages/" . $id . "." . $product->getImg1();
+        }
+
+        return IMAGE_PATH . "/icons/profilePic.png";
+    }
 }

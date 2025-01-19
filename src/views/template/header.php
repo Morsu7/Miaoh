@@ -34,7 +34,7 @@ if(isset($_SESSION['email'])){
     <ul class="list-unstyled m-0 p-3">
         <li><a href="?#" class="d-block py-2 text-decoration-none">Home</a></li>
         <li><a href="#" class="d-block py-2 text-decoration-none">Shop</a></li>
-        <li><a href="#" class="d-block py-2 text-decoration-none">Cart</a></li>
+        <li><a href="?action=shopping&subAction=carrello#" class="d-block py-2 text-decoration-none">Cart</a></li>
         <li><a href="?action=profile" class="d-block py-2 text-decoration-none">Profile</a></li>
     </ul>
 </div>
