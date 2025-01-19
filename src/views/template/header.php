@@ -17,9 +17,6 @@ if(isset($_SESSION['email'])){
             <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" width="50" height="50" class="me-2"/>
             <span>MIAOH</span>
         </a>
-        <a class="navbar-brand" href="?action=profile">
-            <img src="<?php echo $picture ?>" alt="User" class="user-img"/>
-        </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -44,6 +41,10 @@ if(isset($_SESSION['email'])){
             </li>
         </ul>
         </div>
+
+        <a class="navbar-brand" href="?action=profile">
+            <img src="<?php echo $picture ?>" alt="User" class="user-img"/>
+        </a>
     </div>
 </nav>
 
