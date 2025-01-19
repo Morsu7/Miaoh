@@ -103,11 +103,44 @@ class ProductsManager
         $result = $stmt->get_result();
 
         $products = [];
-
         while ($row = $result->fetch_assoc()) {
-            $products[] = new Product($row['id'], $row['nome'], $row['descrizione'], $row['quantita'], $row['prezzo'], $row['sconto'], $row['fine_sconto'], $row['img1'], $row['img2'], $row['tipoProdotto_id'], );
+            $products[] = new Product($row['id'], $row['nome'], $row['descrizione'], $row['quantita'], $row['prezzo'], $row['sconto'], $row['fine_sconto'], $row['img1'], $row['img2'], $row['tipoProdotto_id']);
         }
+        return $products;
+    }
 
+    public static function listFromUserCart($id){
+        $stmt = Connection::$db->prepare("
+            SELECT 
+                p.id,
+                p.nome,
+                p.descrizione,
+                p.quantita,
+                p.prezzo,
+                p.sconto,
+                p.fine_sconto,
+                p.img1,
+                p.img2,
+                p.tipoProdotto_id,
+                c.quantita as quantita_c
+            FROM 
+                carrello c
+            JOIN 
+                prodotto p ON c.id_prodotto = p.id
+            WHERE 
+                c.id_utente = ?;
+        ");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = [
+                'prodotto' => new Product($row['id'], $row['nome'], $row['descrizione'], $row['quantita'], $row['prezzo'], $row['sconto'], $row['fine_sconto'], $row['img1'], $row['img2'], $row['tipoProdotto_id']),
+                'quantita' => $row['quantita_c']
+            ];
+        }
         return $products;
     }
 

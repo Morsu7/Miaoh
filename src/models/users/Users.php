@@ -1,6 +1,6 @@
 <?php
 
-require_once "../src/models/users/User.php";
+require_once "User.php";
 
 class Users{
 
