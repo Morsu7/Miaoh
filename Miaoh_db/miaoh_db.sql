@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 20, 2025 alle 16:18
--- Versione del server: 10.4.19-MariaDB
--- Versione PHP: 8.0.6
+-- Creato il: Gen 20, 2025 alle 19:32
+-- Versione del server: 10.4.27-MariaDB
+-- Versione PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `acquisti`
+--
+
+CREATE TABLE `acquisti` (
+  `id_utente` int(11) NOT NULL,
+  `id_acquisto` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `stato_acquisto` enum('da_spedire','spedito','consegnato') NOT NULL DEFAULT 'da_spedire'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `acquisti`
+--
+
+INSERT INTO `acquisti` (`id_utente`, `id_acquisto`, `timestamp`, `stato_acquisto`) VALUES
+(1, 7, '2025-01-20 17:18:49', 'da_spedire'),
+(1, 8, '2025-01-20 17:27:05', 'da_spedire'),
+(1, 9, '2025-01-20 17:31:11', 'da_spedire'),
+(1, 10, '2025-01-20 18:02:31', 'da_spedire');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `carrello`
 --
 
@@ -31,22 +54,17 @@ CREATE TABLE `carrello` (
   `id_utente` int(11) NOT NULL,
   `id_prodotto` int(11) NOT NULL,
   `quantita` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `carrello`
 --
 
 INSERT INTO `carrello` (`id_utente`, `id_prodotto`, `quantita`) VALUES
-(21, 1, 85),
-(21, 3, 1),
-(21, 8, 1),
-(21, 13, 1),
-(21, 19, 1),
-(21, 25, 1),
-(21, 30, 1),
-(21, 32, 1),
-(21, 34, 1);
+(1, 3, 1),
+(1, 5, 2),
+(1, 10, 2),
+(1, 17, 1);
 
 --
 -- Trigger `carrello`
@@ -72,7 +90,7 @@ CREATE TABLE `interazione` (
   `id_prodotto` int(11) NOT NULL,
   `tipo` enum('visita','acquisto','carrello') NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `interazione`
@@ -107,7 +125,127 @@ INSERT INTO `interazione` (`id`, `id_prodotto`, `tipo`, `timestamp`) VALUES
 (99, 19, 'carrello', '2025-01-19 21:06:11'),
 (100, 30, 'carrello', '2025-01-19 21:39:15'),
 (101, 13, '', '2025-01-20 15:17:24'),
-(102, 30, '', '2025-01-20 15:18:36');
+(102, 30, '', '2025-01-20 15:18:36'),
+(103, 27, 'carrello', '2025-01-20 16:18:12'),
+(104, 24, 'carrello', '2025-01-20 16:18:14'),
+(105, 1, 'carrello', '2025-01-20 16:18:15'),
+(106, 1, '', '2025-01-20 16:31:45'),
+(107, 8, '', '2025-01-20 16:35:18'),
+(108, 16, '', '2025-01-20 16:35:29'),
+(110, 32, '', '2025-01-20 16:35:51'),
+(111, 35, '', '2025-01-20 16:36:07'),
+(112, 29, '', '2025-01-20 16:36:14'),
+(113, 7, '', '2025-01-20 16:36:17'),
+(115, 13, '', '2025-01-20 16:38:43'),
+(116, 22, 'carrello', '2025-01-20 17:26:56'),
+(117, 11, 'carrello', '2025-01-20 17:26:57'),
+(118, 14, 'carrello', '2025-01-20 17:26:58'),
+(119, 2, 'carrello', '2025-01-20 17:31:05'),
+(120, 27, 'carrello', '2025-01-20 17:33:52'),
+(121, 27, 'carrello', '2025-01-20 17:34:04'),
+(122, 27, 'carrello', '2025-01-20 17:34:05'),
+(123, 27, 'carrello', '2025-01-20 17:34:05'),
+(124, 27, 'carrello', '2025-01-20 17:34:05'),
+(125, 27, 'carrello', '2025-01-20 17:34:05'),
+(126, 27, 'carrello', '2025-01-20 17:34:05'),
+(127, 27, 'carrello', '2025-01-20 17:34:05'),
+(128, 27, 'carrello', '2025-01-20 17:34:05'),
+(129, 27, 'carrello', '2025-01-20 17:34:06'),
+(130, 19, 'carrello', '2025-01-20 17:34:21'),
+(131, 19, 'carrello', '2025-01-20 17:34:22'),
+(132, 12, 'carrello', '2025-01-20 17:34:23'),
+(133, 15, 'carrello', '2025-01-20 17:34:29'),
+(134, 31, 'carrello', '2025-01-20 17:35:45'),
+(135, 11, 'carrello', '2025-01-20 17:35:51'),
+(136, 32, 'carrello', '2025-01-20 17:39:22'),
+(137, 22, 'carrello', '2025-01-20 17:39:49'),
+(138, 1, 'carrello', '2025-01-20 17:39:58'),
+(139, 17, 'carrello', '2025-01-20 17:45:54'),
+(140, 11, 'carrello', '2025-01-20 17:46:06'),
+(141, 9, 'carrello', '2025-01-20 17:46:33'),
+(142, 12, 'carrello', '2025-01-20 17:53:46'),
+(143, 29, 'carrello', '2025-01-20 17:55:44'),
+(144, 29, 'carrello', '2025-01-20 17:55:46'),
+(145, 29, 'carrello', '2025-01-20 17:55:47'),
+(146, 29, 'carrello', '2025-01-20 17:55:48'),
+(147, 29, 'carrello', '2025-01-20 17:55:48'),
+(148, 32, 'carrello', '2025-01-20 17:55:50'),
+(149, 32, 'carrello', '2025-01-20 17:55:54'),
+(150, 31, 'carrello', '2025-01-20 17:57:24'),
+(151, 18, 'carrello', '2025-01-20 17:57:55'),
+(152, 15, 'carrello', '2025-01-20 17:58:02'),
+(153, 7, 'carrello', '2025-01-20 17:58:17'),
+(154, 17, 'carrello', '2025-01-20 17:58:18'),
+(155, 10, 'carrello', '2025-01-20 17:58:41'),
+(156, 8, 'carrello', '2025-01-20 17:59:09'),
+(157, 25, 'carrello', '2025-01-20 17:59:18'),
+(158, 3, 'carrello', '2025-01-20 17:59:22'),
+(159, 3, 'carrello', '2025-01-20 17:59:24'),
+(160, 10, 'carrello', '2025-01-20 17:59:39'),
+(161, 15, 'carrello', '2025-01-20 18:00:04'),
+(162, 21, 'carrello', '2025-01-20 18:00:49'),
+(163, 22, 'carrello', '2025-01-20 18:00:53'),
+(164, 12, 'carrello', '2025-01-20 18:00:55'),
+(165, 13, 'carrello', '2025-01-20 18:00:59'),
+(166, 18, 'carrello', '2025-01-20 18:01:02'),
+(167, 12, 'carrello', '2025-01-20 18:01:04'),
+(168, 17, 'carrello', '2025-01-20 18:01:06'),
+(169, 31, 'carrello', '2025-01-20 18:01:25'),
+(170, 9, 'carrello', '2025-01-20 18:01:29'),
+(171, 31, 'carrello', '2025-01-20 18:01:31'),
+(172, 15, 'carrello', '2025-01-20 18:02:02'),
+(173, 27, '', '2025-01-20 18:03:07'),
+(174, 27, '', '2025-01-20 18:03:15'),
+(175, 3, 'carrello', '2025-01-20 18:03:18'),
+(176, 5, 'carrello', '2025-01-20 18:03:22'),
+(177, 10, 'carrello', '2025-01-20 18:04:22'),
+(178, 5, 'carrello', '2025-01-20 18:04:28'),
+(179, 10, 'carrello', '2025-01-20 18:05:34'),
+(180, 17, 'carrello', '2025-01-20 18:05:42'),
+(181, 3, '', '2025-01-20 18:08:17'),
+(182, 10, '', '2025-01-20 18:09:21'),
+(183, 10, '', '2025-01-20 18:09:24');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `prodotti_acquistati`
+--
+
+CREATE TABLE `prodotti_acquistati` (
+  `id_acquisto` int(11) NOT NULL,
+  `id_prodotto` int(11) NOT NULL,
+  `quantita` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `prodotti_acquistati`
+--
+
+INSERT INTO `prodotti_acquistati` (`id_acquisto`, `id_prodotto`, `quantita`) VALUES
+(7, 1, 1),
+(7, 24, 1),
+(7, 27, 1),
+(8, 11, 1),
+(8, 14, 1),
+(8, 22, 1),
+(9, 2, 1),
+(10, 3, 2),
+(10, 7, 1),
+(10, 8, 1),
+(10, 9, 1),
+(10, 10, 2),
+(10, 12, 2),
+(10, 13, 1),
+(10, 15, 3),
+(10, 17, 2),
+(10, 18, 2),
+(10, 21, 1),
+(10, 22, 1),
+(10, 25, 1),
+(10, 29, 5),
+(10, 31, 3),
+(10, 32, 2);
 
 -- --------------------------------------------------------
 
@@ -118,15 +256,15 @@ INSERT INTO `interazione` (`id`, `id_prodotto`, `tipo`, `timestamp`) VALUES
 CREATE TABLE `prodotto` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `descrizione` text CHARACTER SET utf8mb4 NOT NULL,
+  `descrizione` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `quantita` int(11) NOT NULL,
   `prezzo` decimal(10,2) NOT NULL,
   `sconto` decimal(5,2) NOT NULL,
   `fine_sconto` date NOT NULL,
-  `img1` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `img2` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `img1` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `img2` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `tipoProdotto_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dump dei dati per la tabella `prodotto`
@@ -179,9 +317,9 @@ CREATE TABLE `recensione` (
   `utente` int(11) NOT NULL,
   `prodotto_id` int(11) NOT NULL,
   `valutazione` int(11) NOT NULL CHECK (`valutazione` between 1 and 5),
-  `descrizione` text CHARACTER SET utf8 NOT NULL,
+  `descrizione` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `data` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dump dei dati per la tabella `recensione`
@@ -205,8 +343,8 @@ INSERT INTO `recensione` (`utente`, `prodotto_id`, `valutazione`, `descrizione`,
 
 CREATE TABLE `tipoprodotto` (
   `id` int(11) NOT NULL,
-  `descrizione` varchar(255) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `descrizione` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dump dei dati per la tabella `tipoprodotto`
@@ -231,7 +369,7 @@ CREATE TABLE `user` (
   `name` varchar(50) NOT NULL,
   `surname` varchar(50) NOT NULL,
   `image_file_type` varchar(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dump dei dati per la tabella `user`
@@ -249,6 +387,13 @@ INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `name`, `surname
 --
 
 --
+-- Indici per le tabelle `acquisti`
+--
+ALTER TABLE `acquisti`
+  ADD PRIMARY KEY (`id_acquisto`),
+  ADD KEY `utente_acquisti` (`id_utente`);
+
+--
 -- Indici per le tabelle `carrello`
 --
 ALTER TABLE `carrello`
@@ -263,11 +408,20 @@ ALTER TABLE `interazione`
   ADD KEY `prodotto_interazione` (`id_prodotto`);
 
 --
+-- Indici per le tabelle `prodotti_acquistati`
+--
+ALTER TABLE `prodotti_acquistati`
+  ADD PRIMARY KEY (`id_acquisto`,`id_prodotto`),
+  ADD KEY `prodotti` (`id_prodotto`);
+
+--
 -- Indici per le tabelle `prodotto`
 --
 ALTER TABLE `prodotto`
   ADD PRIMARY KEY (`id`),
   ADD KEY `prodotto_tipo` (`tipoProdotto_id`);
+ALTER TABLE `prodotto` ADD FULLTEXT KEY `nome` (`nome`);
+ALTER TABLE `prodotto` ADD FULLTEXT KEY `descrizione` (`descrizione`);
 
 --
 -- Indici per le tabelle `recensione`
@@ -295,10 +449,16 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT per la tabella `acquisti`
+--
+ALTER TABLE `acquisti`
+  MODIFY `id_acquisto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT per la tabella `interazione`
 --
 ALTER TABLE `interazione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotto`
@@ -317,6 +477,12 @@ ALTER TABLE `user`
 --
 
 --
+-- Limiti per la tabella `acquisti`
+--
+ALTER TABLE `acquisti`
+  ADD CONSTRAINT `utente_acquisti` FOREIGN KEY (`id_utente`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
 -- Limiti per la tabella `carrello`
 --
 ALTER TABLE `carrello`
@@ -328,6 +494,13 @@ ALTER TABLE `carrello`
 --
 ALTER TABLE `interazione`
   ADD CONSTRAINT `prodotto_interazione` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `prodotti_acquistati`
+--
+ALTER TABLE `prodotti_acquistati`
+  ADD CONSTRAINT `prodotti` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotto` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `prodotti_acquistati` FOREIGN KEY (`id_acquisto`) REFERENCES `acquisti` (`id_acquisto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `prodotto`
