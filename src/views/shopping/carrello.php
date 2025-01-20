@@ -33,9 +33,9 @@
 
         <div class="col-md-4 mb-4" id="card-<?php echo $product['prodotto']->getId();?>">
             <div class="card">
-                <img src="<?php echo ImageManager::getProductImagePath($product['prodotto']->getId()); ?>" class="card-img-top product-image" alt="<?php echo $product['prodotto']->getId();?>">
+                <img src="<?php echo ImageManager::getProductImagePath($product['prodotto']->getId()); ?>" class="card-img-top product-image ask-detail-btn" alt="<?php echo $product['prodotto']->getId();?>" data-id="<?php echo $product['prodotto']->getId();?>">
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $product['prodotto']->getNome();?></h5>
+                    <h5 class="card-title ask-detail-btn" data-id="<?php echo $product['prodotto']->getId();?>"><?php echo $product['prodotto']->getNome();?></h5>
                     <p class="card-text">Prezzo unitario: 
                     <?php if($sconto): ?>
                         <span class="text-decoration-line-through text-muted"><?php echo $product['prodotto']->getPrezzo()?></span>

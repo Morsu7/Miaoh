@@ -86,6 +86,7 @@ document.querySelectorAll('.add-to-cart-btn').forEach(button => {
 });
 
 document.querySelectorAll('.ask-detail-btn').forEach(button => {
+    button.style.cursor = 'pointer';
     button.addEventListener('click', function() {
         let id = button.getAttribute("data-id");
         const form = document.createElement("form");
