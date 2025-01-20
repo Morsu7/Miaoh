@@ -26,7 +26,26 @@ function addToCarrello(productId){
 }
 
 document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function (event) {
+        event.stopPropagation();
         addToCarrello(this.getAttribute('data-id'));
+    });
+});
+
+document.querySelectorAll('.ask-detail-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        let id = button.getAttribute("data-id");
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = "?action=product";
+
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "product_id"; // Nome del parametro POST
+        input.value = id; // Valore del data-id
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
     });
 });

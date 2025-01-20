@@ -30,8 +30,3 @@ function handleTouchEnd(e) {
     }
     x1 = null;
 }
-
-
-function submitForm(productId) {
-    document.getElementById("product-form-" + productId).submit();
-}
