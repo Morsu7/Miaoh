@@ -45,6 +45,19 @@
 </div>
 <?php } ?>
 
+<section class="search-bar py-4">
+    <div class="container">
+        <input 
+            type="text" 
+            id="search-input" 
+            class="form-control" 
+            placeholder="Cerca prodotti..." 
+            autocomplete="off">
+        <ul id="search-suggestions" class="list-group mt-2" style="display: none;"></ul>
+    </div>
+</section>
+
+
 <section class="products py-5">
     <div class="container">
         <h2 class="text-center mb-4">I nostri prodotti</h2>

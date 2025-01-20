@@ -154,5 +154,21 @@
     }
 }
 
+#search-suggestions {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    z-index: 1000;
+    position: absolute;
+    width: calc(100% - 30px);
+}
 
+#search-suggestions .list-group-item {
+    cursor: pointer;
+}
 
+#search-suggestions .list-group-item:hover {
+    background-color: #f8f9fa;
+}
