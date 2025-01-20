@@ -144,3 +144,8 @@ document.querySelectorAll('.confirm-delete').forEach(button => button.addEventLi
         modal.hide();
     }
 }));
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+})

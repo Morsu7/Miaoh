@@ -86,7 +86,13 @@
 
     <!-- Voce per le spese di spedizione -->
     <section class="d-flex justify-content-between align-items-center">
-        <h4>Spedizione</h4>
+        <div class="d-flex align-items-center">
+            <!-- Informazioni sulle spese di spedizione -->
+            <div data-bs-placement="top" class="d-flex align-items-center">
+            <img src="public/assets/icons/info-circle.svg" alt="Info Icon" class="info-icon" data-bs-toggle="tooltip" title="Le spese di spedizione sono nulle se l'ordine totale supera i 25€">
+            </div>
+            <h4 class="ms-2 mb-0">Spedizione</h4>
+        </div>
         <h4 id="shippingCost"><?php echo "€" . $shippingCost; ?></h4>
     </section>
 
