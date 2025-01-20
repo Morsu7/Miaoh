@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 19, 2025 alle 12:56
+-- Creato il: Gen 20, 2025 alle 16:18
 -- Versione del server: 10.4.19-MariaDB
 -- Versione PHP: 8.0.6
 
@@ -32,6 +32,21 @@ CREATE TABLE `carrello` (
   `id_prodotto` int(11) NOT NULL,
   `quantita` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `carrello`
+--
+
+INSERT INTO `carrello` (`id_utente`, `id_prodotto`, `quantita`) VALUES
+(21, 1, 85),
+(21, 3, 1),
+(21, 8, 1),
+(21, 13, 1),
+(21, 19, 1),
+(21, 25, 1),
+(21, 30, 1),
+(21, 32, 1),
+(21, 34, 1);
 
 --
 -- Trigger `carrello`
@@ -68,7 +83,31 @@ INSERT INTO `interazione` (`id`, `id_prodotto`, `tipo`, `timestamp`) VALUES
 (75, 20, 'carrello', '2025-01-18 19:15:30'),
 (76, 10, 'carrello', '2025-01-18 19:21:38'),
 (77, 20, 'carrello', '2025-01-18 19:21:44'),
-(78, 8, 'carrello', '2025-01-19 11:25:07');
+(78, 8, 'carrello', '2025-01-19 11:25:07'),
+(79, 19, 'carrello', '2025-01-19 12:09:32'),
+(80, 1, 'carrello', '2025-01-19 15:19:02'),
+(81, 1, 'carrello', '2025-01-19 15:19:04'),
+(82, 1, 'carrello', '2025-01-19 15:19:06'),
+(83, 4, 'carrello', '2025-01-19 15:20:37'),
+(84, 4, 'carrello', '2025-01-19 15:20:38'),
+(85, 4, 'carrello', '2025-01-19 15:20:40'),
+(86, 4, 'carrello', '2025-01-19 15:20:42'),
+(87, 17, 'carrello', '2025-01-19 15:21:10'),
+(88, 4, 'carrello', '2025-01-19 17:02:09'),
+(89, 29, 'carrello', '2025-01-19 20:51:31'),
+(90, 24, 'carrello', '2025-01-19 21:02:51'),
+(91, 15, 'carrello', '2025-01-19 21:02:54'),
+(92, 34, 'carrello', '2025-01-19 21:03:07'),
+(93, 1, 'carrello', '2025-01-19 21:03:15'),
+(94, 25, 'carrello', '2025-01-19 21:05:51'),
+(95, 32, 'carrello', '2025-01-19 21:05:53'),
+(96, 13, 'carrello', '2025-01-19 21:05:57'),
+(97, 34, 'carrello', '2025-01-19 21:06:01'),
+(98, 8, 'carrello', '2025-01-19 21:06:06'),
+(99, 19, 'carrello', '2025-01-19 21:06:11'),
+(100, 30, 'carrello', '2025-01-19 21:39:15'),
+(101, 13, '', '2025-01-20 15:17:24'),
+(102, 30, '', '2025-01-20 15:18:36');
 
 -- --------------------------------------------------------
 
@@ -140,17 +179,23 @@ CREATE TABLE `recensione` (
   `utente` int(11) NOT NULL,
   `prodotto_id` int(11) NOT NULL,
   `valutazione` int(11) NOT NULL CHECK (`valutazione` between 1 and 5),
-  `descrizione` text CHARACTER SET utf8 NOT NULL
+  `descrizione` text CHARACTER SET utf8 NOT NULL,
+  `data` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `recensione`
 --
 
-INSERT INTO `recensione` (`utente`, `prodotto_id`, `valutazione`, `descrizione`) VALUES
-(1, 1, 5, 'Il mio gatto lo adora, robusto e facile da montare!'),
-(1, 2, 4, 'Croccantini di qualit?, ma un po? costosi rispetto alla media'),
-(1, 3, 5, 'Gioco semplice ma il mio gatto si diverte tantissimo!');
+INSERT INTO `recensione` (`utente`, `prodotto_id`, `valutazione`, `descrizione`, `data`) VALUES
+(1, 2, 4, 'Croccantini di qualità, ma un po\' costosi rispetto alla media', '2025-01-20'),
+(1, 3, 5, 'Gioco semplice ma il mio gatto si diverte tantissimo!', '2025-01-20'),
+(1, 10, 3, 'dsdsd', '2025-01-20'),
+(1, 30, 3, 'dasdsads', '2025-01-20'),
+(13, 10, 1, 'non male', '2025-01-20'),
+(18, 10, 5, 'non posso farne a meno', '2025-01-20'),
+(21, 10, 4, 'beatiful', '2025-01-20'),
+(21, 34, 3, 'bella bella bella', '2025-01-20');
 
 -- --------------------------------------------------------
 
@@ -253,7 +298,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT per la tabella `interazione`
 --
 ALTER TABLE `interazione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotto`
