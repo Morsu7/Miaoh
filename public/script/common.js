@@ -49,3 +49,10 @@ document.querySelectorAll('.ask-detail-btn').forEach(button => {
         form.submit();
     });
 });
+
+document.querySelectorAll('.user-img').forEach(button => {
+    button.style.cursor = 'pointer';
+    button.addEventListener('click', function() {
+        window.location.href = '?action=profile';
+    });
+});

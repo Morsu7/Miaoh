@@ -108,8 +108,8 @@
 
     <!-- Azioni -->
     <footer class="mt-4 d-flex justify-content-between">
-        <a href="index.html" class="btn btn-secondary">Continua lo shopping</a>
-        <a href="checkout.html" class="btn btn-primary">Procedi al checkout</a>
+        <a href="?#" class="btn btn-secondary">Continua lo shopping</a>
+        <a href="?action=shopping&subAction=checkout" class="btn btn-primary">Procedi al checkout</a>
     </footer>
 </section>
 

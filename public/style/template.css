@@ -23,8 +23,7 @@ a.navbar-brand:visited {
     color: inherit; /* Keeps the text color unchanged */
 }
 
-/* Stile per l'immagine dell'utente */
-.user-img {
+.user-icon {
     max-height: 2.5rem;  /* Imposta l'altezza dell'immagine dell'utente */
     width: auto;
     border-radius: 50%;  /* Rende l'immagine circolare */

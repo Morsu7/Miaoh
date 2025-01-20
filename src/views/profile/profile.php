@@ -8,7 +8,7 @@ $picture = $picture = ImageManager::getUserImagePath($_SESSION['email']);
     <section class="profile-image-big text-center mb-4">
         <!-- Foto profilo (verifica che la foto esista nel percorso specificato) -->
         <img src="<?php echo $picture; ?>" 
-                alt="Foto Profilo" class="img-fluid rounded-circle" width="150" height="150">
+                alt="Foto Profilo" class="img-fluid rounded-circle user-img" width="150" height="150">
     </section>
 
     <h2>Dettagli personali</h2>

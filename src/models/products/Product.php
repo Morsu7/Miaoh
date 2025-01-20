@@ -134,17 +134,20 @@ class Product
         $this->tipoProdottoId = $tipoProdottoId;
     }
 
-    // Metodo per calcolare il prezzo scontato
-    public function calcolaPrezzoScontato(): float
-    {
-        return $this->prezzo - ($this->prezzo * $this->sconto / 100);
-    }
-
     // Metodo per verificare se lo sconto è ancora valido
     public function isScontoValido(): bool
     {
         $oggi = date('Y-m-d');
         return $oggi <= $this->fineSconto;
+    }
+
+    public function getPrezzoScontato(): float
+    {
+        if ($this->isScontoValido()) {
+            return round($this->prezzo - ($this->prezzo * $this->sconto / 100),2);
+        } else {
+            return $this->prezzo;
+        }
     }
 
     // Metodo per ottenere una descrizione dettagliata del prodotto

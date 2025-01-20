@@ -12,6 +12,8 @@ define('DB_NAME', 'miaoh_db');
 
 define('IMAGE_PATH', 'public/assets/images/');
 
+define('SHIPPING_ADDRESS', '47522 Cesena FC');
+
 $show_header = true;
 
 //Load Config
