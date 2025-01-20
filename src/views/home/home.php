@@ -57,6 +57,14 @@
                 if ($index % 3 == 0 && $index > 0) {
                     echo '</div><div class="row">'; // Chiudi la riga precedente e ne apri una nuova
                 }
+                if(new DateTime($product->getFineSconto()) > new DateTime('today')){
+                    $sconto = true;
+                    $price = $product->getPrezzo()*(100-$product->getSconto())/100;
+                }else{  
+                    $sconto = false;
+                    $price = $product->getPrezzo();
+                }
+                $price = round($price,2);
             ?>
             <article class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
                 <div class="card h-100">
@@ -83,7 +91,12 @@
                         </form>
                         
                         <p class="card-text"><?php echo htmlspecialchars($product->getDescrizione(), ENT_QUOTES, 'UTF-8'); ?></p>
-                        <p class="card-text">€<?php echo number_format($product->getPrezzo(), 2, ',', '.'); ?></p>
+                        <p class="card-text">Prezzo: 
+                        <?php if($sconto): ?>
+                            €<span class="text-decoration-line-through text-muted"><?php echo $product->getPrezzo()?></span>
+                        <?php endif; ?>
+                            €<span id="price-<?php echo $product->getId();?>"><?php echo $price?></span>
+                        </p>
                         <a href="#" class="btn btn-primary interaction cart add-to-cart-btn" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
                             Aggiungi al carrello
                         </a>
