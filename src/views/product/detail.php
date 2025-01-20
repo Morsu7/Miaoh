@@ -3,6 +3,7 @@
 <div class="container mt-5">
     <!-- Card del prodotto -->
     <section class="product-details">
+        <input type="hidden" name="idMainProduct" value="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
         <div class="row">
             <!-- Colonna sinistra per immagine principale -->
             <div class="col-md-6">
@@ -77,6 +78,39 @@
             <button class="btn carousel-control-next position-absolute" id="nextBtn" style="right: -25px;">→</button>
         </div>
     </section>
+
+    <section class="mt-5">
+        <div class="reviews-section">
+            <!-- Colonna sinistra: Contenitore delle recensioni -->
+            <div class="left-column" id="reviews-container">
+                <h4>Recensioni</h4>
+                <!-- Le recensioni saranno caricate dinamicamente qui -->
+            </div>
+
+            <!-- Colonna destra: Modulo per aggiungere una nuova recensione -->
+            <div class="right-column">
+                <h5>Aggiungi una Recensione</h5>
+                <form class="add-review-form">
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Valutazione (1-5)</label>
+                        <select id="rating" name="rating" class="form-select">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="review-description" class="form-label">Recensione</label>
+                        <textarea id="review-description" name="description" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary send-review">Invia Recensione</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
 </div>
 
 <script src="public/script/detail.js"></script>
