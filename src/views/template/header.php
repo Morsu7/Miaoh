@@ -36,6 +36,7 @@ if(isset($_SESSION['email'])){
         <li><a href="#" class="d-block py-2 text-decoration-none">Shop</a></li>
         <li><a href="#" class="d-block py-2 text-decoration-none">Cart</a></li>
         <li><a href="?action=profile" class="d-block py-2 text-decoration-none">Profile</a></li>
+        <li><a href="?action=adminpage" class="d-block py-2 text-decoration-none">Admin</a></li>  <!-- TODO: Fare che si vede solo se si è admin -->
     </ul>
 </div>
 

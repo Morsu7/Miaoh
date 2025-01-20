@@ -110,4 +110,21 @@ class ProductsManager
 
         return $products;
     }
+
+    // TODO: Chiedere se lasciare qua o no
+    public static function getAllProducts() {
+        $stmt = Connection::$db->prepare("
+            SELECT * FROM " . self::$PRODUCT_TABLE . "
+        ");
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $products = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $products[] = new Product($row['id'], $row['nome'], $row['descrizione'], $row['quantita'], $row['prezzo'], $row['sconto'], $row['fine_sconto'], $row['img1'], $row['img2'], $row['tipoProdotto_id']);
+        }
+
+        return $products;
+    }
 }

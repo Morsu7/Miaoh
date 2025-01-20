@@ -1,0 +1,24 @@
+.sidebar {
+    background-color: #ffffff;
+    height: 100vh;
+    padding: 2rem 1rem;
+}
+
+.main-content {
+    background-color: #f9fafb;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.nav-link.active {
+    color: #4f46e5 !important;
+    font-weight: bold;
+}
+
+.progress-bar {
+    background-color: #4f46e5;
+}
