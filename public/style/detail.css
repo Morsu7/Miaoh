@@ -321,3 +321,117 @@
     }
 }
 
+/* Stile applicato solo alla sezione delle recensioni */
+.reviews-section {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.reviews-section .left-column {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    max-height: 400px; /* Limitiamo l'altezza per la scrollbar */
+}
+
+.reviews-section .left-column::-webkit-scrollbar {
+    width: 8px;
+}
+
+.reviews-section .left-column::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 4px;
+}
+
+.reviews-section .left-column::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+.reviews-section .right-column {
+    flex: 0 0 300px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.reviews-section h4, .reviews-section h5 {
+    margin: 0 0 10px;
+}
+
+.reviews-section .mt-3 {
+    margin-top: 20px;
+}
+
+.reviews-section .btn {
+    cursor: pointer;
+}
+
+/* Stile globale per il contenitore delle recensioni */
+.review-card {
+    background-color: #f9f9f9; /* Colore di sfondo chiaro */
+    border-radius: 10px; /* Angoli arrotondati */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombra per profondità */
+    margin-bottom: 20px; /* Distanza tra le recensioni */
+    padding: 20px; /* Spaziatura interna */
+    font-family: 'Arial', sans-serif; /* Font chiaro e leggibile */
+    transition: all 0.3s ease; /* Effetto di transizione per hover */
+}
+
+.review-card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Ombra più intensa al passaggio del mouse */
+}
+
+/* Stile per l'intestazione della recensione (foto profilo + nome) */
+.review-header {
+    display: flex; /* Disposizione orizzontale */
+    align-items: center; /* Centrare verticalmente */
+    margin-bottom: 15px; /* Spaziatura tra l'intestazione e il contenuto */
+}
+
+.profile-pic {
+    width: 50px; /* Dimensione dell'immagine del profilo */
+    height: 50px;
+    border-radius: 50%; /* Forma rotonda */
+    object-fit: cover; /* Copre tutta l'area senza deformarsi */
+    margin-right: 15px; /* Distanza tra l'immagine e il testo */
+}
+
+.review-user-info {
+    flex: 1; /* Usa lo spazio rimanente per il nome e la data */
+}
+
+.user-name {
+    font-weight: bold;
+    font-size: 16px; /* Dimensione del nome */
+    color: #333; /* Colore scuro per il nome */
+    margin-bottom: 5px; /* Distanza tra nome e data */
+}
+
+.review-date {
+    font-size: 12px; /* Dimensione piccola per la data */
+    color: #777; /* Colore grigio chiaro per la data */
+}
+
+/* Stile per il contenuto della recensione (descrizione, valutazione) */
+.review-content {
+    font-size: 14px; /* Dimensione del testo */
+    color: #555; /* Colore grigio per il testo */
+}
+
+.review-content p {
+    margin: 10px 0; /* Distanza tra i paragrafi */
+}
+
+.review-content strong {
+    font-weight: bold;
+    color: #333; /* Colore scuro per le parti in grassetto */
+}
+
+/* Stile per la valutazione */
+.review-content p strong {
+    font-size: 15px;
+    color: #f1c40f; /* Colore dorato per la valutazione */
+}
