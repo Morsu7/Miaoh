@@ -27,6 +27,11 @@ switch ($subAction) {
     case 'checkout':
         $user = Users::fromEmail($_SESSION['email']);
         $products = ProductsManager::ListFromUserCart($user->getId());
+        if(count($products) == 0){
+            $content = '../src/views/shopping/carrello.php';
+            $errore = "Non hai nessun prodotto nel carrello";
+            break;
+        }
         $totalPrice = CartManager::TotalPriceProducts($products);
         $content = '../src/views/shopping/checkout.php';
         break;

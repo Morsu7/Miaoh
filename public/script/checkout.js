@@ -23,16 +23,17 @@ function checkout(){
         },
         credentials: 'include'
     })
-    .then(response => response.json())
+    .then(response => console.log(response.text()))
     .then(data => {
         if (data.success) {
-            //console.log('Sessione sì');
         } else {
-            console.error('Errore: ' + data.error);
+            //console.error('Errore: ' + data.error);
         }
     })
     .catch(error => {
         console.error('Errore nella richiesta:', error);
         //alert('Si è verificato un errore durante la richiesta.');
     });
+
+    window.location.href = '?#';
 }

@@ -22,7 +22,7 @@
                 <!-- Prezzo scontato se valido -->
                 <?php if ($product->isScontoValido()): ?>
                     <p><strong>Sconto:</strong> <?= $product->getSconto() ?>%</p>
-                    <p><strong>Prezzo Scontato:</strong> <span class="sconto"><?= number_format($product->calcolaPrezzoScontato(), 2, ',', '.') ?> EUR</span></p>
+                    <p><strong>Prezzo Scontato:</strong> <span class="sconto"><?= number_format($product->getPrezzoScontato(), 2, ',', '.') ?> EUR</span></p>
                     <p><small>Offerta valida fino al: <?= $product->getFineSconto() ?></small></p>
                 <?php else: ?>
                     <p><strong>Sconto non valido</strong></p>

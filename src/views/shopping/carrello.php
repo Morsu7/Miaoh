@@ -10,6 +10,11 @@
 
 <?php   $total = 0; ?>
 <section class="container mt-5">
+    <?php if(isset($errore)): ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo $errore; ?>
+        </div>
+    <?php endif; ?>
     <?php if(count($items) > 0):  ?>
     <!-- Sezione dei prodotti nel carrello -->
     <div class="row">
