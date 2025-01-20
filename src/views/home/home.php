@@ -84,7 +84,7 @@
                         <?php endif; ?>
                             €<span id="price-<?php echo $product->getId();?>"><?php echo $price?></span>
                         </p>
-                        <a href="#" class="btn btn-primary interaction cart add-to-cart-btn" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
+                        <a class="btn btn-primary interaction cart add-to-cart-btn" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
                             Aggiungi al carrello
                         </a>
                     </div>
