@@ -64,7 +64,7 @@
                             
                             <p class="card-text"><?php echo htmlspecialchars($product->getDescrizione(), ENT_QUOTES, 'UTF-8'); ?></p>
                             <p class="card-text">€<?php echo number_format($product->getPrezzo(), 2, ',', '.'); ?></p>
-                            <a href="#" class="btn btn-primary add-to-cart-btn" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
+                            <a class="btn btn-primary add-to-cart-btn" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
                                 Aggiungi al carrello
                             </a>
                         </div>
