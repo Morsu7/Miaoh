@@ -10,6 +10,11 @@
 
 <?php   $total = 0; ?>
 <section class="container mt-5">
+    <?php if(isset($errore)): ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo $errore; ?>
+        </div>
+    <?php endif; ?>
     <?php if(count($items) > 0):  ?>
     <!-- Sezione dei prodotti nel carrello -->
     <div class="row">
@@ -28,9 +33,9 @@
 
         <div class="col-md-4 mb-4" id="card-<?php echo $product['prodotto']->getId();?>">
             <div class="card">
-                <img src="<?php echo ImageManager::getProductImagePath($product['prodotto']->getId()); ?>" class="card-img-top product-image" alt="<?php echo $product['prodotto']->getId();?>">
+                <img src="<?php echo ImageManager::getProductImagePath($product['prodotto']->getId()); ?>" class="card-img-top product-image ask-detail-btn" alt="<?php echo $product['prodotto']->getId();?>" data-id="<?php echo $product['prodotto']->getId();?>">
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $product['prodotto']->getNome();?></h5>
+                    <h5 class="card-title ask-detail-btn" data-id="<?php echo $product['prodotto']->getId();?>"><?php echo $product['prodotto']->getNome();?></h5>
                     <p class="card-text">Prezzo unitario: 
                     <?php if($sconto): ?>
                         <span class="text-decoration-line-through text-muted"><?php echo $product['prodotto']->getPrezzo()?></span>
@@ -108,8 +113,8 @@
 
     <!-- Azioni -->
     <footer class="mt-4 d-flex justify-content-between">
-        <a href="index.html" class="btn btn-secondary">Continua lo shopping</a>
-        <a href="checkout.html" class="btn btn-primary">Procedi al checkout</a>
+        <a href="?#" class="btn btn-secondary">Continua lo shopping</a>
+        <a href="?action=shopping&subAction=checkout" class="btn btn-primary">Procedi al checkout</a>
     </footer>
 </section>
 
