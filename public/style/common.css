@@ -26,5 +26,15 @@
     }
 }
 
+/* Cambia il colore di fondo e testo dei pulsanti Bootstrap */
+.btn-go-to-cart {
+    background-color: #6a0dad; /* Colore viola */
+    border-color: #6a0dad;     /* Colore del bordo viola */
+    color:aliceblue;
+}
 
-
+.btn-go-to-cart:hover, .btn-go-to-cart:focus {
+    background-color: #4b0082;  /* Colore viola scuro al passaggio del mouse */
+    border-color: #4b0082;      /* Colore del bordo viola scuro */
+    color:aliceblue;
+}
