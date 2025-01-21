@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     li.setAttribute('data-id', item.id);
                     suggestionsBox.appendChild(li);
                 });
-                setupAskDetailButtons();
             } else {
                 reviewsContainer.innerHTML = '<p>Nessuna risultato trovato.</p>';
             }

@@ -22,6 +22,10 @@ if (isset($_GET['subAction'])){
 switch ($subAction) {
     case 'carrello':
     default:
+        if(isset($_GET['product_id'])){
+            $prodotto = ProductsManager::fromId($_GET['product_id']);
+            $errore = "Quantità richiesta non disponibile per il prodotto " . $prodotto->getNome() . "(solo " . $prodotto->getQuantita() . " disponibili)";
+        }
         $content = '../src/views/shopping/carrello.php';
         break;
     case 'checkout':

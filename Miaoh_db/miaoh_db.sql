@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 20, 2025 alle 19:32
+-- Creato il: Gen 21, 2025 alle 13:06
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 8.2.0
 
@@ -31,18 +31,17 @@ CREATE TABLE `acquisti` (
   `id_utente` int(11) NOT NULL,
   `id_acquisto` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
-  `stato_acquisto` enum('da_spedire','spedito','consegnato') NOT NULL DEFAULT 'da_spedire'
+  `stato_acquisto` enum('da_spedire','spedito','consegnato') NOT NULL DEFAULT 'da_spedire',
+  `spesa` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `acquisti`
 --
 
-INSERT INTO `acquisti` (`id_utente`, `id_acquisto`, `timestamp`, `stato_acquisto`) VALUES
-(1, 7, '2025-01-20 17:18:49', 'da_spedire'),
-(1, 8, '2025-01-20 17:27:05', 'da_spedire'),
-(1, 9, '2025-01-20 17:31:11', 'da_spedire'),
-(1, 10, '2025-01-20 18:02:31', 'da_spedire');
+INSERT INTO `acquisti` (`id_utente`, `id_acquisto`, `timestamp`, `stato_acquisto`, `spesa`) VALUES
+(1, 19, '2025-01-20 22:36:39', 'da_spedire', '14.39'),
+(1, 20, '2025-01-21 11:46:44', 'da_spedire', '393.85');
 
 -- --------------------------------------------------------
 
@@ -55,16 +54,6 @@ CREATE TABLE `carrello` (
   `id_prodotto` int(11) NOT NULL,
   `quantita` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dump dei dati per la tabella `carrello`
---
-
-INSERT INTO `carrello` (`id_utente`, `id_prodotto`, `quantita`) VALUES
-(1, 3, 1),
-(1, 5, 2),
-(1, 10, 2),
-(1, 17, 1);
 
 --
 -- Trigger `carrello`
@@ -204,7 +193,25 @@ INSERT INTO `interazione` (`id`, `id_prodotto`, `tipo`, `timestamp`) VALUES
 (180, 17, 'carrello', '2025-01-20 18:05:42'),
 (181, 3, '', '2025-01-20 18:08:17'),
 (182, 10, '', '2025-01-20 18:09:21'),
-(183, 10, '', '2025-01-20 18:09:24');
+(183, 10, '', '2025-01-20 18:09:24'),
+(184, 1, '', '2025-01-20 18:34:38'),
+(185, 6, '', '2025-01-20 18:36:19'),
+(186, 28, '', '2025-01-20 18:37:16'),
+(187, 27, '', '2025-01-20 18:37:35'),
+(188, 35, '', '2025-01-20 18:37:43'),
+(189, 20, '', '2025-01-20 18:38:59'),
+(190, 4, 'carrello', '2025-01-20 18:39:16'),
+(191, 18, 'carrello', '2025-01-20 19:28:28'),
+(192, 4, 'carrello', '2025-01-20 19:28:38'),
+(193, 16, 'carrello', '2025-01-20 21:49:23'),
+(194, 29, 'carrello', '2025-01-20 22:25:43'),
+(195, 19, 'carrello', '2025-01-20 22:34:54'),
+(196, 4, 'carrello', '2025-01-20 22:36:34'),
+(197, 17, '', '2025-01-21 11:46:15'),
+(198, 17, 'carrello', '2025-01-21 11:46:16'),
+(199, 17, 'carrello', '2025-01-21 11:46:24'),
+(200, 9, 'carrello', '2025-01-21 11:46:27'),
+(201, 2, 'carrello', '2025-01-21 11:46:30');
 
 -- --------------------------------------------------------
 
@@ -215,37 +222,20 @@ INSERT INTO `interazione` (`id`, `id_prodotto`, `tipo`, `timestamp`) VALUES
 CREATE TABLE `prodotti_acquistati` (
   `id_acquisto` int(11) NOT NULL,
   `id_prodotto` int(11) NOT NULL,
-  `quantita` int(11) NOT NULL
+  `quantita` int(11) NOT NULL,
+  `prezzo_totale` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `prodotti_acquistati`
 --
 
-INSERT INTO `prodotti_acquistati` (`id_acquisto`, `id_prodotto`, `quantita`) VALUES
-(7, 1, 1),
-(7, 24, 1),
-(7, 27, 1),
-(8, 11, 1),
-(8, 14, 1),
-(8, 22, 1),
-(9, 2, 1),
-(10, 3, 2),
-(10, 7, 1),
-(10, 8, 1),
-(10, 9, 1),
-(10, 10, 2),
-(10, 12, 2),
-(10, 13, 1),
-(10, 15, 3),
-(10, 17, 2),
-(10, 18, 2),
-(10, 21, 1),
-(10, 22, 1),
-(10, 25, 1),
-(10, 29, 5),
-(10, 31, 3),
-(10, 32, 2);
+INSERT INTO `prodotti_acquistati` (`id_acquisto`, `id_prodotto`, `quantita`, `prezzo_totale`) VALUES
+(19, 4, 1, '14.39'),
+(20, 2, 6, '117.54'),
+(20, 4, 1, '14.39'),
+(20, 9, 2, '21.98'),
+(20, 17, 6, '239.94');
 
 -- --------------------------------------------------------
 
@@ -326,6 +316,7 @@ CREATE TABLE `recensione` (
 --
 
 INSERT INTO `recensione` (`utente`, `prodotto_id`, `valutazione`, `descrizione`, `data`) VALUES
+(1, 1, 5, 'PAZZESCOOOOOOOOOOOOOOOOOOOOOOOOOOOOO', '2025-01-20'),
 (1, 2, 4, 'Croccantini di qualità, ma un po\' costosi rispetto alla media', '2025-01-20'),
 (1, 3, 5, 'Gioco semplice ma il mio gatto si diverte tantissimo!', '2025-01-20'),
 (1, 10, 3, 'dsdsd', '2025-01-20'),
@@ -452,13 +443,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT per la tabella `acquisti`
 --
 ALTER TABLE `acquisti`
-  MODIFY `id_acquisto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_acquisto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT per la tabella `interazione`
 --
 ALTER TABLE `interazione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotto`
