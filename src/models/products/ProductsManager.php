@@ -164,4 +164,48 @@ class ProductsManager
         return $products;
     }
 
+    public static function getEndingSales(){
+        $stmt = Connection::$db->prepare("
+                SELECT *, DATEDIFF(fine_sconto, NOW()) AS giorni
+                FROM " . self::$PRODUCT_TABLE . "
+                WHERE DATEDIFF(fine_sconto, NOW()) > 0
+                AND DATEDIFF(fine_sconto, NOW()) < 31
+                ORDER BY giorni ASC
+        ");
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        
+        $offerte = [];
+        foreach($result as $offerta){
+            $offerte[] = [
+                'prodotto' => new Product($offerta['id'], $offerta['nome'], $offerta['descrizione'], $offerta['quantita'], $offerta['prezzo'], $offerta['sconto'], $offerta['fine_sconto'], $offerta['img1'], $offerta['img2'], $offerta['tipoProdotto_id']),
+                'giorni_rimasti' => $offerta['giorni']
+            ];
+        }
+
+        return $offerte;
+    }
+
+    public static function getSales(){
+        $stmt = Connection::$db->prepare("
+                SELECT *
+                FROM " . self::$PRODUCT_TABLE . "
+                WHERE DATEDIFF(fine_sconto, NOW()) > 0
+                ORDER BY sconto DESC
+        ");
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        
+        $offerte = [];
+        foreach($result as $offerta){
+            if (!isset($offerte[$offerta['sconto']])) {
+                $offerte[$offerta['sconto']] = [];
+            }
+            $offerte[$offerta['sconto']][] = new Product($offerta['id'], $offerta['nome'], $offerta['descrizione'], $offerta['quantita'], $offerta['prezzo'], $offerta['sconto'], $offerta['fine_sconto'], $offerta['img1'], $offerta['img2'], $offerta['tipoProdotto_id']);
+        }
+
+        return $offerte;
+    }
 }

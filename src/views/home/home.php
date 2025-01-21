@@ -5,7 +5,7 @@
     <div class="container">
         <h2>Scopri le nostre offerte speciali!</h2>
         <p>Acquista i migliori prodotti ai prezzi più convenienti.</p>
-        <a href="#" class="btn btn-primary">Scopri di più</a>
+        <a href="?action=marketplace" class="btn btn-primary">Scopri di più</a>
     </div>
 </section>
 

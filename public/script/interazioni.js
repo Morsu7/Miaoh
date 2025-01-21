@@ -1,18 +1,3 @@
-document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.stopPropagation();
-        const productId = this.getAttribute('data-id');
-        registerInteraction(productId, "cart"); // Chiamata AJAX con l'ID del prodotto
-    });
-});
-
-document.querySelectorAll('.ask-detail-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const productId = this.getAttribute('data-id');
-        registerInteraction(productId, "visita"); // Chiamata AJAX con l'ID del prodotto
-    });
-});
-
 function registerInteraction(productId, type){
     // Configura la richiesta con fetch
     fetch('public/api/interactions.php', {

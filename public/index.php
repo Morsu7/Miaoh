@@ -9,6 +9,9 @@ if (isset($_GET['action'])){
 }
 
 switch ($action) {
+    case 'marketplace':
+        include('../src/controllers/marketplaceController.php');
+        break;
     case 'shopping':
         include('../src/controllers/shoppingController.php');
         break;

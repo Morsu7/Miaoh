@@ -20,7 +20,7 @@
                     <!-- Card del prodotto -->
                     <div class="card h-100 ask-detail-btn" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>" style="width: 18rem; margin-right: 20px;">
                         <img src="public/assets/images/productimages/<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>.<?php echo htmlspecialchars($product->getImg1(), ENT_QUOTES, 'UTF-8'); ?>" 
-                                class="card-img-top product-image img-fluid ask-detail-btn" 
+                                class="card-img-top product-image img-fluid" 
                                 alt="<?php echo htmlspecialchars($product->getNome(), ENT_QUOTES, 'UTF-8'); ?>" 
                                 style="cursor: pointer;">                        
                         <div class="card-body">
