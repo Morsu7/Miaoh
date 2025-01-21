@@ -21,19 +21,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['daysOld'])) {
 
         $userId = Users::fromEmail($_SESSION['email'])->getId();
         $daysOld = intval($_POST['daysOld']);
-
-        $stmt = Connection::$db->prepare("
+        $query = "
             SELECT id_acquisto, timestamp, stato_acquisto, spesa
             FROM " . $SHOPPING_TABLE . "
-            WHERE id_utente = ? AND DATEDIFF(CURRENT_DATE, timestamp) <= ?");
-        $stmt->bind_param("ii", $userId, $daysOld);
+            WHERE id_utente = ?";
+        if($daysOld > 0){
+            $query .= " AND DATEDIFF(CURRENT_DATE, timestamp) <= ?";
+        }
+        $query .= " ORDER BY timestamp ASC";
+
+        $stmt = Connection::$db->prepare($query);
+        if($daysOld > 0){
+            $stmt->bind_param("ii", $userId, $daysOld);
+        } else {
+            $stmt->bind_param("i", $userId);
+        }
         $stmt->execute();
 
         $result = $stmt->get_result();
 
         foreach ($result as $row) {
             $card = $empty_card;
-            $data = (new DateTime($row['timestamp']))->format('Y-m-d');
+            $data = (new DateTime($row['timestamp']))->format('d/m/Y');
             switch ($row['stato_acquisto']) {
                 case 'da_spedire':
                     $statusText = 'Da spedire';
@@ -80,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['daysOld'])) {
 
         // Debugging: Check if there are any results
         if ($result->num_rows === 0) {
-            echo "No orders found.";
+            echo "Nessun ordine trovato.";
         }
 
     }else{

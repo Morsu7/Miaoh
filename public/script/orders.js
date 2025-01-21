@@ -1,5 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
-    askOrders(31); // Ask for orders older no more than 31 days
+    askOrders(7); // Ask for orders older no more than 31 days
+
+    const periodSelect = document.getElementById('period-select');
+    const optionValues = Array.from(periodSelect.children).map(option => option.text);
+    
+    periodSelect.addEventListener('change', function() {
+        switch(this.value) {
+            case optionValues[0]:
+                askOrders(7);
+                break;
+            case optionValues[1]:
+                askOrders(31);
+                break;
+            case optionValues[2]:
+                askOrders(186);
+                break;
+            case optionValues[3]:
+                askOrders(365);
+                break;
+            case optionValues[4]:
+            default:
+                askOrders(-1);
+                break;
+        }
+    });
 });
 
 function askOrders(daysOld) {
@@ -15,8 +39,9 @@ function askOrders(daysOld) {
     .then(data => {
         if (data) {
             // Process the HTML response
-            console.log('HTML received:', data);
+            //console.log('HTML received:', data);
             const ordersContainer = document.getElementById('orders-container');
+            ordersContainer.innerHTML = '';
             ordersContainer.innerHTML += data;
         } else {
             console.error('Errore: No data received');

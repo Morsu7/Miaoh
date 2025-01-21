@@ -3,13 +3,17 @@ body {
   }
 
   .login-container {
-    width: 100%;
-    max-width: 400px;
-    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: auto;
 }
 
 .login-container h1 {
@@ -19,12 +23,13 @@ body {
 }
 
 .login-container img {
-    width: 50px;
+    max-width: 100px;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .login-container form {
+    width: 100%;
     margin-top: 20px;
 }
 
@@ -62,6 +67,7 @@ body {
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .login-container button:hover {
@@ -78,6 +84,10 @@ body {
 
 .login-container .signup-link:hover {
     text-decoration: underline;
+}
+
+.login-container .btn-secondary {
+    width: auto;
 }
 
 .progress-bar {

@@ -2,7 +2,7 @@
     echo '<link rel="stylesheet" href="public/style/register/loginForm.css">';
 ?>
 
-<div class="login-container">
+<div class="login-container d-flex flex-column justify-content-center align-items-center">
     <h1>MIAOH REGISTER</h1>
     <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" alt="Logo">
 
@@ -12,7 +12,7 @@
         </div>
     <?php endif; ?>
 
-    <form action="?action=login&subAction=auth-register" method="POST" enctype="multipart/form-data">
+    <form action="?action=login&subAction=auth-register" method="POST" enctype="multipart/form-data" class="w-100">
         <label for="image">Personalizza la tua immagine di profilo:</label>
         <input type="file" name="image" id="image" accept="image/*">
 
@@ -29,7 +29,10 @@
 
         <button type="submit">Registrati</button>
     </form>
-    I already have an account - <a href="?action=login&subAction=login" class="signup-link">Sign in</a>
+    <div class="mt-3">
+        Ho già un profilo - <a href="?action=login&subAction=login" class="signup-link">Log in</a>
+    </div>
+    <a href='?action=home'><button class="btn btn-secondary mt-3">Torna alla home</button></a>
 
     <script src="public/script/register.js"></script>
 </div>

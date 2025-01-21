@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                //console.log(data);
                 reviewsContainer.innerHTML = ''; // Svuota il contenitore
                 if (data.length > 0) {
                     data.forEach(review => {

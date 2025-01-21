@@ -29,6 +29,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit;
             }
 
+            // Decrementa la quantità disponibile mostrata per il prodotto
+            $stmt = Connection::$db->prepare("UPDATE prodotto SET quantita = quantita - ? WHERE id = ?");
+            $prodottoId = $acquisto['prodotto']->getId();
+            $stmt->bind_param("ii", $acquisto['quantita'], $prodottoId);
+            $stmt->execute();
+            if($stmt->affected_rows != 1){
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'Errore nella modifica della quantità disponibile'
+                ]);
+                exit;
+            }
+
             $spesa_totale += $acquisto['prodotto']->getPrezzoScontato() * $acquisto['quantita'];
         }
 
