@@ -16,7 +16,11 @@
         <label for="image">Personalizza la tua immagine di profilo:</label>
         <input type="file" name="image" id="image" accept="image/*">
 
-        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" name="username" placeholder="Username" id="username-input" required>
+        <small id="username-valid" class="form-text text-success"  style="display: none;"></small>
+        <small id="username-invalid" class="form-text text-danger" style="display: none;"></small>
+        <small id="username-check" class="form-text text-info" style="display: none;">.</small>
+        
         <input type="text" name="name" placeholder="Nome" required>
         <input type="text" name="surname" placeholder="Cognome" required>
         <input type="email" name="email" placeholder="Email" required>
@@ -27,7 +31,7 @@
         <!-- Messaggio che mostra la robustezza della password -->
         <p id="strength-text"></p>
 
-        <button type="submit">Registrati</button>
+        <button type="submit" id="register-button">Registrati</button>
     </form>
     <div class="mt-3">
         Ho già un profilo - <a href="?action=login&subAction=login" class="signup-link">Log in</a>
