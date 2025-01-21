@@ -9,7 +9,7 @@ document.querySelectorAll('.add-to-cart-btn').forEach(button => {
 document.querySelectorAll('.ask-detail-btn').forEach(button => {
     button.addEventListener('click', function() {
         const productId = this.getAttribute('data-id');
-        registerInteraction(productId, "detail"); // Chiamata AJAX con l'ID del prodotto
+        registerInteraction(productId, "visita"); // Chiamata AJAX con l'ID del prodotto
     });
 });
 
