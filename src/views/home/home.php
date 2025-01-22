@@ -62,50 +62,54 @@
     <div class="container">
         <h2 class="text-center mb-4">I nostri prodotti</h2>
 
-        <div class="row">
-            <?php
-            // Ciclo attraverso i prodotti
-            foreach ($products as $index => $product) {
-                // Se sono 2 prodotti nella stessa riga
-                if ($index % 3 == 0 && $index > 0) {
-                    echo '</div><div class="row">'; // Chiudi la riga precedente e ne apri una nuova
-                }
-                if(new DateTime($product->getFineSconto()) > new DateTime('today')){
-                    $sconto = true;
-                    $price = $product->getPrezzo()*(100-$product->getSconto())/100;
-                }else{  
-                    $sconto = false;
-                    $price = $product->getPrezzo();
-                }
-                $price = round($price,2);
-            ?>
-            <article class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
-                <div class="card h-100 ask-detail-btn" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8')?>">
-                    <!-- Immagine cliccabile -->
-                    <img src="public/assets/images/productimages/<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>.<?php echo htmlspecialchars($product->getImg1(), ENT_QUOTES, 'UTF-8'); ?>" 
-                             class="card-img-top product-image img-fluid" 
-                             alt="<?php echo htmlspecialchars($product->getNome(), ENT_QUOTES, 'UTF-8'); ?>" 
-                             style="cursor: pointer;">
-                    
-                    <div class="card-body">
-                        <h3 class="card-title text-dark"><?php echo htmlspecialchars($product->getNome(), ENT_QUOTES, 'UTF-8'); ?></h3>
+        <div class="container" id="product-list">
+        </div>
+        <div class="container" id="product-list-default">
+            <div class="row">
+                <?php
+                // Ciclo attraverso i prodotti
+                foreach ($products as $index => $product) {
+                    // Se sono 2 prodotti nella stessa riga
+                    if ($index % 3 == 0 && $index > 0) {
+                        echo '</div><div class="row">'; // Chiudi la riga precedente e ne apri una nuova
+                    }
+                    if(new DateTime($product->getFineSconto()) > new DateTime('today')){
+                        $sconto = true;
+                        $price = $product->getPrezzo()*(100-$product->getSconto())/100;
+                    }else{  
+                        $sconto = false;
+                        $price = $product->getPrezzo();
+                    }
+                    $price = round($price,2);
+                ?>
+                <article class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 ask-detail-btn" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8')?>">
+                        <!-- Immagine cliccabile -->
+                        <img src="public/assets/images/productimages/<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>.<?php echo htmlspecialchars($product->getImg1(), ENT_QUOTES, 'UTF-8'); ?>" 
+                                class="card-img-top product-image img-fluid" 
+                                alt="<?php echo htmlspecialchars($product->getNome(), ENT_QUOTES, 'UTF-8'); ?>" 
+                                style="cursor: pointer;">
                         
-                        <p class="card-text"><?php echo htmlspecialchars($product->getDescrizione(), ENT_QUOTES, 'UTF-8'); ?></p>
-                        <p class="card-text">Prezzo: 
-                        <?php if($sconto): ?>
-                            €<span class="text-decoration-line-through text-muted"><?php echo $product->getPrezzo()?></span>
-                        <?php endif; ?>
-                            €<span id="price-<?php echo $product->getId();?>"><?php echo $price?></span>
-                        </p>
-                        <a class="btn btn-primary interaction cart add-to-cart-btn" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
-                            Aggiungi al carrello
-                        </a>
+                        <div class="card-body">
+                            <h3 class="card-title text-dark"><?php echo htmlspecialchars($product->getNome(), ENT_QUOTES, 'UTF-8'); ?></h3>
+                            
+                            <p class="card-text"><?php echo htmlspecialchars($product->getDescrizione(), ENT_QUOTES, 'UTF-8'); ?></p>
+                            <p class="card-text">Prezzo: 
+                            <?php if($sconto): ?>
+                                €<span class="text-decoration-line-through text-muted"><?php echo $product->getPrezzo()?></span>
+                            <?php endif; ?>
+                                €<span id="price-<?php echo $product->getId();?>"><?php echo $price?></span>
+                            </p>
+                            <a class="btn btn-primary interaction cart add-to-cart-btn" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
+                                Aggiungi al carrello
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </article>
-            <?php
-            }
-            ?>
+                </article>
+                <?php
+                }
+                ?>
+            </div>
         </div>
     </div>
 </section>

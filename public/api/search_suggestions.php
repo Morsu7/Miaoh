@@ -7,7 +7,7 @@ if (isset($_POST['q'])) {
 
     // Prepara la query SQL
     $stmt = Connection::$db->prepare("
-        SELECT id, nome 
+        SELECT id, nome, prezzo, img1,descrizione, sconto ,fine_sconto
         FROM prodotto 
         WHERE MATCH(nome) AGAINST (? IN BOOLEAN MODE) 
         OR MATCH(descrizione) AGAINST (? IN BOOLEAN MODE)
