@@ -1,28 +1,28 @@
-<?php
-$user = Users::fromEmail($_SESSION['email']);
-$picture = $picture = ImageManager::getUserImagePath($_SESSION['email']);
-?>
-
 <article class="profile">
     <h1>Profilo utente</h1>
     <section class="profile-image-big text-center mb-4">
         <!-- Foto profilo (verifica che la foto esista nel percorso specificato) -->
         <img src="<?php echo $picture; ?>" 
-                alt="Foto Profilo" class="img-fluid rounded-circle" width="150" height="150">
+                alt="Foto Profilo" class="img-fluid rounded-circle user-img" width="150" height="150">
     </section>
 
-    <h2>Dettagli personali</h2>
-    <section class="profile-details">
-        <ul class="list-group">
-            <li class="list-group-item"><strong>E-Mail:</strong> <?php echo $user->getEmail(); ?></li>
-            <li class="list-group-item"><strong>Username:</strong> <?php echo $user->getUsername(); ?></li>
-            <li class="list-group-item"><strong>Nome:</strong> <?php echo $user->getSurname() . " " . $user->getName(); ?></li>
-        </ul>
-    </section>
+    <!-- Horizontal Navbar -->
+    <ul class="nav nav-tabs my-3" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link <?php if($subAction == 'profile') echo 'active'?>" id="tab1" href="#content1" data-bs-toggle="tab">Generale</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link <?php if($subAction == 'orders') echo 'active'?>" id="tab2" href="#content2" data-bs-toggle="tab">Ordini</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link <?php if($subAction == 'pro') echo 'active'?>" id="tab3" href="#content3" data-bs-toggle="tab">Notifiche</a>
+        </li>
+    </ul>
 
-    <footer class="text-center mt-4">
-        <form action="?action=profile&subAction=logout" method="POST">
-            <button type="submit">Log out</button>
-        </form>
-    </footer>
+    <!-- Tab Content -->
+    <div class="tab-content content-section">
+        <div id="content1" class="tab-pane fade <?php if($subAction == 'profile') echo 'show active'?>"><?php include_once $profile_details;?></div>
+        <div id="content2" class="tab-pane fade <?php if($subAction == 'orders') echo 'show active'?>"><?php include_once $orders;?></div>
+        <div id="content3" class="tab-pane fade <?php if($subAction == 'pro') echo 'show active'?>"><?php include_once $notifications_view;?></div>
+    </div>
 </article>

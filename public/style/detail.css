@@ -1,0 +1,313 @@
+/* Variabili CSS */
+:root {
+    --primary-color: #6a0dad;
+    --primary-hover-color: #563d7c;
+    --secondary-color: #f9f9f9;
+    --text-dark: #333;
+    --text-light: #555;
+    --text-muted: #777;
+    --box-shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --box-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+}
+
+/* Reset base */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Carosello e scorrimento */
+.product-carousel {
+    display: flex;
+    gap: 15px;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.product-carousel .card {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    width: 18rem;
+    margin-right: 20px;
+    height: 100%;
+}
+
+/* Frecce del carosello */
+.carousel-control-prev, .carousel-control-next {
+    background-color: transparent;
+    color: var(--text-dark);
+    border: none;
+    font-size: 2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    cursor: pointer;
+}
+
+.carousel-control-prev {
+    left: -30px;
+}
+
+.carousel-control-next {
+    right: -30px;
+}
+
+/* Media queries per adattare le card */
+@media (max-width: 1024px) {
+    .product-carousel .card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-carousel .card {
+        width: 90%;
+    }
+}
+
+/* Stile globale delle card */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow-light);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    max-width: 320px;
+    margin: 15px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-hover);
+}
+
+/* Immagine delle card */
+.card .card-img-top {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    background-color: transparent;
+    display: block;
+}
+
+/* Ridimensionamento immagini su dispositivi piccoli */
+@media (max-width: 576px) {
+    .card .card-img-top {
+        height: 180px;
+    }
+}
+
+/* Corpo della card */
+.card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+/* Testo della card */
+.card .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.card .card-text {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+/* Pulsante delle card */
+.card .btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color var(--transition-speed);
+    display: block;
+    margin: 0 auto;
+}
+
+.card .btn-primary:hover {
+    background-color: var(--primary-hover-color);
+}
+
+/* Contenitore griglia */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+}
+
+/* Stile per il carosello immagini */
+.carousel-item {
+    height: 500px;
+}
+
+.carousel-item img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 1200px) {
+    .carousel-item {
+        height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item {
+        height: 250px;
+    }
+}
+
+/* Dettagli prodotto */
+.product-details {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-light);
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.product-details h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.product-details p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 12px;
+}
+
+.product-details .sconto {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.product-details .btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color var(--transition-speed);
+}
+
+.product-details .btn-primary:hover {
+    background-color: var(--primary-hover-color);
+}
+
+/* Recensioni */
+.reviews-section {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.reviews-section .left-column {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    max-height: 400px;
+}
+
+.reviews-section .right-column {
+    flex: 0 0 300px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+
+.review-card {
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-light);
+    margin-bottom: 20px;
+    padding: 20px;
+    transition: box-shadow var(--transition-speed);
+}
+
+.review-card:hover {
+    box-shadow: var(--box-shadow-hover);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.user-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--text-dark);
+}
+
+.review-date {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.review-content {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+    .reviews-section {
+        flex-direction: column;
+    }
+
+    .review-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-pic {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+}

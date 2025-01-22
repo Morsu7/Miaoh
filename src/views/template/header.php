@@ -8,36 +8,44 @@ if(isset($_SESSION['email'])){
 }
 
 ?>
-<header class="d-flex align-items-center justify-content-between px-3 py-2">
-        <!-- Menu Button (pulsante menu a tendina) -->
-        <button class="btn btn-outline-primary menu-button" data-bs-toggle="collapse" data-bs-target="#menu">
-            ☰
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+  <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-
-        <!-- Logo accanto al titolo -->
-        <a href="?#" class="d-block py-2 text-decoration-none logo-header">
-            <div class="d-flex align-items-center">
-                <!-- Logo -->
-                <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" alt="Logo" class="logo">
-                
-                <!-- Site Name -->
-                <h1 class="m-0 text-center flex-grow-1" style="font-size: 1.25rem; color: #6f42c1">MIAOH</h1>
-            </div>
+        <a class="navbar-brand d-flex align-items-center mx-auto logo-header" href="?#">
+            <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" width="50" height="50" class="me-2"/>
+            <span>MIAOH</span>
         </a>
 
-        <!-- User Image -->
-        <a href="?action=profile" class="d-block py-2 text-decoration-none"><img src="<?php echo $picture ?>" alt="User" class="user-img"/></a>
-    </header>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="?#">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Shop
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Accessori</a></li>
+                <li><a class="dropdown-item" href="#">Cibo</a></li>
+                <li><a class="dropdown-item" href="#">Giochi</a></li>
+            </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?action=shopping&subAction=carrello"><i class="bi bi-cart"></i> Carrello</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?action=profile">Profilo</a>
+            </li>
+        </ul>
+    </div>
 
-<!-- Menu Dropdown -->
-<div id="menu" class="collapse bg-light">
-    <ul class="list-unstyled m-0 p-3">
-        <li><a href="?#" class="d-block py-2 text-decoration-none">Home</a></li>
-        <li><a href="#" class="d-block py-2 text-decoration-none">Shop</a></li>
-        <li><a href="#" class="d-block py-2 text-decoration-none">Cart</a></li>
-        <li><a href="?action=profile" class="d-block py-2 text-decoration-none">Profile</a></li>
-        <li><a href="?action=adminpage" class="d-block py-2 text-decoration-none">Admin</a></li>  <!-- TODO: Fare che si vede solo se si è admin -->
-    </ul>
-</div>
+    <!-- User image aligned to the top-right, vertically centered -->
+    <a class="navbar-brand d-flex align-items-center position-absolute top-50 end-0 translate-middle-y p-2" href="?action=profile">
+        <img src="<?php echo $picture ?>" alt="User" class="user-img user-icon" width="60" height="60"/>
+    </a>
+</nav>
 
 <script src="public/script/header.js"></script>

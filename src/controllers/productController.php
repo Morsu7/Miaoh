@@ -16,7 +16,13 @@ switch ($subAction) {
     case 'detail':
     default:
         $product = ProductsManager::fromId($_POST['product_id']);
-        $content = '../src/views/product/detail.php';
+        if($product == null){
+            $products = ProductsManager::getTrendingProducts(10);
+            $content = '../src/views/product/not_found.php';
+        }else{
+            $products = ProductsManager::getRelatedProducts($product->getTipoProdottoId(), 10,$product->getId());
+            $content = '../src/views/product/detail.php';
+        }
         break;
 }
 

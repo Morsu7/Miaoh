@@ -1,0 +1,25 @@
+<div class="col-12 mb-4">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between">
+            <h5 class="mb-0">Ordine effettuato il {{ORDERDATE}}</h5>
+            <h5 class="mb-0">Order ID: {{ORDERID}}</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="card-text">
+                        <strong>Status:</strong> 
+                        <span>{{ORDERSTATUS}}</span>
+                    </p>
+                    <p class="card-text"><strong>Total:</strong> €{{ORDERPRICE}}</p>
+                </div>
+                <div class="col-md-8">
+                    <h6>Prodotti:</h6>
+                    <ul class="list-group">
+                        {{ORDER_PRODUCTS}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

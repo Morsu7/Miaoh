@@ -1,14 +1,3 @@
-document.querySelectorAll('.interaction').forEach(button => {
-    let type = "";
-    if(button.classList.contains('cart'))
-        type = "cart";
-
-    button.addEventListener('click', function() {
-        const productId = this.getAttribute('data-id');
-        registerInteraction(productId, type); // Chiamata AJAX con l'ID del prodotto
-    });
-});
-
 function registerInteraction(productId, type){
     // Configura la richiesta con fetch
     fetch('public/api/interactions.php', {

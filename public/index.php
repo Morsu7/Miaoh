@@ -9,7 +9,11 @@ if (isset($_GET['action'])){
 }
 
 switch ($action) {
-    case 'prova':
+    case 'marketplace':
+        include('../src/controllers/marketplaceController.php');
+        break;
+    case 'shopping':
+        include('../src/controllers/shoppingController.php');
         break;
     case 'profile':
         include('../src/controllers/profileController.php');

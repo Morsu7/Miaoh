@@ -1,30 +1,30 @@
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1030; /* Sopra gli altri elementi */
-    background-color: #f8f9fa;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-body {
-    padding-top: 56px; /* Altezza dell'header */
-  }
-  .menu-button {
-    font-size: 1.5rem;
-  }
 
-  /* Stile per il logo */
-.logo {
-    max-height: 2.5rem;  /* La stessa altezza del font */
-    width: auto;  /* Mantieni le proporzioni */
-    margin-right: 10px;  /* Distanza tra il logo e il nome del sito */
+.navbar-brand {
+    color: #6a0dad;
+    font-weight: 500;
 }
 
-/* Stile per l'immagine dell'utente */
-.user-img {
-    max-height: 2rem;  /* Imposta l'altezza dell'immagine dell'utente */
+.nav-link, .dropdown-item {
+    color: #6a0dad;
+}
+
+.nav-link:hover {
+    color: #6a0dad !important; /* Optional: Hover color */
+    font-weight: 300;
+}
+
+.nav-link:focus,
+.nav-link:active {
+    color: #6a0dad !important; /* Color when clicked */
+    font-weight: 500;
+}
+
+a.navbar-brand:visited {
+    color: inherit; /* Keeps the text color unchanged */
+}
+
+.user-icon {
+    max-height: 2.5rem;  /* Imposta l'altezza dell'immagine dell'utente */
     width: auto;
     border-radius: 50%;  /* Rende l'immagine circolare */
 }

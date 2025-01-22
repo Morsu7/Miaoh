@@ -25,6 +25,8 @@
             <p>&copy; <?php echo date('Y'); ?> Your Company</p>
         </div>
     </footer>
+    
     <script src="public/script/interazioni.js"></script>
+    <script src="public/script/common.js"></script>
 </body>
 </html>
