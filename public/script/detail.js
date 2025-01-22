@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const formData = new FormData(formRecensioni);
             
             // Leggi i valori dai campi usando il loro nome
-            const rating = formData.get('rating');
+            const rating = document.querySelector("input[name='rating']:checked")?.value;
             const description = formData.get('description');
 
             fetch('public/api/add_review.php', {

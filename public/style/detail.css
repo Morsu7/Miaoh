@@ -311,3 +311,37 @@ body {
         margin-bottom: 10px;
     }
 }
+
+/* Star container styles */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse; /* Reverse the direction for CSS logic */
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Nascondi i radio button */
+.star-rating input {
+    display: none;
+}
+
+/* Style per le stelle */
+.star-rating label {
+    font-size: 2rem;
+    color: #ddd; /* Colore stelle grigie */
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+/* Colora le stelle da sinistra a destra */
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f39c12; /* Colore stelle attive */
+}
+
+/* Fix per il colore corretto quando selezionato */
+.star-rating input:checked + label,
+.star-rating input:checked + label ~ label {
+    color: #f39c12;
+}
