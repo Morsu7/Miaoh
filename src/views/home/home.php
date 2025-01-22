@@ -45,18 +45,39 @@
 </div>
 <?php } ?>
 
-<section class="search-bar py-4">
-    <div class="container">
-        <input 
-            type="text" 
-            id="search-input" 
-            class="form-control" 
-            placeholder="Cerca prodotti..." 
-            autocomplete="off">
-        <ul id="search-suggestions" class="list-group mt-2" style="display: none;"></ul>
-    </div>
-</section>
 
+<!-- FILTRI -->
+<div class="container">
+    <label for="search-bar" class="form-label fw-bold">Cerca:</label>    
+    <section class="search-bar">
+            <input 
+                type="text" 
+                id="search-input" 
+                class="form-control" 
+                placeholder="Cerca prodotti..." 
+                autocomplete="off">
+            <ul id="search-suggestions" class="list-group mt-2" style="display: none;"></ul>
+    </section>
+
+    <!-- Dropdown per le categorie -->
+    <label for="categoryFilter" class="form-label fw-bold">Filtra per categoria:</label>
+    <select id="categoryFilter" class="form-select">
+        <option value="">Tutte le categorie</option>
+        <option value="1">Accessori per Gatti</option>
+        <option value="2">Cibo per Gatti</option>
+        <option value="3">Giochi per Gatti</option>
+    </select>
+
+    <!-- Dropdown per l'ordinamento -->
+    <label for="sortFilter" class="form-label fw-bold">Ordina:</label>
+    <select id="sortFilter" class="form-select">
+        <option value="">Ordina per</option>
+        <option value="asc">Prezzo crescente</option>
+        <option value="desc">Prezzo decrescente</option>
+    </select>
+
+
+</div>
 
 <section class="products py-5">
     <div class="container">
@@ -64,7 +85,7 @@
 
         <div class="container" id="product-list">
         </div>
-        <div class="container" id="product-list-default">
+        <div class="container" id="product-list-default" style="display: none;">
             <div class="row">
                 <?php
                 // Ciclo attraverso i prodotti

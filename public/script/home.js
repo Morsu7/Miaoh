@@ -3,13 +3,41 @@ const carousel = new bootstrap.Carousel('#carouselExampleCaptions')
 const searchInput = document.getElementById('search-input');
 const suggestionsBox = document.getElementById('search-suggestions');
 const productList = document.getElementById('product-list');
-const productListDF = document.getElementById('product-list-default');
+let currentCategory = ''; // Categoria attualmente selezionata
+let isLoading = false; // Flag per evitare richieste multiple
+let isSearching = false;
+let currentPage = 0; // Reset della paginazione
+let maxPage // Reset della paginazione
+let currentSort = ''; // Ordinamento corrente
 
 document.addEventListener('DOMContentLoaded', function () {
 
+    setMaxPage(); 
+
+    // Ascolta i cambiamenti nella selezione della categoria
+    document.getElementById('categoryFilter').addEventListener('change', function () {
+        currentCategory = this.value; // Aggiorna la categoria corrente
+        currentPage = 0; // Reset della paginazione
+        productList.innerHTML = ''; // Svuota la lista dei prodotti
+        loadMoreProducts(); // Carica i prodotti della nuova categoria
+    });
+
+    document.getElementById('sortFilter').addEventListener('change', function () {
+        currentSort = this.value; // Aggiorna l'ordinamento corrente
+        currentPage = 0; // Reset della paginazione
+        productList.innerHTML = ''; // Svuota la lista dei prodotti
+        loadMoreProducts(); // Carica i prodotti ordinati
+    });
+
+    // Aggiungi l'evento di scroll
+    window.addEventListener('scroll', handleScroll);
+
+    // Carica la prima pagina all'avvio
+    loadMoreProducts();
+
     searchInput.addEventListener('input', function () {
+        isSearching=true;
         const query = searchInput.value.trim();
-        productListDF.style.display = 'none';
     
         fetch('public/api/search_suggestions.php', {
             method: 'POST',
@@ -22,23 +50,61 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             fillSuggestionsBox(data) 
-            fillProductList(data)          
+            fillProductList(data,false)          
         })
         .catch(error => console.error('Errore nella ricerca:', error));
     });
     
     // Nascondi suggerimenti se clicchi altrove
     document.addEventListener('click', function (event) {
-        if (!searchInput.contains(event.target)) {
+        if (!searchInput.contains(event.target) && isSearching==true) {
+            isSearching=false;
             suggestionsBox.style.display = 'none';
-            productListDF.style.display = 'block';
+            currentPage = 0; // Reset della paginazione
+            productList.innerHTML = ''; // Svuota la lista dei prodotti
+            loadMoreProducts(); // Carica i prodotti della nuova categoria
             productList.innerHTML = ''; // Svuota le card esistenti
         }
     });
 });
 
+// Modifica la funzione AJAX per includere la categoria
+function loadMoreProducts() {
+    if (isLoading || currentPage>=maxPage) return;
+    isLoading = true;
 
+    const url = `public/api/get_products.php?page=${currentPage}&category=${encodeURIComponent(currentCategory)}`;
 
+    fetch('public/api/get_products.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'page=' + encodeURIComponent(currentPage) + '&category=' + encodeURIComponent(currentCategory) + '&sort='+ encodeURIComponent(currentSort),
+        credentials: 'include'
+    })
+    .then(response => response.json())
+    .then(data => {
+        isLoading = false;
+        currentPage++;
+        fillProductList(data,true)
+        //window.removeEventListener('scroll', handleScroll);
+    })
+    .catch(error => {
+        isLoading = false;
+        console.error('Errore nel caricamento dei prodotti:', error);
+    });
+}
+
+// Funzione per rilevare lo scroll in fondo alla pagina
+function handleScroll() {
+    const scrollPosition = window.scrollY + window.innerHeight; // Posizione attuale dello scroll
+    const bottomPosition = document.documentElement.scrollHeight; // Altezza totale della pagina
+
+    if (scrollPosition >= bottomPosition - 50 && isSearching==false) { // Quando siamo vicini al fondo
+        loadMoreProducts();
+    }
+}
 
 function fillSuggestionsBox(data){
     // Svuota il contenitore dei suggerimenti
@@ -64,9 +130,9 @@ function fillSuggestionsBox(data){
 }
 
 
-function fillProductList(data){
+function fillProductList(data,append){
     // Genera le card dinamiche con i dati JSON
-    productList.innerHTML = ''; // Svuota le card esistenti
+    if(!append) productList.innerHTML = ''; // Svuota le card esistenti
     if (data.length > 0) {
         let countIndex = 0; // Inizializza il contatore
         let row = document.createElement('div'); // Crea una nuova riga
@@ -128,6 +194,20 @@ function fillProductList(data){
             }
         });
     } else {
-        productList.innerHTML = '<p class="text-center">Nessun risultato trovato.</p>';
+        //productList.innerHTML = '<p class="text-center">Nessun risultato trovato.</p>';
     } 
+}
+
+function setMaxPage() {
+    fetch('public/api/maxPage.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                //console.log(`Numero massimo di pagine: ${data.maxPage}`);
+                maxPage= data.maxPage;
+            } else {
+                console.error("Errore:", data.message);
+            }
+        })
+        .catch(error => console.error("Errore AJAX:", error));
 }
