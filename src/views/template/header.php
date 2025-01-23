@@ -14,7 +14,7 @@ if(isset($_SESSION['email'])){
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand d-flex align-items-center mx-auto logo-header" href="?#">
-            <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" width="50" height="50" class="me-2"/>
+            <img src="<?php echo IMAGE_PATH; ?>logo/logo.png" width="50" height="50" class="me-2" alt="Miaoh Logo"/>
             <span>MIAOH</span>
         </a>
 
