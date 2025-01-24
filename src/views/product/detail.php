@@ -124,6 +124,7 @@
                     </div>
                     <button type="button" class="btn btn-primary send-review">Invia Recensione</button>
                 </form>
+                <p class="text-muted mt-3">Nota: La tua recensione esistente verrà sovrascritta.</p>
             </div>
         </div>
     </section>
