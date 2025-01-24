@@ -1,0 +1,13 @@
+.notification-card:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.3s;
+}
+.card-date {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+.card-message {
+    border-top: 1px solid #e9ecef;
+    margin-top: 10px;
+    color: #343a40;
+}

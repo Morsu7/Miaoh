@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         require_once("../../src/models/users/Users.php");
         require_once("../../src/models/products/Product.php");
         require_once("../../src/models/products/ProductsManager.php");
+        require_once("../../src/models/notifications/NotificationManager.php");
         require_once("../../src/config/connection.php");
         $user = Users::fromEmail($_SESSION['email']);
         $userId = $user->getId();
@@ -77,13 +78,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("i", $userId);
             $stmt->execute();
 
-            echo json_encode([
-                'success' => true
-            ]);
+            if(NotificationManager::notificaNuovoOrdine($userId, $orderId)){
+                echo json_encode([
+                    'success' => true
+                ]);
+            }else{
+                echo json_encode([
+                    'success' => false,
+                    'error' => 'Errore nell\'inserimento delle notifiche'
+                ]);
+            }
         }else{
             echo json_encode([
             'success' => false,
-            'errore' => "Errore nell'inserimento degli acquisti"
+            'error' => "Errore nell'inserimento degli acquisti"
             ]);
         }
     }else{
