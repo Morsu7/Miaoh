@@ -1,3 +1,43 @@
+/* Variabili CSS */
+:root {
+    --primary-color: #6a0dad;
+    --primary-hover-color: #563d7c;
+    --secondary-color: #f9f9f9;
+    --text-dark: #333;
+    --text-light: #555;
+    --text-muted: #777;
+    --box-shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --box-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+}
+
+/* Reset base */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Pulsante */
+.btn-primary {
+    background-color: #6f42c1;
+    /* Viola */
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #563d7c;
+    /* Viola più scuro */
+}
+
 .sidebar {
     background-color: #ffffff;
     height: 100vh;

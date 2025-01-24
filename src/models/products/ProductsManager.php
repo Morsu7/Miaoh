@@ -209,20 +209,66 @@ class ProductsManager
         return $offerte;
     }
 
-    // TODO: Chiedere se lasciare qua o no
-    public static function getAllProducts() {
+    public static function fetchProductsByPage($page, $productsPerPage) {
+        // Calcolo dell'offset per la query SQL
+        $offset = ($page - 1) * $productsPerPage;
+    
+        // Preparazione della query con LIMIT e OFFSET
         $stmt = Connection::$db->prepare("
             SELECT * FROM " . self::$PRODUCT_TABLE . "
+            LIMIT ? OFFSET ?
+        ");
+    
+        // Binding dei parametri per LIMIT e OFFSET
+        $stmt->bind_param("ii", $productsPerPage, $offset);
+    
+        // Esecuzione della query
+        $stmt->execute();
+    
+        // Recupero del risultato
+        $result = $stmt->get_result();
+    
+        $products = [];
+    
+        // Iterazione sui risultati e creazione degli oggetti Product
+        while ($row = $result->fetch_assoc()) {
+            $products[] = new Product(
+                $row['id'], 
+                $row['nome'], 
+                $row['descrizione'], 
+                $row['quantita'], 
+                $row['prezzo'], 
+                $row['sconto'], 
+                $row['fine_sconto'], 
+                $row['img1'], 
+                $row['img2'], 
+                $row['tipoProdotto_id']
+            );
+        }
+    
+        return $products;
+    }
+    
+    public static function getProductsNumber() {
+        $stmt = Connection::$db->prepare("
+            SELECT COUNT(*) AS total FROM " . self::$PRODUCT_TABLE
+        );
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row['total'];
+    }
+
+    public static function getCategories() {
+        $stmt = Connection::$db->prepare("
+            SELECT * FROM tipoprodotto
         ");
         $stmt->execute();
         $result = $stmt->get_result();
-
-        $products = [];
-
+        $categories = [];
         while ($row = $result->fetch_assoc()) {
-            $products[] = new Product($row['id'], $row['nome'], $row['descrizione'], $row['quantita'], $row['prezzo'], $row['sconto'], $row['fine_sconto'], $row['img1'], $row['img2'], $row['tipoProdotto_id']);
+            $categories[] = new Category($row['id'], $row['descrizione']);
         }
-
-        return $products;
+        return $categories;
     }
 }

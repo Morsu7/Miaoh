@@ -157,7 +157,7 @@ class Product
                "Descrizione: {$this->descrizione}\n" .
                "Prezzo: {$this->prezzo} EUR\n" .
                "Sconto: {$this->sconto}%\n" .
-               "Prezzo Scontato: " . number_format($this->calcolaPrezzoScontato(), 2) . " EUR\n" .
+               "Prezzo Scontato: " . number_format($this->getPrezzoScontato(), 2) . " EUR\n" .
                "Quantità Disponibile: {$this->quantita}";
     }
 }

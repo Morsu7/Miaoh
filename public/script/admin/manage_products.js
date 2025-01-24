@@ -23,9 +23,11 @@ editProductModal.addEventListener('show.bs.modal', function (event) {
     modalQuantita.value = quantita;
 });
 
-// TODO: Cambiare test
-const editForm = document.getElementById('test');
-editForm.addEventListener('submit', function (e) {
+// Edit product form
+const editForm = document.querySelector('.edit-product-form');
+editForm.addEventListener('submit', editProduct);
+
+async function editProduct(e) {
     e.preventDefault();
 
     const productId = document.getElementById('editProductId').value;
@@ -35,6 +37,7 @@ editForm.addEventListener('submit', function (e) {
         prezzo: document.getElementById('editProductPrice').dataset.originalValue,
         sconto: document.getElementById('editProductDiscount').dataset.originalValue,
         quantita: document.getElementById('editProductQuantity').dataset.originalValue,
+        fineSconto: document.getElementById('editProductEndDiscount').dataset.originalValue,
     };
 
     const updatedData = {
@@ -43,115 +46,111 @@ editForm.addEventListener('submit', function (e) {
         prezzo: document.getElementById('editProductPrice').value,
         sconto: document.getElementById('editProductDiscount').value,
         quantita: document.getElementById('editProductQuantity').value,
+        fineSconto: document.getElementById('editProductEndDiscount').value,
     };
 
-    // Crea un oggetto per contenere solo i dati modificati
-    const changes = {};
+    const imageFile = document.getElementById('editProductImage').files[0];
+
+    const formData = new FormData();
+    formData.append('id', productId);
+
     for (const key in updatedData) {
         if (updatedData[key] !== originalData[key]) {
-            changes[key] = updatedData[key];
+            formData.append(key, updatedData[key]);
         }
     }
 
-    // Invia solo i dati modificati
-    if (Object.keys(changes).length > 0) {
-        changes.id = productId; // Aggiungi l'ID del prodotto
-        fetch('public/api/edit_product.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(changes),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.status === 'success') {
-                    const productContainer = document.querySelector(`.single-product[data-id="${productId}"]`);
-                    if (productContainer) {
-                        productContainer.querySelector('.card-title').textContent = updatedData.nome;
-
-                        // Aggiorna descrizione
-                        const descElement = productContainer.querySelector('.card-body .card-text:nth-of-type(1)');
-                        if (descElement) {
-                            descElement.textContent = updatedData.descrizione;
-                        }
-
-                        // Aggiorna prezzo
-                        const priceElement = productContainer.querySelector('.card-body .card-text:nth-of-type(2)');
-                        if (priceElement) {
-                            priceElement.innerHTML = `<strong>Prezzo: </strong>€${parseFloat(updatedData.prezzo).toFixed(2)}`;
-                        }
-
-                        // Aggiorna sconto
-                        const discountElement = productContainer.querySelector('.card-body .card-text:nth-of-type(3)');
-                        if (discountElement) {
-                            discountElement.innerHTML = `<strong>Sconto: </strong>${updatedData.sconto}%`;
-                        }
-
-                        // Aggiorna prezzo scontato
-                        const discountedPriceElement = productContainer.querySelector('.card-body .card-text:nth-of-type(4)');
-                        if (discountedPriceElement) {
-                            discountedPriceElement.innerHTML = `<strong>Prezzo Scontato: </strong>€${parseFloat(updatedData.prezzo - updatedData.prezzo * updatedData.sconto / 100).toFixed(2)}`;
-                        }
-
-                        // Aggiorna quantità
-                        const quantityElement = productContainer.querySelector('.card-body .card-text:nth-of-type(5)');
-                        if (quantityElement) {
-                            quantityElement.innerHTML = `<strong>Quantità: </strong>${updatedData.quantita}`;
-                        }
-
-                        // Aggiorna l'immagine del prodotto
-                        const imgElement = productContainer.querySelector('.card-img-top');
-                        if (imgElement) {
-                            imgElement.src = updatedData.img1; // Aggiorna l'URL dell'immagine
-                        }
-
-                        const modal = document.querySelector('.modal#editProductModal');
-                        if (modal) {
-                            const bootstrapModal = bootstrap.Modal.getInstance(modal);
-                            bootstrapModal.hide();
-                        }
-
-                        console.log('Prodotto modificato con successo!');
-                    } else {
-                        console.error('Errore:', data.message);
-                    }
-                } else {
-                    console.error('Errore:', data.message);
-                }
-            })
-            .catch((error) => {
-                console.error('Errore nella richiesta:', error);
-            });
-    } else {
-        console.log('Nessuna modifica rilevata.');
+    if (imageFile) {
+        formData.append('img1', imageFile);
     }
-});
 
-function deleteProduct(productId) {
-    if (confirm('Sei sicuro di voler eliminare questo prodotto?')) {
-        fetch('public/api/delete_product.php', {
+    try {
+        const response = await fetch('public/api/admin/edit_product.php', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ id: productId }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.status === 'success') {
-                    alert('Prodotto eliminato con successo!');
-                    // Rimuovi la riga dalla tabella senza ricaricare la pagina
-                    const row = document.querySelector(`tr[data-id="${productId}"]`);
+            body: formData,
+        });
+
+        const data = await response.json();
+
+        if (data.success === true) {
+            const productContainer = document.querySelector(`.single-product[data-id="${productId}"]`);
+            if (productContainer) {
+                productContainer.querySelector('.card-title').textContent = updatedData.nome;
+
+                const descElement = productContainer.querySelector('.card-body .card-text:nth-of-type(1)');
+                if (descElement) {
+                    descElement.textContent = updatedData.descrizione;
+                }
+
+                const priceElement = productContainer.querySelector('.card-body .card-text:nth-of-type(2)');
+                if (priceElement) {
+                    priceElement.innerHTML = `<strong>Prezzo: </strong>€${parseFloat(updatedData.prezzo).toFixed(2)}`;
+                }
+
+                const discountElement = productContainer.querySelector('.card-body .card-text:nth-of-type(3)');
+                if (discountElement) {
+                    discountElement.innerHTML = `<strong>Sconto: </strong>${updatedData.sconto}%`;
+                }
+
+                const discountedPriceElement = productContainer.querySelector('.card-body .card-text:nth-of-type(4)');
+                if (discountedPriceElement) {
+                    discountedPriceElement.innerHTML = `<strong>Prezzo Scontato: </strong>€${parseFloat(updatedData.prezzo - updatedData.prezzo * updatedData.sconto / 100).toFixed(2)}`;
+                }
+
+                const quantityElement = productContainer.querySelector('.card-body .card-text:nth-of-type(5)');
+                if (quantityElement) {
+                    quantityElement.innerHTML = `<strong>Quantità: </strong>${updatedData.quantita}`;
+                }
+
+                const imgElement = productContainer.querySelector('.card-img-top');
+                if (imgElement && imageFile) {
+                    imgElement.src = URL.createObjectURL(imageFile);
+                }
+
+                const modal = document.querySelector('.modal#editProductModal');
+                if (modal) {
+                    const bootstrapModal = bootstrap.Modal.getInstance(modal);
+                    bootstrapModal.hide();
+                }
+
+                console.log('Prodotto modificato con successo!');
+            } else {
+                console.error('Errore: Impossibile aggiornare i dettagli nella UI.');
+            }
+        } else {
+            console.error('Errore:', data.message);
+        }
+    } catch (error) {
+        console.error('Errore nella richiesta:', error);
+    }
+}
+
+async function deleteProduct(productId) {
+    if (confirm('Sei sicuro di voler eliminare questo prodotto?')) {
+        try {
+            const response = await fetch('public/api/admin/delete_product.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: productId }),
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                if (result.success === true) {
+                    const row = document.querySelector(`.single-product[data-id="${productId}"]`);
                     if (row) row.remove();
                 } else {
-                    alert('Errore durante l\'eliminazione del prodotto: ' + data.message);
+                    alert('Errore durante il recupero del prodotto da eliminare: ' + result.message);
                 }
-            })
-            .catch((error) => {
-                console.error('Errore nella richiesta:', error);
-                alert('Si è verificato un errore durante la richiesta.');
-            });
+            } else {
+                alert('Errore durante il recupero del prodotto da eliminare.');
+            }
+        } catch (error) {
+            console.error('Errore durante la richiesta:', error);
+            alert("Errore: Impossibile completare l'operazione.");
+        }
     }
 }
 

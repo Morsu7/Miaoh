@@ -7,10 +7,18 @@
             <nav>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2">
+                        <a href="index.php" class="btn btn-outline-primary text-dark" style="border-color: #563d7c; color: #563d7c;">
+                            Torna alla Homepage
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
                         <a href="#" class="nav-link text-dark active">Dashboard</a>
                     </li>
                     <li class="nav-item mb-2">
                         <a href="?action=adminpage&subAction=products" class="nav-link text-dark">Gestione Prodotti</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="?action=adminpage&subAction=orders" class="nav-link text-dark">Gestione Ordini</a>
                     </li>
                 </ul>
             </nav>
