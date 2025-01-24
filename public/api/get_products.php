@@ -12,7 +12,7 @@ if ($sort === 'asc') {
     $orderBy = 'prezzo DESC';
 }
 
-$limit=20;
+$limit=21;
 $offset=$page*$limit;
 
 // Costruzione della query

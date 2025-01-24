@@ -12,7 +12,7 @@ if ($stmt) {
 
     if ($result && $row = $result->fetch_assoc()) {
         $numProduct = intval($row['num']);
-        $maxPage = ceil($numProduct / 20);
+        $maxPage = ceil($numProduct / 21);
         $response = ["status" => "success", "maxPage" => $maxPage];
     }
     $stmt->close();

@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: 'q=' + encodeURIComponent(query),
+            body: 'q=' + encodeURIComponent(query) + '&category=' + encodeURIComponent(currentCategory) + '&sort='+ encodeURIComponent(currentSort), 
             credentials: 'include'
         })
         .then(response => response.json())
