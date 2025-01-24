@@ -23,16 +23,6 @@ if(isset($_SESSION['email'])){
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="?#">Home</a>
             </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Shop
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Accessori</a></li>
-                <li><a class="dropdown-item" href="#">Cibo</a></li>
-                <li><a class="dropdown-item" href="#">Giochi</a></li>
-            </ul>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="?action=shopping&subAction=carrello"><i class="bi bi-cart"></i> Carrello</a>
             </li>

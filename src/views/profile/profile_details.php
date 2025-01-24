@@ -9,6 +9,6 @@
 
 <footer class="text-center mt-4">
     <form action="?action=profile&subAction=logout" method="POST">
-        <button type="submit">Log out</button>
+        <button type="submit" class="btn btn-primary">Log out</button>
     </form>
 </footer>
