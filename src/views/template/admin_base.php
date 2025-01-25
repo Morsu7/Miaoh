@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']) {
+    header('Location: ?#');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

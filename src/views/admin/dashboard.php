@@ -95,7 +95,7 @@
                     <div class="col-md-12 mb-4">
                         <div class="card p-3 shadow-sm">
                             <h6 class="text-center">Utenti Registrati:</h6>
-                            <h7 class="text-center"><?php echo $users_registered; ?></h7>
+                            <span class="text-center"><?php echo $users_registered; ?></span>
                         </div>
                     </div>
                 </div>

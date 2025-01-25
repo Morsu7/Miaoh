@@ -8,7 +8,7 @@ if(isset($_SESSION['email'])){
 }
 
 if (isset($_SESSION['isAdmin'])) {
-    $isAdmin = true;
+    $isAdmin = $_SESSION['isAdmin'];
 }
 
 ?>
@@ -32,11 +32,11 @@ if (isset($_SESSION['isAdmin'])) {
                 <li class="nav-item">
                     <a class="nav-link" href="?action=profile">Profilo</a>
                 </li>
-                <?php if (isset($isAdmin)) { ?>
+                <?php if (isset($isAdmin) && $isAdmin): ?>
                 <li class="nav-item">
                     <a class="nav-link" href="?action=adminpage">Admin</a>
                 </li>
-                <?php } ?>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

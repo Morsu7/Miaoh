@@ -20,5 +20,5 @@
     <div class="mt-3">
         Non hai un profilo? <a href="?action=login&subAction=register" class="signup-link">Registrati</a>
     </div>
-    <a href='?action=home'><button class="btn btn-secondary mt-3">Torna alla home</button></a>
+    <a href='?action=home' class="btn btn-secondary mt-3">Torna alla home</a>
 </div>
