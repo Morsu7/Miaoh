@@ -1,0 +1,50 @@
+/* Reset base */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Pulsante */
+.btn-primary {
+    background-color: #6f42c1;
+    /* Viola */
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #563d7c;
+    /* Viola più scuro */
+}
+
+.sidebar {
+    background-color: #ffffff;
+    height: 100vh;
+    padding: 2rem 1rem;
+}
+
+.main-content {
+    background-color: #f9fafb;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.nav-link.active {
+    color: #4f46e5 !important;
+    font-weight: bold;
+}
+
+.progress-bar {
+    background-color: #4f46e5;
+}

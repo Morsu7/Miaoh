@@ -6,6 +6,11 @@ if(isset($_SESSION['email'])){
 }else{
     $picture = IMAGE_PATH . "/icons/profilePic.png";
 }
+
+if (isset($_SESSION['isAdmin'])) {
+    $isAdmin = true;
+}
+
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
   <div class="container-fluid">
@@ -27,8 +32,14 @@ if(isset($_SESSION['email'])){
                 <li class="nav-item">
                     <a class="nav-link" href="?action=profile">Profilo</a>
                 </li>
+                <?php if (isset($isAdmin)) { ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="?action=adminpage">Admin</a>
+                </li>
+                <?php } ?>
             </ul>
         </div>
+    </div>
 
         <div class="profile-img-container">
             <div class="position-relative d-inline-block">

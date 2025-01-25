@@ -49,5 +49,9 @@ class Users{
         $stmt->bind_param("ss", $surname, $email);
         $stmt->execute();
     }
+
+    public static function isAdmin($email) {
+        return $email == "p@al.le";
+    }
 }
 ?>
