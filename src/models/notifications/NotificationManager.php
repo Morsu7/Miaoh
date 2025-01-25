@@ -22,4 +22,22 @@ Grazie per aver scelto il nostro servizio!';
 
         return self::addNotifica($userId, $oggetto, $messaggio);
     }
+
+    public static function notificaOrdineSpedito($userId, $orderId){
+        $oggetto = 'ORDINE ' . $orderId . ' SPEDITO';
+        $messaggio = 'Il tuo ordine [ID: #' . $orderId .'] è stato spedito!
+Ti invieremo una notifica appena sarà consegnato.
+
+Grazie per aver scelto il nostro servizio!';
+
+        return self::addNotifica($userId, $oggetto, $messaggio);
+    }
+
+    public static function notificaOrdineConsegnato($userId, $orderId){
+        $oggetto = 'ORDINE ' . $orderId . ' CONSEGNATO';
+        $messaggio = 'Il tuo ordine [ID: #' . $orderId .'] è stato consegnato!
+Grazie per aver scelto il nostro servizio!';
+        
+        return self::addNotifica($userId, $oggetto, $messaggio);
+    }
 }

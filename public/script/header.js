@@ -3,24 +3,26 @@ document.querySelector('.logo-header').addEventListener('click', () => {
 });
 
 function checkNotifiche(){
-    if(isLogged()){
-        fetch('public/api/check_new_notifications.php', {
-            method: 'POST',
-            credentials: 'include'
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                if(data.new){
-                    showNotificationDot();
+    isLogged().then(loggedIn => {
+        if (loggedIn) {
+            fetch('public/api/check_new_notifications.php', {
+                method: 'POST',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    if(data.new){
+                        showNotificationDot();
+                    }else{
+                        hideNotificationDot();
+                    }
                 }else{
-                    hideNotificationDot();
+                    console.error('Errore: ' + data.error);
                 }
-            }else{
-                console.error('Errore: ' + data.error);
-            }
-        });
-    }
+            });
+        }
+    });   
 }
 
 function showNotificationDot(){

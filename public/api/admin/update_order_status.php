@@ -3,6 +3,7 @@ session_start();
 $response = ['success' => false];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['isAdmin'])) {
+    require_once("../../../src/models/notifications/NotificationManager.php");
     require_once("../../../src/config/connection.php");
     $id_acquisto = $_POST['id_acquisto'] ?? null;
     $stato_acquisto = $_POST['stato_acquisto'] ?? null;
@@ -21,6 +22,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['isAdmin'])) {
             $response['id_acquisto'] = $id_acquisto;
             $response['stato_acquisto'] = $stato_acquisto;
             $response['success'] = true;
+
+            $stmt = Connection::$db->prepare("SELECT id_utente FROM acquisti WHERE id_acquisto = ?");
+            $stmt->bind_param("i", $id_acquisto);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $userId = $row['id_utente'];
+
+            switch($stato_acquisto){
+                case 'spedito':
+                    NotificationManager::notificaOrdineSpedito($userId, $id_acquisto);
+                    break;
+                case 'consegnato':
+                    NotificationManager::notificaOrdineConsegnato($userId, $id_acquisto);
+                    break;
+            }
         }
     } else {
         $response['message'] = 'Dati non validi.';

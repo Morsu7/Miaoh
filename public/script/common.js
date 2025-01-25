@@ -25,36 +25,31 @@ function addToCarrello(productId){
     });
 }
 
-function isLogged(){
-    // Configura la richiesta con fetch
-    fetch('public/api/check_sessione.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        credentials: 'include'
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            return true;
-        }else{
-            return false;
-        }
-    })
-    .catch(error => {
+async function isLogged() {
+    try {
+        const response = await fetch('public/api/check_sessione.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            credentials: 'include'
+        });
+        const data = await response.json();
+        return data.success;
+    } catch (error) {
         console.error('Errore nella richiesta:', error);
         return false;
-    });
+    }
 }
 
 function addCartButtonFunc(button) {
     registerInteraction(button.getAttribute('data-id'), "carrello");
     addToCarrello(button.getAttribute('data-id'));
 
-    if(!isLogged()){
-        // Create a modal structure dynamically
-        const modalHTML = `
+    isLogged().then(loggedIn => {
+        if (loggedIn) {
+           // Create a modal structure dynamically
+            const modalHTML = `
             <div class="modal fade" id="cartConfirmationModal" tabindex="-1" aria-labelledby="cartConfirmationModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -72,15 +67,16 @@ function addCartButtonFunc(button) {
                     </div>
                 </div>
             </div>
-        `;
+            `;
 
-        // Insert the modal HTML into the body of the page
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
+            // Insert the modal HTML into the body of the page
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
 
-        // Trigger the Bootstrap modal to confirm the item was added to the cart
-        const modal = new bootstrap.Modal(document.getElementById('cartConfirmationModal'));
-        modal.show(); // Show the modal
-    }
+            // Trigger the Bootstrap modal to confirm the item was added to the cart
+            const modal = new bootstrap.Modal(document.getElementById('cartConfirmationModal'));
+            modal.show(); // Show the modal
+        }
+    }); 
 }
 
 function askDetailButtonFunc(button) {

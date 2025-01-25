@@ -1,6 +1,8 @@
-// Aggiungi un event listener a tutti i form delle card
-document.querySelectorAll('.update-order-status-form').forEach(form => {
-    form.addEventListener('submit', updateOrderStatus);
+document.addEventListener('submit', (event) => {
+    if (event.target.matches('.update-order-status-form')) {
+        event.preventDefault();
+        updateOrderStatus.call(event.target, event);
+    }
 });
 
 async function updateOrderStatus(event) {
