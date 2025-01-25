@@ -98,3 +98,12 @@ input:focus, select:focus, textarea:focus {
     border-color: #6a0dad !important; /* Colore del bordo viola, aggiungi !important per forzare la priorità */
     box-shadow: none; /* Rimuovi l'ombra attiva predefinita */
 }
+
+/* Ensure the profile image stays aligned in mobile view */
+@media (max-width: 991.98px) {
+    .profile-img-container {
+        position: absolute;
+        right: 15px;
+        top: 20px;
+    }
+}
