@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['daysOld'])) {
         if($daysOld > 0){
             $query .= " AND (DATEDIFF(CURRENT_DATE, timestamp) <= ? OR letta=0)";
         }
-        $query .= " ORDER BY timestamp ASC";
+        $query .= " ORDER BY timestamp DESC";
 
         $stmt = Connection::$db->prepare($query);
         if($daysOld > 0){
