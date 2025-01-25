@@ -1,10 +1,10 @@
 <article class="profile">
     <h1>Profilo utente</h1>
-    <section class="profile-image-big text-center mb-4">
+    <div class="profile-image-big text-center mb-4">
         <!-- Foto profilo (verifica che la foto esista nel percorso specificato) -->
         <img src="<?php echo $picture; ?>" 
                 alt="Foto Profilo" class="img-fluid rounded-circle user-img" width="150" height="150">
-    </section>
+    </div>
 
     <!-- Horizontal Navbar -->
     <ul class="nav nav-tabs my-3" id="myTab" role="tablist">

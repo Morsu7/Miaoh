@@ -48,16 +48,14 @@
 
 <!-- FILTRI -->
 <div class="container">
-    <label for="search-bar" class="form-label fw-bold">Cerca:</label>    
-    <section class="search-bar">
-            <input 
+    <label for="search-input" class="form-label fw-bold">Cerca:</label>    
+    <input 
                 type="text" 
                 id="search-input" 
                 class="form-control" 
                 placeholder="Cerca prodotti..." 
-                autocomplete="off">
+                autocomplete="off"/>
             <ul id="search-suggestions" class="list-group mt-2" style="display: none;"></ul>
-    </section>
 
     <!-- Dropdown per le categorie -->
     <label for="categoryFilter" class="form-label fw-bold">Filtra per categoria:</label>

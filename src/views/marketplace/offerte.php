@@ -4,13 +4,11 @@
 <div class="container mt-5">
     <!-- Sezione carosello con le card -->
     <section class="mt-5">
+        <h3 class="text-center">Le nostre offerte</h3>
         <article class="mb-4 bg-light p-3 rounded">
             <h4 class="text-center">Ancora per poco tempo!</h4>
             <!-- Contenitore per il carosello -->
             <div class="d-flex justify-content-center align-items-center position-relative">
-                <!-- Freccia precedente -->
-                <button class="btn carousel-control-prev position-absolute" id="prevBtn" style="left: -25px;">←</button>
-
                 <!-- Carosello di prodotti -->
                 <div class="product-carousel d-flex flex-nowrap overflow-auto">
                     <?php foreach ($ending_sales as $ending_sale):
@@ -45,7 +43,7 @@
                                 <?php if($sconto): ?>
                                     €<span class="text-decoration-line-through text-muted"><?php echo $product->getPrezzo()?></span>
                                 <?php endif; ?>
-                                    €<span id="price-<?php echo $product->getId();?>"><?php echo $price?></span>
+                                    €<span><?php echo $price?></span>
                                 </p>
                                 <a href="#" class="btn btn-primary add-to-cart-btn" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
                                     Aggiungi al carrello
@@ -55,9 +53,6 @@
 
                     <?php endforeach; ?>
                 </div>
-
-                <!-- Freccia successiva -->
-                <button class="btn carousel-control-next position-absolute" id="nextBtn" style="right: -25px;">→</button>
             </div>
         </article>
         <?php 
@@ -68,8 +63,6 @@
             <h4 class="text-center"><?php echo ($sales_counter == 0) ? "Le migliori offerte" : 'Sconti del ' . intval($sale) . '%'?>!</h4>
             <!-- Contenitore per il carosello -->
             <div class="d-flex justify-content-center align-items-center position-relative">
-                <!-- Freccia precedente -->
-                <button class="btn carousel-control-prev position-absolute" id="prevBtn" style="left: -25px;">←</button>
 
                 <!-- Carosello di prodotti -->
                 <div class="product-carousel d-flex flex-nowrap overflow-auto">
@@ -100,7 +93,7 @@
                                 <?php if($sconto): ?>
                                     €<span class="text-decoration-line-through text-muted"><?php echo $product->getPrezzo()?></span>
                                 <?php endif; ?>
-                                    €<span id="price-<?php echo $product->getId();?>"><?php echo $price?></span>
+                                    €<span><?php echo $price?></span>
                                 </p>
                                 <a href="#" class="btn btn-primary add-to-cart-btn" data-id="<?php echo htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8'); ?>">
                                     Aggiungi al carrello
@@ -110,13 +103,8 @@
 
                     <?php endforeach; ?>
                 </div>
-
-                <!-- Freccia successiva -->
-                <button class="btn carousel-control-next position-absolute" id="nextBtn" style="right: -25px;">→</button>
             </div>
         </article>
         <?php endif; $sales_counter++; endforeach; ?>
     </section>
 </div>
-
-<script src="public/script/detail.js"></script>

@@ -16,7 +16,7 @@
 
             <!-- Colonna destra per dettagli prodotto -->
             <div class="col-md-6">
-                <h2><?= htmlspecialchars($product->getNome()) ?></h5>
+                <h2><?= htmlspecialchars($product->getNome()) ?></h2>
                 <p><strong>Descrizione:</strong> <?= nl2br(htmlspecialchars($product->getDescrizione())) ?></p>
                 <p><strong>Prezzo:</strong> <?= number_format($product->getPrezzo(), 2, ',', '.') ?> EUR</p>
 
@@ -35,11 +35,6 @@
                 <button class="btn btn-primary mt-3 add-to-cart-btn" data-id="<?= $product->getId() ?>">Aggiungi al carrello</button>
             </div>
         </div>
-
-        <!-- Sezione tipo prodotto -->
-        <footer class="mt-5">
-            <p><strong>Tipo di Prodotto:</strong> <?= htmlspecialchars($product->getTipoProdottoId()) ?></p>
-        </footer>
     </section>
 
     <!-- Sezione carosello con le card -->

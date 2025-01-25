@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     askNotifications(7);
 
-    const periodSelect = document.getElementById('period-select');
+    const periodSelect = document.getElementById('period-select-n');
     const optionValues = Array.from(periodSelect.children).map(option => option.text);
     
     periodSelect.addEventListener('change', function() {
