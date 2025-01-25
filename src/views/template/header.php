@@ -6,7 +6,6 @@ if(isset($_SESSION['email'])){
 }else{
     $picture = IMAGE_PATH . "/icons/profilePic.png";
 }
-
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
   <div class="container-fluid">
@@ -18,24 +17,24 @@ if(isset($_SESSION['email'])){
             <span>MIAOH</span>
         </a>
 
-        <!-- User image aligned to the top-right, vertically centered -->
-        <a class="d-flex align-items-center ml-auto top-50 end-0" href="?action=profile">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="?#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?action=shopping&subAction=carrello"><i class="bi bi-cart"></i> Carrello</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?action=profile">Profilo</a>
+                </li>
+            </ul>
+        </div>
+        <!-- User image aligned to the right -->
+        <a class="d-flex align-items-center ms-auto profile-img-container" href="?action=profile">
             <img src="<?php echo $picture ?>" alt="User" class="user-img user-icon" width="60" height="60"/>
         </a>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="?#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?action=shopping&subAction=carrello"><i class="bi bi-cart"></i> Carrello</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?action=profile">Profilo</a>
-            </li>
-        </ul>
-    </div>
+  </div>
 </nav>
 
 <script src="public/script/header.js"></script>
