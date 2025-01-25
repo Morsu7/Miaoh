@@ -1,17 +1,3 @@
-/* Variabili CSS */
-:root {
-    --primary-color: #6a0dad;
-    --primary-hover-color: #563d7c;
-    --secondary-color: #f9f9f9;
-    --text-dark: #333;
-    --text-light: #555;
-    --text-muted: #777;
-    --box-shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
-    --box-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
-    --border-radius: 8px;
-    --transition-speed: 0.3s;
-}
-
 /* Reset base */
 body {
     margin: 0;

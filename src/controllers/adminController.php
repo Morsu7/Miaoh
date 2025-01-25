@@ -3,7 +3,9 @@
 include('../src/models/products/Product.php');
 include('../src/models/products/Products.php');
 include('../src/models/products/Category.php');
+include('../src/models/orders/Order.php');
 require_once('../src/models/products/ProductsManager.php');
+require_once('../src/models/orders/OrdersManager.php');
 
 if(!isset($_SESSION['isAdmin'])){
     header('Location: ?action=login');
@@ -38,9 +40,15 @@ switch ($subAction) {
         $content = '../src/views/admin/products.php';
         break;
     case 'orders':
+        if (isset($_GET['page'])) {
+            $currentPage = $_GET['page'];
+        } else {
+            $currentPage = 1;
+        }
+
         $ordersPerPage = 20;
-        $allOrders = ProductsManager::fetchOrdersByPage(1, $ordersPerPage);
-        $totalPages = ceil(ProductsManager::getOrdersNumber() / $ordersPerPage);
+        $allOrders = OrdersManager::fetchOrdersByPage($currentPage, $ordersPerPage);
+        $totalPages = ceil(OrdersManager::getOrdersNumber() / $ordersPerPage);
 
         $content = '../src/views/admin/orders.php';
         break;
