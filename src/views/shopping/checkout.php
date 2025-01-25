@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary confirm-checkout-btn">Confirm Payment</button>
+    <button type="button" class="btn btn-primary confirm-checkout-btn mt-3">Conferma pagamento</button>
 
     <!-- Modal Structure -->
     <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
