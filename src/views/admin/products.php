@@ -1,8 +1,10 @@
 <link rel="stylesheet" href="public/style/admin/admin.css">
 
+<!-- TODO: Mettere ricerca e sistemare modifica -->
+
 <div class="container-fluid">
-    <div class="row">
-        <!-- Barra laterale -->
+    <div class="row">        
+        <!-- Sidebar per Desktop -->
         <aside class="col-md-2 sidebar collapse d-md-block" id="sidebarMenu">
             <nav>
                 <ul class="nav flex-column">
@@ -24,10 +26,36 @@
             </nav>
         </aside>
 
+        <!-- Navbar Hamburger per Dispositivi Mobili -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light d-md-none">
+            <div class="container-fluid">
+                <!-- Bottone Hamburger -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavbar" aria-controls="mobileNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Contenuto Collassabile -->
+                <div class="collapse navbar-collapse" id="mobileNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">Torna alla Homepage</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?action=adminpage&subAction=dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Gestione Prodotti</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?action=adminpage&subAction=orders">Gestione Ordini</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <!-- Contenuto principale -->
         <main class="col-md-10 ms-sm-auto col-lg-10 main-content">
             <section class="container py-4">
-                <!-- Barra di ricerca FIXME: Fare pure questa con query -->
                 <!-- Barra di ricerca con pulsante Aggiungi Prodotto -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <!-- Pulsante Aggiungi Prodotto -->

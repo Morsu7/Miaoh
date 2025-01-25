@@ -1,8 +1,9 @@
 <link rel="stylesheet" href="public/style/admin/admin.css">
 
+<!-- TODO: Mettere ricerca e nome di chi acquista? -->
 <div class="container-fluid">
     <div class="row">
-        <!-- Barra laterale (non modificata) -->
+        <!-- Sidebar per Desktop -->
         <aside class="col-md-2 sidebar collapse d-md-block" id="sidebarMenu">
             <nav>
                 <ul class="nav flex-column">
@@ -24,77 +25,94 @@
             </nav>
         </aside>
 
-        <!-- Contenuto principale -->
-        <main class="col-md-10">
-            <h1 class="mt-4">Gestione Ordini</h1>
-            <!-- Tabella responsiva -->
-            <div class="table-responsive mt-4">
-                <table class="table table-striped table-hover table-sm">
-                    <thead>
-                        <tr>
-                            <th class="d-none d-md-table-cell">ID Utente</th> <!-- Nasconde su dispositivi piccoli -->
-                            <th>ID Acquisto</th>
-                            <th>Timestamp</th>
-                            <th>Stato Acquisto</th>
-                            <th class="text-center">Spesa (€)</th>
-                            <th class="text-center">Azione</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($allOrders as $order): ?>
-                        <tr data-id_acquisto="<?= $order->getIdAcquisto() ?>">
-                            <td class="d-none d-md-table-cell"><?= htmlspecialchars($order->getIdUtente()) ?></td> <!-- Nasconde su dispositivi piccoli -->
-                            <td><?= htmlspecialchars($order->getIdAcquisto()) ?></td>
-                            <td><?= htmlspecialchars($order->getTimestamp()) ?></td>
-                            <td class="stato-acquisto"><?= $order->getStatoAcquistoFormatted() ?></td>
-                            <td class="text-center"><?= htmlspecialchars(number_format($order->getSpesa(), 2)) ?></td>
-                            <td class="text-center">
-                                <?php if ($order->getStatoAcquisto() != 'consegnato'): ?>
-                                <form class="d-flex flex-column flex-md-row align-items-center update-order-status-form">
-                                    <input type="hidden" name="id_acquisto" value="<?php echo $order->getIdAcquisto(); ?>">
-                                    <select name="stato_acquisto" class="form-select w-100 w-md-auto me-md-2 mb-2 mb-md-0">
-                                        <option value="da_spedire" <?php echo $order->getStatoAcquisto() == 'da_spedire' ? 'selected' : ''; ?>>Da Spedire</option>
-                                        <option value="spedito" <?php echo $order->getStatoAcquisto() == 'spedito' ? 'selected' : ''; ?>>Spedito</option>
-                                        <option value="consegnato" <?php echo $order->getStatoAcquisto() == 'consegnato' ? 'selected' : ''; ?>>Consegnato</option>
-                                    </select>
-                                    <button type="submit" class="btn btn-primary w-100 w-md-auto">Cambia stato</button>
-                                </form>
-                                <?php else: ?>
-                                <button class="btn btn-secondary mt-2 w-100" disabled>Consegnato</button>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-
-                <!-- Paginazione -->
-                <nav aria-label="Paginazione prodotti">
-                    <ul class="pagination justify-content-center">
-                        <?php if ($currentPage > 1): ?>
-                        <li class="page-item">
-                            <a class="page-link" href="?action=adminpage&subAction=orders&page=<?= $currentPage - 1 ?>" aria-label="Precedente">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
+        <!-- Navbar Hamburger per Dispositivi Mobili -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light d-md-none">
+            <div class="container-fluid">
+                <!-- Bottone Hamburger -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavbar" aria-controls="mobileNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Contenuto Collassabile -->
+                <div class="collapse navbar-collapse" id="mobileNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">Torna alla Homepage</a>
                         </li>
-                        <?php endif; ?>
-
-                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                        <li class="page-item <?= $i == $currentPage ? 'active' : '' ?>">
-                            <a class="page-link" href="?action=adminpage&subAction=orders&page=<?= $i ?>"><?= $i ?></a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?action=adminpage&subAction=dashboard">Dashboard</a>
                         </li>
-                        <?php endfor; ?>
-
-                        <?php if ($currentPage < $totalPages): ?>
-                        <li class="page-item">
-                            <a class="page-link" href="?action=adminpage&subAction=orders&page=<?= $currentPage + 1 ?>" aria-label="Successivo">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?action=adminpage&subAction=products">Gestione Prodotti</a>
                         </li>
-                        <?php endif; ?>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Gestione Ordini</a>
+                        </li>
                     </ul>
-                </nav>
+                </div>
             </div>
+        </nav>
+
+        <!-- Contenuto principale -->
+        <main class="col-md-10 main-content">
+            <!-- Lista di card responsiva -->
+            <div class="row mt-4">
+                <?php foreach ($allOrders as $order): ?>
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="card" data-id_acquisto="<?= htmlspecialchars($order->getIdAcquisto()) ?>">
+                    <div class="card-body">
+                        <h5 class="card-title">ID Acquisto: <?= htmlspecialchars($order->getIdAcquisto()) ?></h5>
+                        <p class="card-text">Timestamp: <?= htmlspecialchars($order->getTimestamp()) ?></p>
+                        <p class="card-text">Stato Acquisto: <strong class="stato-acquisto"><?= $order->getStatoAcquistoFormatted() ?></strong></p>
+                        <p class="card-text">Spesa: € <?= htmlspecialchars(number_format($order->getSpesa(), 2)) ?></p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-center">
+                            <?php if ($order->getStatoAcquisto() != 'consegnato'): ?>
+                            <form class="d-flex flex-column flex-md-row align-items-center update-order-status-form">
+                                <input type="hidden" name="id_acquisto" value="<?php echo $order->getIdAcquisto(); ?>">
+                                <select name="stato_acquisto" class="form-select w-100 w-md-auto me-md-2 mb-2 mb-md-0">
+                                    <option value="da_spedire" <?php echo $order->getStatoAcquisto() == 'da_spedire' ? 'selected' : ''; ?>>Da Spedire</option>
+                                    <option value="spedito" <?php echo $order->getStatoAcquisto() == 'spedito' ? 'selected' : ''; ?>>Spedito</option>
+                                    <option value="consegnato" <?php echo $order->getStatoAcquisto() == 'consegnato' ? 'selected' : ''; ?>>Consegnato</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary w-100 w-md-auto">Cambia stato</button>
+                            </form>
+                            <?php else: ?>
+                            <button class="btn btn-secondary mt-2 w-100" disabled>Consegnato</button>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+                                
+            <!-- Paginazione -->
+            <nav aria-label="Paginazione prodotti">
+                <ul class="pagination justify-content-center">
+                    <?php if ($currentPage > 1): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="?action=adminpage&subAction=orders&page=<?= $currentPage - 1 ?>" aria-label="Precedente">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <?php endif; ?>
+                    
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <li class="page-item <?= $i == $currentPage ? 'active' : '' ?>">
+                        <a class="page-link" href="?action=adminpage&subAction=orders&page=<?= $i ?>"><?= $i ?></a>
+                    </li>
+                    <?php endfor; ?>
+                    
+                    <?php if ($currentPage < $totalPages): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="?action=adminpage&subAction=orders&page=<?= $currentPage + 1 ?>" aria-label="Successivo">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
         </main>
     </div>
 </div>

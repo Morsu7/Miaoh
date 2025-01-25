@@ -2,7 +2,6 @@
 session_start();
 $response = ['success' => false];
 
-// TODO: Fixare
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['isAdmin'])) {
     require_once("../../../src/config/connection.php");
 

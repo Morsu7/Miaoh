@@ -1,4 +1,4 @@
-// Aggiungi un event listener a tutti i form nella tabella
+// Aggiungi un event listener a tutti i form delle card
 document.querySelectorAll('.update-order-status-form').forEach(form => {
     form.addEventListener('submit', updateOrderStatus);
 });
@@ -18,17 +18,17 @@ async function updateOrderStatus(event) {
         if (resp.ok) {
             const data = await resp.json();
             if (data.success) {
-                // Trova la riga dell'ordine che è stato aggiornato
-                const orderRow = document.querySelector(`tr[data-id_acquisto="${data.id_acquisto}"]`);
+                // Trova la card dell'ordine che è stato aggiornato
+                const orderCard = document.querySelector(`.card[data-id_acquisto="${data.id_acquisto}"]`);
 
-                // Aggiorna lo stato dell'ordine nella tabella
-                const stateColumn = orderRow.querySelector('.stato-acquisto');
-                stateColumn.innerHTML = getStatoFormatted(data.stato_acquisto); // Formatta il nuovo stato
+                // Aggiorna lo stato dell'ordine nella card
+                const stateElement = orderCard.querySelector('.stato-acquisto');
+                stateElement.innerHTML = getStatoFormatted(data.stato_acquisto); // Formatta il nuovo stato
 
-                // Aggiorna il bottone
-                const actionColumn = orderRow.querySelector('td:last-child'); // Trova la cella delle azioni
+                // Aggiorna il bottone e il form
+                const actionColumn = orderCard.querySelector('.card-footer'); // Trova la parte inferiore della card (dove ci sono le azioni)
                 if (data.stato_acquisto === 'consegnato') {
-                    actionColumn.innerHTML = `<button class="btn btn-secondary mt-2" disabled>Consegnato</button>`;
+                    actionColumn.innerHTML = `<button class="btn btn-secondary mt-2 w-100" disabled>Consegnato</button>`;
                 } else {
                     actionColumn.innerHTML = `
                         <form method="POST" class="d-flex align-items-center update-order-status-form">
@@ -40,9 +40,9 @@ async function updateOrderStatus(event) {
                                 <option value="consegnato" ${data.stato_acquisto === 'consegnato' ? 'selected' : ''}>Consegnato</option>
                             </select>
                         
-                            <button type="submit" class="btn btn-primary mt-2">Cambia stato</button>
+                            <button type="submit" class="btn btn-primary mt-2 w-100">Cambia stato</button>
                         </form>
-                        `;
+                    `;
 
                     // Ricollega l'evento submit al nuovo form
                     actionColumn.querySelector('form').addEventListener('submit', updateOrderStatus);
@@ -61,7 +61,6 @@ async function updateOrderStatus(event) {
         alert('Si è verificato un errore.');
     }
 }
-
 
 function getStatoFormatted(stato) {
     switch (stato) {

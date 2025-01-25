@@ -1,13 +1,14 @@
 <link rel="stylesheet" href="public/style/admin/admin.css">
 
+<!-- TODO: Decidere quali dati mostrare -->
 <div class="container-fluid">
     <div class="row">
-        <!-- Barra laterale -->
+        <!-- Sidebar per Desktop -->
         <aside class="col-md-2 sidebar collapse d-md-block" id="sidebarMenu">
             <nav>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2">
-                        <a href="index.php" class="btn btn-outline-primary text-dark" style="border-color: #563d7c; color: #563d7c;">
+                        <a href="index.php" class="btn btn-outline-primary text-dark">
                             Torna alla Homepage
                         </a>
                     </li>
@@ -23,15 +24,36 @@
                 </ul>
             </nav>
         </aside>
+
+        <!-- Navbar Hamburger per Dispositivi Mobili -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light d-md-none">
+            <div class="container-fluid">
+                <!-- Bottone Hamburger -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNavbar" aria-controls="mobileNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Contenuto Collassabile -->
+                <div class="collapse navbar-collapse" id="mobileNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php">Torna alla Homepage</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?action=adminpage&subAction=products">Gestione Prodotti</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?action=adminpage&subAction=orders">Gestione Ordini</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         
         <!-- Contenuto principale -->
         <main class="col-md-10 ms-sm-auto col-lg-10 main-content">
-            <header class="d-flex justify-content-between align-items-center p-3 mb-4 border-bottom">
-                <button class="btn btn-outline-primary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span> Menu
-                </button>
-            </header>
-
             <div class="container py-4">
                 <div class="row">
                     <div class="col-md-4 mb-4">
