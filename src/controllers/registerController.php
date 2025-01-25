@@ -29,6 +29,7 @@ switch ($subAction) {
 
             if($result == 'success'){
                 $_SESSION['email'] = $_POST['email'];
+                $_SESSION['isAdmin'] = Users::isAdmin($_POST['email']);
                 header('Location: ?#');
                 exit;
             }else{
@@ -52,7 +53,7 @@ switch ($subAction) {
 
             if($result == 'success'){
                 $_SESSION['email'] = $email;
-
+                
                 // Registrazione avvenuta con successo
                 if(isset($_FILES['image'])){
                     // Viene anche aggiunta la foto profilo, se valida

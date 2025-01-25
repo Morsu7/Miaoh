@@ -24,6 +24,11 @@ switch ($action) {
     case 'product':
         include('../src/controllers/productController.php');
         break;
+    case 'adminpage':
+        include('../src/controllers/adminController.php');
+        require("../src/views/template/admin_base.php");
+        // break;
+        return;
     case 'home':
     default:
         include('../src/controllers/homeController.php');
