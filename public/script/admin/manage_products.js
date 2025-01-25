@@ -172,3 +172,38 @@ searchInput.addEventListener('input', function (event) {
         }
     });
 });
+
+// Ricerca prodotto
+const loadingSpinner = document.getElementById('loadingSpinner');
+
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('liveSearchInput');
+    const productList = document.querySelector('.product-list');
+    const paginationContainer = document.querySelector('.pagination');  // Aggiunto per la paginazione
+
+    let timeout = null;
+
+    searchInput.addEventListener('input', () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            const searchTerm = searchInput.value.trim();
+            loadingSpinner.style.display = 'block'; // Mostra il caricamento
+
+            fetch(`?action=adminpage&subAction=products&search=${encodeURIComponent(searchTerm)}&ajax=1`)
+                .then(response => response.json())  // Modificato per ricevere JSON
+                .then(data => {
+                    // Aggiorna la lista dei prodotti
+                    productList.innerHTML = data.productList;
+
+                    // Aggiorna la paginazione
+                    paginationContainer.innerHTML = data.pagination;
+
+                    loadingSpinner.style.display = 'none'; // Nascondi il caricamento
+                })
+                .catch(error => {
+                    console.error('Errore durante la ricerca:', error);
+                    loadingSpinner.style.display = 'none'; // Nascondi il caricamento
+                });
+        }, 300); // Ritarda l'esecuzione della ricerca di 300 ms
+    });
+});

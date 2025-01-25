@@ -18,11 +18,11 @@
     <?php if($show_header)  include('header.php'); ?>
 
     <?php include($content); ?>
-    <footer class="bg-light text-center py-3 mt-4">
+    <!-- <footer class="bg-light text-center py-3">
         <div class="container">
             <p>&copy; <?php echo date('Y'); ?> Your Company</p>
         </div>
-    </footer>
+    </footer> -->
     <script src="public/script/interazioni.js"></script>
 </body>
 </html>

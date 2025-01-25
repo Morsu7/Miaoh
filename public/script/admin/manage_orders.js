@@ -74,3 +74,40 @@ function getStatoFormatted(stato) {
             return '<span class="badge bg-secondary text-white">Stato sconosciuto</span>';
     }
 }
+
+// Filtri
+
+document.getElementById('orderFilterForm').addEventListener('submit', function (event) {
+    event.preventDefault();  // Evita il comportamento predefinito di submit del form
+
+    const formData = new FormData(this);  // Raccogli i dati del form
+
+    // Converti i dati del form in una query string
+    const queryParams = new URLSearchParams();
+    formData.forEach((value, key) => {
+        queryParams.append(key, value);
+    });
+
+    // Aggiungi il parametro ajax=1
+    queryParams.append('ajax', '1');
+
+    // Costruisci l'URL finale con i parametri
+    const url = `${window.location.pathname}?${queryParams.toString()}`;
+    console.log(url);
+    // Esegui la fetch con il metodo GET
+    fetch(url, {
+        method: 'GET',  // Usa il metodo GET
+    })
+        .then(response => response.json())
+        // .then(response => response.text())
+        .then(data => {
+            // Sostituisci la lista degli ordini con quella aggiornata
+            document.querySelector('.row.mt-4').innerHTML = data.productList;
+            // Sostituisci la paginazione con quella aggiornata
+            document.querySelector('.pagination').innerHTML = data.pagination;
+        })
+        .catch(error => {
+            console.error('Errore durante il filtro degli ordini:', error);
+            alert('Si è verificato un errore.');
+        });
+});

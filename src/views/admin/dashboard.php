@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="public/style/admin/admin.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- TODO: Decidere quali dati mostrare -->
 <div class="container-fluid">
@@ -56,40 +57,57 @@
         <main class="col-md-10 ms-sm-auto col-lg-10 main-content">
             <div class="container py-4">
                 <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <div class="card p-3">
-                            <h6>Esami passati</h6>
-                            <div class="progress" style="height: 10px;">
-                                <div class="progress-bar" style="width: 75%;"></div>
+                    <div class="col-md-12 mb-4">
+                        <div class="card p-3 shadow-sm">
+                            <h6 class="text-center" style="border-bottom: 1px solid #ddd; padding-bottom: 10px;">Totale Ordini: <?php echo $orders_total; ?></h6>
+
+                            <div class="row mt-3 text-center"> <!-- Aggiunto text-center qui -->
+                                <!-- Ordini da Consegnare -->
+                                <div class="col-md-4">
+                                    <h6>Ordini da Consegnare</h6>
+                                    <ul class="list-unstyled mt-3">
+                                        <li><strong>In attesa:</strong> <?php echo $orders_pending; ?></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Ordini Spediti -->
+                                <div class="col-md-4">
+                                    <h6>Ordini Spediti</h6>
+                                    <ul class="list-unstyled mt-3">
+                                        <li><strong>Spediti:</strong> <?php echo $orders_shipped; ?></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Ordini Consegnati -->
+                                <div class="col-md-4">
+                                    <h6>Ordini Consegnati</h6>
+                                    <ul class="list-unstyled mt-3">
+                                        <li><strong>Consegnati:</strong> <?php echo $orders_delivered; ?></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <small class="text-muted">75%</small>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card p-3">
-                            <h6>Events</h6>
-                            <img src="https://via.placeholder.com/100x50" alt="Graph" class="img-fluid">
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card p-3">
-                            <h6>Device Stats</h6>
-                            <div class="progress mb-2" style="height: 10px;">
-                                <div class="progress-bar" style="width: 60%;"></div>
-                            </div>
-                            <small class="text-muted">Memory Space: 60%</small>
                         </div>
                     </div>
                 </div>
-                <!-- Grafici -->
+
                 <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="card p-3">
-                            <h6>Analytics</h6>
-                            <ul class="list-unstyled">
-                                <li>Prodotti in magazzino: 22,370</li>
-                                <li>Utenti registrati: 2,456</li>
-                            </ul>
+                    <!-- Card Utenti Registrati -->
+                    <div class="col-md-12 mb-4">
+                        <div class="card p-3 shadow-sm">
+                            <h6 class="text-center">Utenti Registrati:</h6>
+                            <h7 class="text-center"><?php echo $users_registered; ?></h7>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Card Grafico Acquisti -->
+                    <div class="col-md-12 mb-4">
+                        <div class="card p-3 shadow-sm">
+                            <h5 class="text-center">Grafico degli Acquisti</h5>
+                            <div class="card-body">
+                                <canvas id="acquistiChart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,3 +115,38 @@
         </main>
     </div>
 </div>
+
+<script>
+    var ctx = document.getElementById('acquistiChart').getContext('2d');
+    
+    var labels = <?php echo json_encode($labels); ?>; // Le date
+    var data = <?php echo json_encode($data); ?>; // Il numero di acquisti
+    
+    var acquistiChart = new Chart(ctx, {
+        type: 'line', // Tipo di grafico: lineare
+        data: {
+            labels: labels, // Le date
+            datasets: [{
+                label: 'Numero di Acquisti',
+                data: data, // Dati degli acquisti (valori per le rispettive date)
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,  // Impostiamo la distanza tra i valori
+                        callback: function(value) {
+                            return value.toFixed(0); // Arrotonda a 0 decimali
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>

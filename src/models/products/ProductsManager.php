@@ -249,6 +249,56 @@ class ProductsManager
         return $products;
     }
     
+    public static function fetchProductsByName($searchTerm, $page, $elementsPerPage) {
+        $offset = ($page - 1) * $elementsPerPage;
+        $searchTermWithWildcards = '%' . $searchTerm . '%';
+        $stmt = Connection::$db->prepare("
+            SELECT * FROM " . self::$PRODUCT_TABLE . " 
+            WHERE nome LIKE ?
+            LIMIT ?, ?
+        ");
+
+        $stmt->bind_param("sii", $searchTermWithWildcards, $offset, $elementsPerPage);
+        $stmt->execute();
+    
+        $result = $stmt->get_result();
+
+        // Crea un array di oggetti Product
+        $products = [];
+    
+        // Iterazione sui risultati e creazione degli oggetti Product
+        while ($row = $result->fetch_assoc()) {
+            $products[] = new Product(
+                $row['id'], 
+                $row['nome'], 
+                $row['descrizione'], 
+                $row['quantita'], 
+                $row['prezzo'], 
+                $row['sconto'], 
+                $row['fine_sconto'], 
+                $row['img1'], 
+                $row['img2'], 
+                $row['tipoProdotto_id']
+            );
+        }
+    
+        return $products;
+    }
+
+    public static function getSearchProductsNumber($searchTerm) {
+        $searchTermWithWildcards = '%' . $searchTerm . '%';
+        $stmt = Connection::$db->prepare("
+            SELECT COUNT(*) AS total FROM " . self::$PRODUCT_TABLE . " 
+            WHERE nome LIKE ?
+        ");
+        $stmt->bind_param('s', $searchTermWithWildcards);
+        $stmt->execute();
+    
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row['total'];
+    }
+
     public static function getProductsNumber() {
         $stmt = Connection::$db->prepare("
             SELECT COUNT(*) AS total FROM " . self::$PRODUCT_TABLE
