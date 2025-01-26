@@ -17,7 +17,7 @@ class AnalyticsManager {
 
     // Recupera il numero di ordini pendenti
     public static function getOrdersPending() {
-        $query = "SELECT COUNT(*) as pending_orders FROM " . self::$ORDERS_TABLE . " WHERE stato_acquisto = 'pendente'";
+        $query = "SELECT COUNT(*) as pending_orders FROM " . self::$ORDERS_TABLE . " WHERE stato_acquisto = 'da_spedire'";
         $stmt = Connection::$db->prepare($query);
         $stmt->execute();
 
