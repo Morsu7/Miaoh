@@ -127,7 +127,7 @@ async function editProduct(e) {
             formData.append(key, updatedData[key]);
         }
     }
-    // TODO: Fixare immagine
+
     if (imageFile) {
         formData.append('img1', imageFile);
     }
