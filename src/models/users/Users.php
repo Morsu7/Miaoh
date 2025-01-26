@@ -51,7 +51,7 @@ class Users{
     }
 
     public static function isAdmin($email) {
-        return $email == "p@al.le";
+        return $email == "admin@miaoh.com";
     }
 }
 ?>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 21, 2025 alle 13:06
--- Versione del server: 10.4.27-MariaDB
--- Versione PHP: 8.2.0
+-- Creato il: Gen 26, 2025 alle 18:17
+-- Versione del server: 10.4.19-MariaDB
+-- Versione PHP: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `acquisti` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `stato_acquisto` enum('da_spedire','spedito','consegnato') NOT NULL DEFAULT 'da_spedire',
   `spesa` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `acquisti`
@@ -53,7 +53,7 @@ CREATE TABLE `carrello` (
   `id_utente` int(11) NOT NULL,
   `id_prodotto` int(11) NOT NULL,
   `quantita` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Trigger `carrello`
@@ -79,7 +79,7 @@ CREATE TABLE `interazione` (
   `id_prodotto` int(11) NOT NULL,
   `tipo` enum('visita','acquisto','carrello') NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `interazione`
@@ -224,7 +224,7 @@ CREATE TABLE `prodotti_acquistati` (
   `id_prodotto` int(11) NOT NULL,
   `quantita` int(11) NOT NULL,
   `prezzo_totale` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `prodotti_acquistati`
@@ -246,15 +246,15 @@ INSERT INTO `prodotti_acquistati` (`id_acquisto`, `id_prodotto`, `quantita`, `pr
 CREATE TABLE `prodotto` (
   `id` int(11) NOT NULL,
   `nome` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `descrizione` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `descrizione` text CHARACTER SET utf8mb4 NOT NULL,
   `quantita` int(11) NOT NULL,
   `prezzo` decimal(10,2) NOT NULL,
   `sconto` decimal(5,2) NOT NULL,
   `fine_sconto` date NOT NULL,
-  `img1` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `img2` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `img1` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `img2` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `tipoProdotto_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `prodotto`
@@ -307,9 +307,9 @@ CREATE TABLE `recensione` (
   `utente` int(11) NOT NULL,
   `prodotto_id` int(11) NOT NULL,
   `valutazione` int(11) NOT NULL CHECK (`valutazione` between 1 and 5),
-  `descrizione` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `descrizione` text CHARACTER SET utf8 NOT NULL,
   `data` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `recensione`
@@ -322,7 +322,6 @@ INSERT INTO `recensione` (`utente`, `prodotto_id`, `valutazione`, `descrizione`,
 (1, 10, 3, 'dsdsd', '2025-01-20'),
 (1, 30, 3, 'dasdsads', '2025-01-20'),
 (13, 10, 1, 'non male', '2025-01-20'),
-(18, 10, 5, 'non posso farne a meno', '2025-01-20'),
 (21, 10, 4, 'beatiful', '2025-01-20'),
 (21, 34, 3, 'bella bella bella', '2025-01-20');
 
@@ -334,8 +333,8 @@ INSERT INTO `recensione` (`utente`, `prodotto_id`, `valutazione`, `descrizione`,
 
 CREATE TABLE `tipoprodotto` (
   `id` int(11) NOT NULL,
-  `descrizione` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `descrizione` varchar(255) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `tipoprodotto`
@@ -360,7 +359,7 @@ CREATE TABLE `user` (
   `name` varchar(50) NOT NULL,
   `surname` varchar(50) NOT NULL,
   `image_file_type` varchar(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `user`
@@ -369,9 +368,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `email`, `password_hash`, `name`, `surname`, `image_file_type`) VALUES
 (1, 'gattone33', 'a@iu.to', 0x24327924313024702f3178707859305158493331534557504f4b7679657043484e467238544c706a4344586e2e5a746142576143333959416d426579, 'Federico', 'Morsucci', 'jpg'),
 (13, 'Tubone', 'paolofox@libero.it', 0x24327924313024743842666a4a304e374e63684a31515576766e782f4f314752504a447250325a443651467755696d70624e6f545544396769534865, 'Paolo', 'Fox', 'png'),
-(18, 'pierino', 'pie@rin.com', 0x24327924313024476e43624831794c4367354d355570436b376167772e3168734d414f4d64335847634c62386f386d6e35646d754b5350415375734b, 'Rozzo', 'Cafone', 'jpeg'),
-(20, '1', 'a@a.a', 0x2432792431302477497556686b5373736b692e615237535469636a556554514e74752f784e51582e6248376c3759796b4d6c6d467058704c4e474f53, '1', '1', ''),
-(21, 'JJMorbix', 'p@al.le', 0x243279243130247456652f6a65614d757a71596c53655a31314c796b756649484e6e6a534a524e54786862764b362f544554757766513442356a7647, 'Cristian', 'Morbidelli', 'png');
+(21, 'JJMorbix', 'admin@miaoh.com', 0x243279243130247456652f6a65614d757a71596c53655a31314c796b756649484e6e6a534a524e54786862764b362f544554757766513442356a7647, 'Cristian', 'Morbidelli', 'png');
 
 --
 -- Indici per le tabelle scaricate
