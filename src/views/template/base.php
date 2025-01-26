@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="public/style/template.css"/>
     <link rel="stylesheet" href="public/style/common.css"/>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!-- Include Bootstrap JS -->
     <script src="public/script/bootstrap.bundle.min.js"></script>
     <?php if($show_header)  include('header.php'); ?>
 
-    <main class="container mt-4">
+    <main class="container mt-4 flex-grow-1">
         <?php include($content); ?>
     </main>
     <footer class="bg-light text-center py-3 mt-4">
