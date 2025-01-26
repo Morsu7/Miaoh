@@ -1,28 +1,11 @@
+const periodSelect = document.getElementById('period-select-n');
+const optionValues = Array.from(periodSelect.children).map(option => option.text);
+
 document.addEventListener('DOMContentLoaded', function() {
     askNotifications(7);
-
-    const periodSelect = document.getElementById('period-select-n');
-    const optionValues = Array.from(periodSelect.children).map(option => option.text);
     
     periodSelect.addEventListener('change', function() {
-        switch(this.value) {
-            case optionValues[0]:
-                askNotifications(7);
-                break;
-            case optionValues[1]:
-                askNotifications(31);
-                break;
-            case optionValues[2]:
-                askNotifications(186);
-                break;
-            case optionValues[3]:
-                askNotifications(365);
-                break;
-            case optionValues[4]:
-            default:
-                askNotifications(-1);
-                break;
-        }
+        checkNotificheFromValue(this.value);
     });
 });
 
@@ -62,6 +45,63 @@ function toggleMessage(element) {
         }
     } else {
         messageDiv.style.display = "none";
+    }
+
+    checkNotifiche();
+}
+
+function deleteNotification(event, id) {
+    event.preventDefault();
+
+    fetch('public/api/delete_notifica.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'id_notifica=' + encodeURIComponent(id),
+        credentials: 'include'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data && data.success) {
+            const notificationElement = document.querySelector(`[data-id='${id}']`);
+            if (notificationElement) {
+                notificationElement.remove();
+            }
+            console.log('Notifica eliminata');
+        } else {
+            console.error('Errore: ' + (data.error || 'No data received'));
+        }
+    })
+    .catch(error => {
+        console.error('Errore nella richiesta:', error);
+    });
+
+    const periodSelect = document.getElementById('period-select-n');
+    let val = periodSelect.value;
+    checkNotificheFromValue(val);
+
+    checkNotifiche();
+}
+
+function checkNotificheFromValue(val){
+    switch(val) {
+        case optionValues[0]:
+            askNotifications(7);
+            break;
+        case optionValues[1]:
+            askNotifications(31);
+            break;
+        case optionValues[2]:
+            askNotifications(186);
+            break;
+        case optionValues[3]:
+            askNotifications(365);
+            break;
+        case optionValues[4]:
+        default:
+            askNotifications(-1);
+            break;
     }
 }
 

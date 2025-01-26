@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['daysOld'])) {
 
         // Debugging: Check if there are any results
         if ($result->num_rows === 0) {
-            echo "Nessun ordine trovato.";
+            echo "Nessuna notifica trovata.";
         }
 
     }else{
