@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 26, 2025 alle 18:17
+-- Creato il: Gen 26, 2025 alle 18:26
 -- Versione del server: 10.4.19-MariaDB
 -- Versione PHP: 8.0.6
 
@@ -40,8 +40,42 @@ CREATE TABLE `acquisti` (
 --
 
 INSERT INTO `acquisti` (`id_utente`, `id_acquisto`, `timestamp`, `stato_acquisto`, `spesa`) VALUES
-(1, 19, '2025-01-20 22:36:39', 'da_spedire', '14.39'),
-(1, 20, '2025-01-21 11:46:44', 'da_spedire', '393.85');
+(1, 27, '2025-01-21 15:47:16', 'da_spedire', '86.37'),
+(1, 28, '2025-01-01 11:31:22', 'da_spedire', '0.00'),
+(1, 29, '2025-01-21 17:18:48', 'da_spedire', '104.93'),
+(1, 30, '2025-01-24 17:39:08', 'da_spedire', '14.99'),
+(1, 31, '2025-01-24 17:39:50', 'da_spedire', '9.99'),
+(1, 32, '2025-01-24 17:41:29', 'da_spedire', '56.99'),
+(1, 33, '2025-01-24 17:44:55', 'da_spedire', '9.99'),
+(1, 34, '2025-01-24 17:47:28', 'da_spedire', '9.99'),
+(1, 35, '2025-01-24 17:48:03', 'da_spedire', '9.99'),
+(1, 36, '2025-01-24 17:49:12', 'da_spedire', '9.99'),
+(1, 37, '2025-01-24 17:49:21', 'da_spedire', '9.99'),
+(1, 38, '2025-01-24 17:49:37', 'da_spedire', '9.99'),
+(1, 39, '2025-01-24 17:49:50', 'da_spedire', '9.99'),
+(1, 40, '2025-01-24 17:51:59', 'da_spedire', '9.99'),
+(1, 41, '2025-01-24 17:52:10', 'da_spedire', '29.97'),
+(1, 42, '2025-01-24 17:52:51', 'da_spedire', '9.99'),
+(1, 43, '2025-01-24 17:54:25', 'da_spedire', '9.99'),
+(1, 44, '2025-01-24 17:56:47', 'da_spedire', '9.99'),
+(1, 45, '2025-01-24 17:58:34', 'da_spedire', '9.99'),
+(1, 46, '2025-01-24 17:59:34', 'da_spedire', '9.99'),
+(1, 47, '2025-01-24 18:00:50', 'da_spedire', '9.99'),
+(1, 48, '2025-01-24 18:02:31', 'da_spedire', '9.99'),
+(1, 49, '2025-01-24 18:04:26', 'da_spedire', '9.99'),
+(1, 50, '2025-01-24 18:06:07', 'da_spedire', '9.99'),
+(1, 51, '2025-01-24 18:07:59', 'da_spedire', '9.99'),
+(1, 52, '2025-01-24 18:10:32', 'da_spedire', '9.99'),
+(1, 53, '2025-01-24 18:12:44', 'da_spedire', '9.99'),
+(1, 54, '2025-01-25 14:57:39', 'da_spedire', '19.59'),
+(1, 55, '2025-01-25 15:32:07', 'da_spedire', '9.99'),
+(1, 56, '2025-01-25 15:39:01', 'da_spedire', '9.99'),
+(1, 57, '2025-01-25 15:52:47', 'da_spedire', '9.99'),
+(1, 58, '2025-01-25 15:57:05', 'consegnato', '47.49'),
+(1, 59, '2025-01-25 16:51:40', 'consegnato', '57.48'),
+(1, 60, '2025-01-25 18:12:27', 'da_spedire', '47.56'),
+(1, 61, '2025-01-25 18:36:21', 'da_spedire', '9.99'),
+(21, 62, '2025-01-25 18:36:44', 'consegnato', '139.86');
 
 -- --------------------------------------------------------
 
@@ -86,132 +120,203 @@ CREATE TABLE `interazione` (
 --
 
 INSERT INTO `interazione` (`id`, `id_prodotto`, `tipo`, `timestamp`) VALUES
-(74, 18, 'carrello', '2025-01-18 18:15:11'),
-(75, 20, 'carrello', '2025-01-18 19:15:30'),
-(76, 10, 'carrello', '2025-01-18 19:21:38'),
-(77, 20, 'carrello', '2025-01-18 19:21:44'),
-(78, 8, 'carrello', '2025-01-19 11:25:07'),
-(79, 19, 'carrello', '2025-01-19 12:09:32'),
-(80, 1, 'carrello', '2025-01-19 15:19:02'),
-(81, 1, 'carrello', '2025-01-19 15:19:04'),
-(82, 1, 'carrello', '2025-01-19 15:19:06'),
-(83, 4, 'carrello', '2025-01-19 15:20:37'),
-(84, 4, 'carrello', '2025-01-19 15:20:38'),
-(85, 4, 'carrello', '2025-01-19 15:20:40'),
-(86, 4, 'carrello', '2025-01-19 15:20:42'),
-(87, 17, 'carrello', '2025-01-19 15:21:10'),
-(88, 4, 'carrello', '2025-01-19 17:02:09'),
-(89, 29, 'carrello', '2025-01-19 20:51:31'),
-(90, 24, 'carrello', '2025-01-19 21:02:51'),
-(91, 15, 'carrello', '2025-01-19 21:02:54'),
-(92, 34, 'carrello', '2025-01-19 21:03:07'),
-(93, 1, 'carrello', '2025-01-19 21:03:15'),
-(94, 25, 'carrello', '2025-01-19 21:05:51'),
-(95, 32, 'carrello', '2025-01-19 21:05:53'),
-(96, 13, 'carrello', '2025-01-19 21:05:57'),
-(97, 34, 'carrello', '2025-01-19 21:06:01'),
-(98, 8, 'carrello', '2025-01-19 21:06:06'),
-(99, 19, 'carrello', '2025-01-19 21:06:11'),
-(100, 30, 'carrello', '2025-01-19 21:39:15'),
-(101, 13, '', '2025-01-20 15:17:24'),
-(102, 30, '', '2025-01-20 15:18:36'),
-(103, 27, 'carrello', '2025-01-20 16:18:12'),
-(104, 24, 'carrello', '2025-01-20 16:18:14'),
-(105, 1, 'carrello', '2025-01-20 16:18:15'),
-(106, 1, '', '2025-01-20 16:31:45'),
-(107, 8, '', '2025-01-20 16:35:18'),
-(108, 16, '', '2025-01-20 16:35:29'),
-(110, 32, '', '2025-01-20 16:35:51'),
-(111, 35, '', '2025-01-20 16:36:07'),
-(112, 29, '', '2025-01-20 16:36:14'),
-(113, 7, '', '2025-01-20 16:36:17'),
-(115, 13, '', '2025-01-20 16:38:43'),
-(116, 22, 'carrello', '2025-01-20 17:26:56'),
-(117, 11, 'carrello', '2025-01-20 17:26:57'),
-(118, 14, 'carrello', '2025-01-20 17:26:58'),
-(119, 2, 'carrello', '2025-01-20 17:31:05'),
-(120, 27, 'carrello', '2025-01-20 17:33:52'),
-(121, 27, 'carrello', '2025-01-20 17:34:04'),
-(122, 27, 'carrello', '2025-01-20 17:34:05'),
-(123, 27, 'carrello', '2025-01-20 17:34:05'),
-(124, 27, 'carrello', '2025-01-20 17:34:05'),
-(125, 27, 'carrello', '2025-01-20 17:34:05'),
-(126, 27, 'carrello', '2025-01-20 17:34:05'),
-(127, 27, 'carrello', '2025-01-20 17:34:05'),
-(128, 27, 'carrello', '2025-01-20 17:34:05'),
-(129, 27, 'carrello', '2025-01-20 17:34:06'),
-(130, 19, 'carrello', '2025-01-20 17:34:21'),
-(131, 19, 'carrello', '2025-01-20 17:34:22'),
-(132, 12, 'carrello', '2025-01-20 17:34:23'),
-(133, 15, 'carrello', '2025-01-20 17:34:29'),
-(134, 31, 'carrello', '2025-01-20 17:35:45'),
-(135, 11, 'carrello', '2025-01-20 17:35:51'),
-(136, 32, 'carrello', '2025-01-20 17:39:22'),
-(137, 22, 'carrello', '2025-01-20 17:39:49'),
-(138, 1, 'carrello', '2025-01-20 17:39:58'),
-(139, 17, 'carrello', '2025-01-20 17:45:54'),
-(140, 11, 'carrello', '2025-01-20 17:46:06'),
-(141, 9, 'carrello', '2025-01-20 17:46:33'),
-(142, 12, 'carrello', '2025-01-20 17:53:46'),
-(143, 29, 'carrello', '2025-01-20 17:55:44'),
-(144, 29, 'carrello', '2025-01-20 17:55:46'),
-(145, 29, 'carrello', '2025-01-20 17:55:47'),
-(146, 29, 'carrello', '2025-01-20 17:55:48'),
-(147, 29, 'carrello', '2025-01-20 17:55:48'),
-(148, 32, 'carrello', '2025-01-20 17:55:50'),
-(149, 32, 'carrello', '2025-01-20 17:55:54'),
-(150, 31, 'carrello', '2025-01-20 17:57:24'),
-(151, 18, 'carrello', '2025-01-20 17:57:55'),
-(152, 15, 'carrello', '2025-01-20 17:58:02'),
-(153, 7, 'carrello', '2025-01-20 17:58:17'),
-(154, 17, 'carrello', '2025-01-20 17:58:18'),
-(155, 10, 'carrello', '2025-01-20 17:58:41'),
-(156, 8, 'carrello', '2025-01-20 17:59:09'),
-(157, 25, 'carrello', '2025-01-20 17:59:18'),
-(158, 3, 'carrello', '2025-01-20 17:59:22'),
-(159, 3, 'carrello', '2025-01-20 17:59:24'),
-(160, 10, 'carrello', '2025-01-20 17:59:39'),
-(161, 15, 'carrello', '2025-01-20 18:00:04'),
-(162, 21, 'carrello', '2025-01-20 18:00:49'),
-(163, 22, 'carrello', '2025-01-20 18:00:53'),
-(164, 12, 'carrello', '2025-01-20 18:00:55'),
-(165, 13, 'carrello', '2025-01-20 18:00:59'),
-(166, 18, 'carrello', '2025-01-20 18:01:02'),
-(167, 12, 'carrello', '2025-01-20 18:01:04'),
-(168, 17, 'carrello', '2025-01-20 18:01:06'),
-(169, 31, 'carrello', '2025-01-20 18:01:25'),
-(170, 9, 'carrello', '2025-01-20 18:01:29'),
-(171, 31, 'carrello', '2025-01-20 18:01:31'),
-(172, 15, 'carrello', '2025-01-20 18:02:02'),
-(173, 27, '', '2025-01-20 18:03:07'),
-(174, 27, '', '2025-01-20 18:03:15'),
-(175, 3, 'carrello', '2025-01-20 18:03:18'),
-(176, 5, 'carrello', '2025-01-20 18:03:22'),
-(177, 10, 'carrello', '2025-01-20 18:04:22'),
-(178, 5, 'carrello', '2025-01-20 18:04:28'),
-(179, 10, 'carrello', '2025-01-20 18:05:34'),
-(180, 17, 'carrello', '2025-01-20 18:05:42'),
-(181, 3, '', '2025-01-20 18:08:17'),
-(182, 10, '', '2025-01-20 18:09:21'),
-(183, 10, '', '2025-01-20 18:09:24'),
-(184, 1, '', '2025-01-20 18:34:38'),
-(185, 6, '', '2025-01-20 18:36:19'),
-(186, 28, '', '2025-01-20 18:37:16'),
-(187, 27, '', '2025-01-20 18:37:35'),
-(188, 35, '', '2025-01-20 18:37:43'),
-(189, 20, '', '2025-01-20 18:38:59'),
-(190, 4, 'carrello', '2025-01-20 18:39:16'),
-(191, 18, 'carrello', '2025-01-20 19:28:28'),
-(192, 4, 'carrello', '2025-01-20 19:28:38'),
-(193, 16, 'carrello', '2025-01-20 21:49:23'),
-(194, 29, 'carrello', '2025-01-20 22:25:43'),
-(195, 19, 'carrello', '2025-01-20 22:34:54'),
-(196, 4, 'carrello', '2025-01-20 22:36:34'),
-(197, 17, '', '2025-01-21 11:46:15'),
-(198, 17, 'carrello', '2025-01-21 11:46:16'),
-(199, 17, 'carrello', '2025-01-21 11:46:24'),
-(200, 9, 'carrello', '2025-01-21 11:46:27'),
-(201, 2, 'carrello', '2025-01-21 11:46:30');
+(248, 19, 'visita', '2025-01-21 13:09:18'),
+(249, 19, 'visita', '2025-01-21 13:10:04'),
+(250, 3, 'visita', '2025-01-21 13:24:54'),
+(251, 27, 'visita', '2025-01-21 13:52:38'),
+(252, 25, 'visita', '2025-01-21 14:01:51'),
+(253, 19, 'visita', '2025-01-21 14:01:56'),
+(254, 8, 'visita', '2025-01-21 14:02:04'),
+(255, 7, 'visita', '2025-01-21 14:04:34'),
+(256, 19, 'visita', '2025-01-21 14:04:37'),
+(257, 3, 'visita', '2025-01-21 14:05:00'),
+(258, 3, 'carrello', '2025-01-21 14:05:03'),
+(259, 27, 'visita', '2025-01-21 15:13:18'),
+(260, 9, 'visita', '2025-01-21 15:14:19'),
+(261, 28, 'visita', '2025-01-21 15:17:04'),
+(262, 28, 'carrello', '2025-01-21 15:17:07'),
+(263, 28, 'visita', '2025-01-21 15:18:12'),
+(264, 28, 'carrello', '2025-01-21 15:18:16'),
+(265, 28, 'visita', '2025-01-21 15:18:37'),
+(266, 28, 'carrello', '2025-01-21 15:18:40'),
+(267, 13, 'visita', '2025-01-21 15:18:53'),
+(268, 13, 'carrello', '2025-01-21 15:18:54'),
+(269, 28, 'visita', '2025-01-21 15:20:29'),
+(270, 28, 'carrello', '2025-01-21 15:20:30'),
+(271, 28, 'visita', '2025-01-21 15:20:39'),
+(272, 28, 'carrello', '2025-01-21 15:20:57'),
+(273, 28, 'visita', '2025-01-21 15:21:03'),
+(274, 7, 'visita', '2025-01-21 15:47:09'),
+(275, 7, 'carrello', '2025-01-21 15:47:11'),
+(276, 1, 'visita', '2025-01-21 15:59:11'),
+(277, 9, 'visita', '2025-01-21 17:17:35'),
+(278, 4, 'visita', '2025-01-21 17:17:37'),
+(279, 30, 'carrello', '2025-01-21 17:18:28'),
+(280, 30, 'carrello', '2025-01-22 17:26:13'),
+(281, 2, 'visita', '2025-01-24 16:42:50'),
+(283, 32, 'visita', '2025-01-24 16:43:20'),
+(284, 13, 'visita', '2025-01-24 17:12:16'),
+(285, 28, 'visita', '2025-01-24 17:39:45'),
+(286, 28, 'carrello', '2025-01-24 17:39:46'),
+(287, 19, 'visita', '2025-01-24 17:41:21'),
+(288, 19, 'carrello', '2025-01-24 17:41:24'),
+(289, 28, 'visita', '2025-01-24 17:44:50'),
+(290, 28, 'carrello', '2025-01-24 17:44:51'),
+(291, 28, 'visita', '2025-01-24 17:47:23'),
+(292, 28, 'carrello', '2025-01-24 17:47:24'),
+(293, 28, 'visita', '2025-01-24 17:47:58'),
+(294, 28, 'carrello', '2025-01-24 17:47:59'),
+(295, 28, 'visita', '2025-01-24 17:49:07'),
+(296, 28, 'carrello', '2025-01-24 17:49:08'),
+(297, 28, 'visita', '2025-01-24 17:49:16'),
+(298, 28, 'carrello', '2025-01-24 17:49:17'),
+(299, 28, 'visita', '2025-01-24 17:49:32'),
+(300, 28, 'carrello', '2025-01-24 17:49:33'),
+(301, 28, 'visita', '2025-01-24 17:49:45'),
+(302, 28, 'carrello', '2025-01-24 17:49:46'),
+(303, 28, 'visita', '2025-01-24 17:51:53'),
+(304, 28, 'carrello', '2025-01-24 17:51:55'),
+(305, 28, 'visita', '2025-01-24 17:52:03'),
+(306, 28, 'carrello', '2025-01-24 17:52:04'),
+(307, 28, 'carrello', '2025-01-24 17:52:05'),
+(308, 28, 'carrello', '2025-01-24 17:52:06'),
+(309, 28, 'visita', '2025-01-24 17:52:46'),
+(310, 28, 'carrello', '2025-01-24 17:52:47'),
+(311, 28, 'visita', '2025-01-24 17:54:19'),
+(312, 28, 'carrello', '2025-01-24 17:54:20'),
+(313, 28, 'visita', '2025-01-24 17:56:42'),
+(314, 28, 'carrello', '2025-01-24 17:56:43'),
+(315, 28, 'visita', '2025-01-24 17:57:48'),
+(316, 28, 'carrello', '2025-01-24 17:57:50'),
+(317, 28, 'visita', '2025-01-24 17:59:21'),
+(318, 28, 'carrello', '2025-01-24 17:59:22'),
+(319, 28, 'visita', '2025-01-24 18:00:44'),
+(320, 28, 'carrello', '2025-01-24 18:00:46'),
+(321, 28, 'visita', '2025-01-24 18:02:25'),
+(322, 28, 'carrello', '2025-01-24 18:02:27'),
+(323, 28, 'visita', '2025-01-24 18:03:48'),
+(324, 28, 'carrello', '2025-01-24 18:03:49'),
+(325, 28, 'visita', '2025-01-24 18:06:01'),
+(326, 28, 'carrello', '2025-01-24 18:06:03'),
+(327, 28, 'visita', '2025-01-24 18:07:54'),
+(328, 28, 'carrello', '2025-01-24 18:07:55'),
+(329, 28, 'visita', '2025-01-24 18:10:27'),
+(330, 28, 'carrello', '2025-01-24 18:10:28'),
+(331, 28, 'visita', '2025-01-24 18:12:38'),
+(332, 28, 'carrello', '2025-01-24 18:12:39'),
+(333, 2, 'visita', '2025-01-25 14:57:33'),
+(334, 2, 'carrello', '2025-01-25 14:57:35'),
+(335, 28, 'visita', '2025-01-25 15:32:02'),
+(336, 28, 'carrello', '2025-01-25 15:32:03'),
+(337, 28, 'visita', '2025-01-25 15:38:56'),
+(338, 28, 'carrello', '2025-01-25 15:38:57'),
+(339, 28, 'visita', '2025-01-25 15:52:42'),
+(340, 28, 'carrello', '2025-01-25 15:52:44'),
+(341, 1, 'carrello', '2025-01-25 15:57:02'),
+(342, 28, 'visita', '2025-01-25 16:48:57'),
+(343, 28, 'carrello', '2025-01-25 16:48:59'),
+(344, 28, 'carrello', '2025-01-25 16:49:02'),
+(345, 28, 'visita', '2025-01-25 16:50:57'),
+(346, 28, 'carrello', '2025-01-25 16:50:58'),
+(347, 1, 'visita', '2025-01-25 16:51:05'),
+(348, 1, 'carrello', '2025-01-25 16:51:07'),
+(349, 28, 'visita', '2025-01-25 16:51:32'),
+(351, 18, 'visita', '2025-01-25 16:56:29'),
+(352, 13, 'visita', '2025-01-25 17:00:08'),
+(353, 6, 'visita', '2025-01-25 17:00:20'),
+(354, 2, 'visita', '2025-01-25 17:01:20'),
+(355, 34, 'visita', '2025-01-25 17:01:35'),
+(356, 16, 'visita', '2025-01-25 17:01:47'),
+(357, 2, 'visita', '2025-01-25 17:02:07'),
+(358, 11, 'visita', '2025-01-25 17:02:08'),
+(359, 2, 'visita', '2025-01-25 17:02:20'),
+(360, 28, 'visita', '2025-01-25 17:02:27'),
+(361, 5, 'visita', '2025-01-25 17:02:35'),
+(362, 2, 'visita', '2025-01-25 17:03:51'),
+(363, 4, 'visita', '2025-01-25 17:04:58'),
+(364, 19, 'visita', '2025-01-25 17:05:13'),
+(365, 19, 'visita', '2025-01-25 17:05:55'),
+(366, 28, 'visita', '2025-01-25 17:07:21'),
+(367, 28, 'carrello', '2025-01-25 17:07:22'),
+(368, 5, 'visita', '2025-01-25 17:07:24'),
+(369, 5, 'carrello', '2025-01-25 17:07:25'),
+(370, 2, 'visita', '2025-01-25 17:18:59'),
+(371, 11, 'visita', '2025-01-25 17:22:51'),
+(372, 5, 'visita', '2025-01-25 17:22:55'),
+(373, 1, 'visita', '2025-01-25 17:25:41'),
+(374, 8, 'visita', '2025-01-25 17:25:45'),
+(375, 30, 'visita', '2025-01-25 17:27:41'),
+(376, 30, 'visita', '2025-01-25 17:28:48'),
+(377, 30, 'carrello', '2025-01-25 17:28:55'),
+(378, 28, 'visita', '2025-01-25 17:29:39'),
+(379, 28, 'visita', '2025-01-25 18:32:10'),
+(380, 28, 'carrello', '2025-01-25 18:32:11'),
+(381, 28, 'carrello', '2025-01-25 18:32:14'),
+(382, 28, 'carrello', '2025-01-25 18:32:15'),
+(383, 28, 'carrello', '2025-01-25 18:32:16'),
+(384, 28, 'carrello', '2025-01-25 18:32:16'),
+(385, 28, 'carrello', '2025-01-25 18:32:16'),
+(386, 28, 'carrello', '2025-01-25 18:32:17'),
+(387, 28, 'carrello', '2025-01-25 18:32:17'),
+(388, 28, 'carrello', '2025-01-25 18:32:17'),
+(389, 28, 'carrello', '2025-01-25 18:32:17'),
+(390, 28, 'carrello', '2025-01-25 18:32:25'),
+(391, 28, 'carrello', '2025-01-25 18:32:25'),
+(392, 28, 'carrello', '2025-01-25 18:32:25'),
+(393, 28, 'visita', '2025-01-25 18:32:28'),
+(394, 28, 'carrello', '2025-01-25 18:32:30'),
+(395, 28, 'visita', '2025-01-25 18:32:36'),
+(396, 28, 'carrello', '2025-01-25 18:32:37'),
+(397, 28, 'carrello', '2025-01-25 18:32:38'),
+(398, 28, 'carrello', '2025-01-25 18:32:38'),
+(399, 28, 'carrello', '2025-01-25 18:35:10'),
+(400, 28, 'carrello', '2025-01-25 18:35:11'),
+(401, 28, 'carrello', '2025-01-25 18:35:15'),
+(402, 28, 'carrello', '2025-01-25 18:35:15'),
+(403, 28, 'carrello', '2025-01-25 18:35:15'),
+(404, 28, 'carrello', '2025-01-25 18:35:16'),
+(405, 28, 'carrello', '2025-01-25 18:35:16'),
+(406, 28, 'carrello', '2025-01-25 18:35:31'),
+(407, 28, 'visita', '2025-01-25 18:36:08'),
+(408, 28, 'carrello', '2025-01-25 18:36:09'),
+(409, 28, 'visita', '2025-01-25 18:36:40'),
+(410, 28, 'carrello', '2025-01-25 18:36:41'),
+(411, 28, 'visita', '2025-01-25 18:45:10');
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `notifica`
+--
+
+CREATE TABLE `notifica` (
+  `id_notifica` int(11) NOT NULL,
+  `id_utente` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `oggetto` varchar(64) NOT NULL,
+  `messaggio` varchar(1024) NOT NULL,
+  `letta` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `notifica`
+--
+
+INSERT INTO `notifica` (`id_notifica`, `id_utente`, `timestamp`, `oggetto`, `messaggio`, `letta`) VALUES
+(13, 1, '2025-01-24 18:12:44', 'ORDINE 53 INVIATO', 'Il tuo ordine [ID: #53] è stato preso in carico con successo!\r\nTi invieremo una notifica appena sarà spedito. \r\n\r\nGrazie per aver scelto il nostro servizio!', 1),
+(14, 1, '2025-01-25 14:57:39', 'ORDINE 54 INVIATO', 'Il tuo ordine [ID: #54] è stato preso in carico con successo!\r\nTi invieremo una notifica appena sarà spedito. \r\n\r\nGrazie per aver scelto il nostro servizio!', 1),
+(15, 1, '2025-01-25 15:32:07', 'ORDINE 55 INVIATO', 'Il tuo ordine [ID: #55] è stato preso in carico con successo!\r\nTi invieremo una notifica appena sarà spedito. \r\n\r\nGrazie per aver scelto il nostro servizio!', 1),
+(16, 1, '2025-01-25 15:39:01', 'ORDINE 56 INVIATO', 'Il tuo ordine [ID: #56] è stato preso in carico con successo!\r\nTi invieremo una notifica appena sarà spedito. \r\n\r\nGrazie per aver scelto il nostro servizio!', 1),
+(18, 1, '2025-01-25 15:52:47', 'ORDINE 57 INVIATO', 'Il tuo ordine [ID: #57] è stato preso in carico con successo!\r\nTi invieremo una notifica appena sarà spedito. \r\n\r\nGrazie per aver scelto il nostro servizio!', 1),
+(19, 1, '2025-01-25 15:57:05', 'ORDINE 58 INVIATO', 'Il tuo ordine [ID: #58] è stato preso in carico con successo!\r\nTi invieremo una notifica appena sarà spedito. \r\n\r\nGrazie per aver scelto il nostro servizio!', 1),
+(20, 1, '2025-01-25 16:51:40', 'ORDINE 59 INVIATO', 'Il tuo ordine [ID: #59] è stato preso in carico con successo!\r\nTi invieremo una notifica appena sarà spedito. \r\n\r\nGrazie per aver scelto il nostro servizio!', 1),
+(21, 1, '2025-01-25 18:09:58', 'ORDINE 58 SPEDITO', 'Il tuo ordine [ID: #58] è stato spedito!\r\nTi invieremo una notifica appena sarà consegnato.\r\n\r\nGrazie per aver scelto il nostro servizio!', 1),
+(22, 1, '2025-01-25 18:12:27', 'ORDINE 60 INVIATO', 'Il tuo ordine [ID: #60] è stato preso in carico con successo!\r\nTi invieremo una notifica appena sarà spedito. \r\n\r\nGrazie per aver scelto il nostro servizio!', 1),
+(23, 1, '2025-01-25 18:36:21', 'ORDINE 61 INVIATO', 'Il tuo ordine [ID: #61] è stato preso in carico con successo!\r\nTi invieremo una notifica appena sarà spedito. \r\n\r\nGrazie per aver scelto il nostro servizio!', 1),
+(24, 21, '2025-01-25 18:36:44', 'ORDINE 62 INVIATO', 'Il tuo ordine [ID: #62] è stato preso in carico con successo!\r\nTi invieremo una notifica appena sarà spedito. \r\n\r\nGrazie per aver scelto il nostro servizio!', 1),
+(25, 21, '2025-01-25 18:39:32', 'ORDINE 62 SPEDITO', 'Il tuo ordine [ID: #62] è stato spedito!\r\nTi invieremo una notifica appena sarà consegnato.\r\n\r\nGrazie per aver scelto il nostro servizio!', 1),
+(26, 21, '2025-01-25 18:40:11', 'ORDINE 62 CONSEGNATO', 'Il tuo ordine [ID: #62] è stato consegnato!\r\nGrazie per aver scelto il nostro servizio!', 1),
+(27, 1, '2025-01-25 18:43:40', 'ORDINE 58 CONSEGNATO', 'Il tuo ordine [ID: #58] è stato consegnato!\r\nGrazie per aver scelto il nostro servizio!', 1);
 
 -- --------------------------------------------------------
 
@@ -231,11 +336,46 @@ CREATE TABLE `prodotti_acquistati` (
 --
 
 INSERT INTO `prodotti_acquistati` (`id_acquisto`, `id_prodotto`, `quantita`, `prezzo_totale`) VALUES
-(19, 4, 1, '14.39'),
-(20, 2, 6, '117.54'),
-(20, 4, 1, '14.39'),
-(20, 9, 2, '21.98'),
-(20, 17, 6, '239.94');
+(27, 7, 3, '86.37'),
+(28, 15, 1, '1212.00'),
+(28, 33, 1, '12.00'),
+(29, 30, 7, '104.93'),
+(30, 30, 1, '14.99'),
+(31, 28, 1, '9.99'),
+(32, 19, 1, '56.99'),
+(33, 28, 1, '9.99'),
+(34, 28, 1, '9.99'),
+(35, 28, 1, '9.99'),
+(36, 28, 1, '9.99'),
+(37, 28, 1, '9.99'),
+(38, 28, 1, '9.99'),
+(39, 28, 1, '9.99'),
+(40, 28, 1, '9.99'),
+(41, 28, 3, '29.97'),
+(42, 28, 1, '9.99'),
+(43, 28, 1, '9.99'),
+(44, 28, 1, '9.99'),
+(45, 28, 1, '9.99'),
+(46, 28, 1, '9.99'),
+(47, 28, 1, '9.99'),
+(48, 28, 1, '9.99'),
+(49, 28, 1, '9.99'),
+(50, 28, 1, '9.99'),
+(51, 28, 1, '9.99'),
+(52, 28, 1, '9.99'),
+(53, 28, 1, '9.99'),
+(54, 2, 1, '19.59'),
+(55, 28, 1, '9.99'),
+(56, 28, 1, '9.99'),
+(57, 28, 1, '9.99'),
+(58, 1, 1, '47.49'),
+(59, 1, 1, '47.49'),
+(59, 28, 1, '9.99'),
+(60, 5, 1, '7.59'),
+(60, 28, 1, '9.99'),
+(60, 30, 2, '29.98'),
+(61, 28, 1, '9.99'),
+(62, 28, 14, '139.86');
 
 -- --------------------------------------------------------
 
@@ -261,25 +401,25 @@ CREATE TABLE `prodotto` (
 --
 
 INSERT INTO `prodotto` (`id`, `nome`, `descrizione`, `quantita`, `prezzo`, `sconto`, `fine_sconto`, `img1`, `img2`, `tipoProdotto_id`) VALUES
-(1, 'Tiragraffi', 'Tiragraffi alto 1 metro per gatti di ogni età', 30, '49.99', '5.00', '2025-02-15', 'jpg', NULL, 1),
-(2, '\0Croccantini', 'Croccantini premium per gatti adulti', 100, '19.99', '2.00', '2025-03-01', 'jpg', NULL, 2),
-(3, 'Pallina con campanella', 'Gioco per gatti: pallina colorata con campanella', 200, '5.99', '1.00', '2025-01-31', 'jpg', NULL, 3),
+(1, 'Tiragraffi', 'Tiragraffi alto 1 metro per gatti di ogni età', 27, '49.99', '5.00', '2025-02-15', 'jpg', NULL, 1),
+(2, 'Croccantini', 'Croccantini premium per gatti adulti', 99, '19.99', '2.00', '2025-03-01', 'jpg', NULL, 2),
+(3, 'Pallina con campanella', 'Gioco per gatti: pallina colorata con campanella', 199, '5.99', '1.00', '2025-01-31', 'jpg', NULL, 3),
 (4, 'Collare per Gatto', 'Collare regolabile per gatti, disponibile in vari colori', 100, '15.99', '10.00', '2025-02-28', 'jpg', NULL, 1),
-(5, 'Gioco a molla per Gatti', 'Gioco a molla con pallina per stimolare il gioco dei gatti', 200, '7.99', '5.00', '2025-03-15', 'jpg', NULL, 3),
+(5, 'Gioco a molla per Gatti', 'Gioco a molla con pallina per stimolare il gioco dei gatti', 199, '7.99', '5.00', '2025-03-15', 'jpg', NULL, 3),
 (6, 'Cibo Secco per Gatti', 'Cibo secco completo per gatti adulti, con pollo e riso', 500, '25.99', '15.00', '2025-04-01', 'jpg', NULL, 2),
-(7, 'Letto per Gatti', 'Letto morbido e confortevole per gatti', 150, '35.99', '20.00', '2025-02-20', 'jpg', NULL, 1),
+(7, 'Letto per Gatti', 'Letto morbido e confortevole per gatti', 147, '35.99', '20.00', '2025-02-20', 'jpg', NULL, 1),
 (8, 'Tiragraffi per Gatti', 'Tiragraffi in sisal per gatti di tutte le età', 300, '19.99', '0.00', '0000-00-00', 'jpg', NULL, 1),
 (9, 'Piatto per Gatti', 'Piatto in ceramica per cibo e acqua', 250, '10.99', '0.00', '0000-00-00', 'jpg', NULL, 1),
 (10, 'Gioco Interattivo per Gatti', 'Gioco elettronico che stimola l\'interesse del gatto', 120, '45.99', '10.00', '2025-03-10', 'jpg', NULL, 3),
 (11, 'Cibo Umido per Gatti', 'Cibo umido con tonno e salmone', 400, '22.99', '10.00', '2025-04-05', 'jpg', NULL, 2),
 (12, 'Pettine per Gatti', 'Pettine per rimuovere i peli morti dal mantello del gatto', 100, '8.99', '5.00', '2025-02-25', 'jpg', NULL, 1),
-(13, 'Fili per Gatti', 'Fili per il gioco dei gatti, facili da usare', 200, '4.99', '0.00', '0000-00-00', 'jpg', NULL, 3),
+(13, 'Fili per Gatti', 'Fili per il gioco dei gatti, facili da usare', 196, '4.99', '0.00', '0000-00-00', 'jpg', NULL, 3),
 (14, 'Sacchetto di Letto per Gatti', 'Sacchetto riscaldante per letti di gatti', 80, '24.99', '0.00', '0000-00-00', 'jpg', NULL, 1),
 (15, 'Albero per Gatti', 'Albero multi-livello per gatti, con giochi e letti', 50, '79.99', '15.00', '2025-03-30', 'jpg', NULL, 1),
 (16, 'Rimedi per Gatti', 'Trattamenti naturali per la salute dei gatti', 60, '12.99', '5.00', '2025-05-01', 'jpeg', NULL, 2),
 (17, 'Borsa per Gatti', 'Borsa da viaggio per trasportare il gatto in sicurezza', 120, '49.99', '20.00', '2025-06-10', 'jpg', NULL, 1),
 (18, 'Spray Repellente per Gatti', 'Spray per evitare che i gatti si arrampichino su mobili', 80, '7.99', '10.00', '2025-03-05', 'jpg', NULL, 1),
-(19, 'Ciotola Automatica per Gatti', 'Ciotola automatica che distribuisce cibo e acqua al gatto', 60, '59.99', '5.00', '2025-02-28', 'jpg', NULL, 1),
+(19, 'Ciotola Automatica per Gatti', 'Ciotola automatica che distribuisce cibo e acqua al gatto', 59, '59.99', '5.00', '2025-02-28', 'jpg', NULL, 1),
 (20, 'Kit di Gioco per Gatti', 'Kit di giochi vari per stimolare il gatto', 150, '18.99', '0.00', '0000-00-00', 'jpg', NULL, 3),
 (21, 'Pallina per Gatti', 'Pallina in gomma resistente per il gioco del gatto', 300, '5.99', '0.00', '0000-00-00', 'jpg', NULL, 3),
 (22, 'Collare GPS per Gatti', 'Collare con GPS per monitorare i movimenti del gatto', 70, '89.99', '0.00', '0000-00-00', 'jpg', NULL, 1),
@@ -288,9 +428,9 @@ INSERT INTO `prodotto` (`id`, `nome`, `descrizione`, `quantita`, `prezzo`, `scon
 (25, 'Letto Riscaldante per Gatti', 'Letto con funzione riscaldante per gatti', 30, '69.99', '10.00', '2025-03-15', 'jpg', NULL, 1),
 (26, 'Zaino per Gatti', 'Zaino trasportino per gatti, comodo e sicuro', 120, '40.99', '0.00', '0000-00-00', 'jpg', NULL, 1),
 (27, 'Gioco a Tunnel per Gatti', 'Tunnel gioco per gatti, facile da usare e pieghevole', 150, '19.99', '5.00', '2025-04-01', 'jpg', NULL, 3),
-(28, 'Gioco con Piume per Gatti', 'Gioco con piume per stimolare il gatto', 200, '9.99', '0.00', '0000-00-00', 'jpg', NULL, 3),
+(28, 'Gioco con Piume per Gatti', 'Gioco con piume per stimolare il gatto', 151, '9.99', '0.00', '0000-00-00', 'jpg', NULL, 3),
 (29, 'Spray per Gatti per Addestramento', 'Spray per educare il gatto a non graffiare', 90, '10.99', '5.00', '2025-05-01', 'jpg', NULL, 1),
-(30, 'Collare Antipulci per Gatti', 'Collare antipulci per proteggere il gatto', 150, '14.99', '0.00', '0000-00-00', 'jpg', NULL, 1),
+(30, 'Collare Antipulci per Gatti', 'Collare antipulci per proteggere il gatto', 140, '14.99', '0.00', '0000-00-00', 'jpg', NULL, 1),
 (31, 'Sabbia per Lettiera per Gatti', 'Sabbia agglomerante per lettiera per gatti', 200, '12.99', '10.00', '2025-04-05', 'jpg', NULL, 2),
 (32, 'Cucina per Gatti', 'Piccola cucina completa per gatti, con alimenti freschi', 50, '99.99', '0.00', '0000-00-00', 'jpg', NULL, 2),
 (33, 'Integratore per Gatti', 'Integratori alimentari per migliorare la salute del gatto', 70, '20.99', '5.00', '2025-05-10', 'jpg', NULL, 2),
@@ -320,6 +460,7 @@ INSERT INTO `recensione` (`utente`, `prodotto_id`, `valutazione`, `descrizione`,
 (1, 2, 4, 'Croccantini di qualità, ma un po\' costosi rispetto alla media', '2025-01-20'),
 (1, 3, 5, 'Gioco semplice ma il mio gatto si diverte tantissimo!', '2025-01-20'),
 (1, 10, 3, 'dsdsd', '2025-01-20'),
+(1, 19, 5, 'Incredibile caspita', '2025-01-21'),
 (1, 30, 3, 'dasdsads', '2025-01-20'),
 (13, 10, 1, 'non male', '2025-01-20'),
 (21, 10, 4, 'beatiful', '2025-01-20'),
@@ -396,6 +537,13 @@ ALTER TABLE `interazione`
   ADD KEY `prodotto_interazione` (`id_prodotto`);
 
 --
+-- Indici per le tabelle `notifica`
+--
+ALTER TABLE `notifica`
+  ADD PRIMARY KEY (`id_notifica`),
+  ADD KEY `notifica_utente` (`id_utente`);
+
+--
 -- Indici per le tabelle `prodotti_acquistati`
 --
 ALTER TABLE `prodotti_acquistati`
@@ -440,13 +588,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT per la tabella `acquisti`
 --
 ALTER TABLE `acquisti`
-  MODIFY `id_acquisto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_acquisto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT per la tabella `interazione`
 --
 ALTER TABLE `interazione`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=412;
+
+--
+-- AUTO_INCREMENT per la tabella `notifica`
+--
+ALTER TABLE `notifica`
+  MODIFY `id_notifica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotto`
@@ -458,7 +612,7 @@ ALTER TABLE `prodotto`
 -- AUTO_INCREMENT per la tabella `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Limiti per le tabelle scaricate
@@ -482,6 +636,12 @@ ALTER TABLE `carrello`
 --
 ALTER TABLE `interazione`
   ADD CONSTRAINT `prodotto_interazione` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotto` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `notifica`
+--
+ALTER TABLE `notifica`
+  ADD CONSTRAINT `notifica_utente` FOREIGN KEY (`id_utente`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `prodotti_acquistati`
