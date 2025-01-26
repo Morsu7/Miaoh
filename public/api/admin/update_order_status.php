@@ -2,7 +2,7 @@
 session_start();
 $response = ['success' => false];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['isAdmin'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] === "e[9B0a,z6Qq+i7?4RECT*Kz]wz17#0") {
     require_once("../../../src/models/notifications/NotificationManager.php");
     require_once("../../../src/config/connection.php");
     $id_acquisto = $_POST['id_acquisto'] ?? null;
@@ -38,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['isAdmin'])) {
                     NotificationManager::notificaOrdineConsegnato($userId, $id_acquisto);
                     break;
             }
+        } else {
+            $response['message'] = 'Errore durante l\'aggiornamento dello stato dell\'ordine.';
         }
     } else {
         $response['message'] = 'Dati non validi.';

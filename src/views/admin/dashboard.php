@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="public/style/admin/admin.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- TODO: Decidere quali dati mostrare -->
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar per Desktop -->

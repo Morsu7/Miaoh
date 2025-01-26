@@ -1,5 +1,5 @@
 <?php
-if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']) {
+if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] !== "e[9B0a,z6Qq+i7?4RECT*Kz]wz17#0") {
     header('Location: ?#');
     exit();
 }
@@ -22,6 +22,25 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']) {
     <!-- Include Bootstrap JS -->
     <script src="public/script/bootstrap.bundle.min.js"></script>
     <?php if($show_header)  include('header.php'); ?>
+
+    <!-- Modal delle Notifiche -->
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alertModalLabel">Notifica</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Messaggio dinamico -->
+                    <span id="modalMessage">Messaggio di errore o successo</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <?php include($content); ?>
     <!-- <footer class="bg-light text-center py-3">

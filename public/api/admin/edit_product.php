@@ -2,7 +2,7 @@
 session_start();
 $response = ['success' => false];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['isAdmin'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] === "e[9B0a,z6Qq+i7?4RECT*Kz]wz17#0") {
     require_once("../../../src/config/connection.php");
 
     // Verifica se un file è stato caricato
@@ -15,9 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['isAdmin'])) {
         'quantita' => FILTER_VALIDATE_INT,
         'prezzo' => FILTER_VALIDATE_FLOAT,
         'sconto' => FILTER_VALIDATE_FLOAT,
-        'fineSconto' => FILTER_SANITIZE_STRING, // Assume che il formato sia una stringa valida
-        'tipoProdottoId' => FILTER_VALIDATE_INT,
-    ];
+        'fine_sconto' => [
+            'filter' => FILTER_VALIDATE_REGEXP,
+            'options' => [
+                'regexp' => '/^\d{4}-\d{2}-\d{2}$/', // Formato data: YYYY-MM-DD
+            ]
+        ],
+        'tipoProdotto_id' => FILTER_VALIDATE_INT,
+    ];    
 
     // Prepara i dati in arrivo
     $input = filter_input_array(INPUT_POST, $fields);
@@ -42,10 +47,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['isAdmin'])) {
 
     // Gestione dell'immagine caricata
     if ($uploadedImage) {
-        $imagePath = '../../../uploads/' . basename($_FILES['img1']['name']);
+        // Ottieni l'estensione del file
+        $imageExt = pathinfo($_FILES['img1']['name'], PATHINFO_EXTENSION);
+        
+        // Crea il nuovo nome per l'immagine come id.estensione
+        $imagePath = __DIR__ . '../../../assets/images/productimages/' . $id . '.' . $imageExt;
+        $existingImagePath = __DIR__ . '../../../assets/images/productimages/' . $id . '.*';  // Cerca file con nome id.* (qualsiasi estensione)
+        $files = glob($existingImagePath);  // Cerca il file con nome id.* (qualsiasi estensione)
+
+        // Se esistono file, rimuovi il primo che trova
+        if (count($files) > 0) {
+            unlink($files[0]);  // Rimuovi il file esistente
+        }
+
+        // Salva la nuova immagine con il nome id.estensione
         if (move_uploaded_file($_FILES['img1']['tmp_name'], $imagePath)) {
+            // Aggiorna il database con il nuovo percorso dell'immagine
             $columns[] = "img1 = ?";
-            $values[] = $imagePath;
+            $values[] = $imageExt;
         } else {
             $response['message'] = 'Errore durante il caricamento dell\'immagine.';
             echo json_encode($response);

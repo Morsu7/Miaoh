@@ -29,7 +29,10 @@ switch ($subAction) {
 
             if($result == 'success'){
                 $_SESSION['email'] = $_POST['email'];
-                $_SESSION['isAdmin'] = Users::isAdmin($_POST['email']);
+
+                if (Users::isAdmin($_POST['email'])) {
+                    $_SESSION['isAdmin'] = "e[9B0a,z6Qq+i7?4RECT*Kz]wz17#0";
+                }
                 header('Location: ?#');
                 exit;
             }else{

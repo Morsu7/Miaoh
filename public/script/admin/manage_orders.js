@@ -45,22 +45,19 @@ async function updateOrderStatus(event) {
                             <button type="submit" class="btn btn-primary mt-2 w-100">Cambia stato</button>
                         </form>
                     `;
-
-                    // Ricollega l'evento submit al nuovo form
-                    actionColumn.querySelector('form').addEventListener('submit', updateOrderStatus);
                 }
 
-                alert('Stato dell\'ordine aggiornato con successo.');
+                showModal('Stato dell\'ordine aggiornato con successo.', 'success');
             } else {
-                alert('Errore nell\'aggiornamento dello stato: ' + data.message);
+                showModal('Errore nell\'aggiornamento dello stato: ' + data.message, 'error');
             }
         } else {
             console.error('Errore durante la richiesta:', resp);
-            alert('Si è verificato un errore.');
+            showModal('Si è verificato un errore.', 'error');
         }
     } catch (error) {
         console.error('Errore durante la richiesta:', error);
-        alert('Si è verificato un errore.');
+        showModal('Si è verificato un errore.', 'error');
     }
 }
 
@@ -101,7 +98,6 @@ document.getElementById('orderFilterForm').addEventListener('submit', function (
         method: 'GET',  // Usa il metodo GET
     })
         .then(response => response.json())
-        // .then(response => response.text())
         .then(data => {
             // Sostituisci la lista degli ordini con quella aggiornata
             document.querySelector('.row.mt-4').innerHTML = data.productList;
@@ -110,6 +106,14 @@ document.getElementById('orderFilterForm').addEventListener('submit', function (
         })
         .catch(error => {
             console.error('Errore durante il filtro degli ordini:', error);
-            alert('Si è verificato un errore.');
+            showModal('Si è verificato un errore.', 'error');
         });
 });
+
+function showModal(message) {
+    const modalMessage = document.getElementById('modalMessage');
+    modalMessage.textContent = message;
+
+    const modal = new bootstrap.Modal(document.getElementById('alertModal'));
+    modal.show();
+}

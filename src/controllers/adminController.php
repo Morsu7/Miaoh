@@ -8,7 +8,7 @@ require_once('../src/models/products/ProductsManager.php');
 require_once('../src/models/orders/OrdersManager.php');
 require_once('../src/models/analytics/AnalyticsManager.php');
 
-if(!isset($_SESSION['isAdmin'])){
+if(!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] !== "e[9B0a,z6Qq+i7?4RECT*Kz]wz17#0"){
     header('Location: ?action=login');
     exit;
 }
@@ -76,13 +76,21 @@ switch ($subAction) {
                                 <strong>Quantità: </strong><?= $product->getQuantita() ?>
                             </p>
                             <div class="mt-auto">
-                                <button class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#editProductModal" 
-                                        data-id="<?= $product->getId() ?>"
-                                        data-nome="<?= htmlspecialchars($product->getNome()) ?>"
-                                        data-descrizione="<?= htmlspecialchars($product->getDescrizione()) ?>"
-                                        data-prezzo="<?= $product->getPrezzo() ?>"
-                                        data-sconto="<?= $product->getSconto() ?>"
-                                        data-quantita="<?= $product->getQuantita() ?>">
+                                <button 
+                                    type="button" 
+                                    class="btn btn-primary" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target=".edit-product-modal" 
+                                    data-id="<?php echo $product->getId(); ?>" 
+                                    data-nome="<?php echo htmlspecialchars($product->getNome(), ENT_QUOTES, 'UTF-8'); ?>" 
+                                    data-descrizione="<?php echo htmlspecialchars($product->getDescrizione(), ENT_QUOTES, 'UTF-8'); ?>" 
+                                    data-prezzo="<?php echo $product->getPrezzo(); ?>" 
+                                    data-sconto="<?php echo $product->getSconto(); ?>" 
+                                    data-quantita="<?php echo $product->getQuantita(); ?>" 
+                                    data-finesconto="<?php echo $product->getFineSconto(); ?>" 
+                                    data-tipoprodottoid="<?php echo $product->getTipoProdottoId(); ?>" 
+                                    data-img1="<?php echo "public/assets/images/productimages/" . htmlspecialchars($product->getId(), ENT_QUOTES, 'UTF-8') . "." . htmlspecialchars($product->getImg1(), ENT_QUOTES, 'UTF-8') ?>"
+                                >
                                     Modifica
                                 </button>
                                 <button class="btn btn-danger" onclick="deleteProduct(<?= $product->getId() ?>)">Elimina</button>

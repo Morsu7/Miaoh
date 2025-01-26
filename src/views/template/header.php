@@ -7,8 +7,8 @@ if(isset($_SESSION['email'])){
     $picture = IMAGE_PATH . "/icons/profilePic.png";
 }
 
-if (isset($_SESSION['isAdmin'])) {
-    $isAdmin = $_SESSION['isAdmin'];
+if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] === "e[9B0a,z6Qq+i7?4RECT*Kz]wz17#0") {
+    $isAdmin = true;
 }
 
 ?>

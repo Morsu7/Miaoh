@@ -40,7 +40,6 @@ function handleImageChange(e) {
     }
 }
 
-// TODO: Validare dati
 async function handleSubmit(e) {
     e.preventDefault(); // Previeni il comportamento predefinito del form
 
@@ -58,20 +57,57 @@ async function handleSubmit(e) {
         if (response.ok) {
             const result = await response.json();
             if (result.success) {
-                alert("Prodotto aggiunto con successo!");
-                // Puoi chiudere il modal o aggiornare la lista dei prodotti
-                document.querySelector(".add-product-modal").classList.remove("show");
-                document.querySelector(".modal-backdrop").remove();
+                // Reset del form e chiusura del modal
+                // Reset del form
                 form.reset();
-                // TODO: Aggiungere il prodotto alla lista
+
+                // Ottieni il modal con Bootstrap
+                const modalElement = document.querySelector(".add-product-modal");
+                const modalInstance = bootstrap.Modal.getInstance(modalElement);
+
+                // Se il modal è aperto, chiudilo
+                if (modalInstance) {
+                    modalInstance.hide();
+                }
+
+                // Aggiorna dinamicamente la lista dei prodotti
+                refreshProductList();
+                showModal("Prodotto aggiunto con successo!");
             } else {
-                alert("Errore: " + result.message);
+                showModal("Errore: " + result.message);
             }
         } else {
-            alert("Errore nella comunicazione con il server.");
+            showModal("Errore nella comunicazione con il server.");
         }
     } catch (error) {
         console.error("Errore durante l'invio del form:", error);
-        alert("Errore: Impossibile completare l'operazione.");
+        showModal("Errore: Impossibile completare l'operazione.");
     }
+}
+
+async function refreshProductList() {
+    try {
+        const currentPageElement = document.querySelector(".page-item.active a"); // Personalizza il selettore in base alla tua struttura HTML
+        const currentPage = currentPageElement ? currentPageElement.textContent.trim() : "1"; // Default: pagina 1
+
+        const response = await fetch(`?action=adminpage&subAction=products&ajax=1&page=${currentPage}`);
+        if (response.ok) {
+            const result = await response.json();
+            // Aggiorna l'HTML della lista prodotti e della paginazione
+            document.querySelector(".product-list").innerHTML = result.productList;
+            document.querySelector(".pagination").innerHTML = result.pagination;
+        } else {
+            console.error("Errore nella comunicazione con il server per aggiornare la lista prodotti.");
+        }
+    } catch (error) {
+        console.error("Errore durante il refresh della lista prodotti:", error);
+    }
+}
+
+function showModal(message) {
+    const modalMessage = document.getElementById('modalMessage');
+    modalMessage.textContent = message;
+
+    const modal = new bootstrap.Modal(document.getElementById('alertModal'));
+    modal.show();
 }

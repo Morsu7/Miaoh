@@ -2,7 +2,7 @@
 session_start();
 $response = ['success' => false];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['isAdmin'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] === "e[9B0a,z6Qq+i7?4RECT*Kz]wz17#0") {
     require_once("../../../src/config/connection.php");
 
     $input = json_decode(file_get_contents('php://input'), true);

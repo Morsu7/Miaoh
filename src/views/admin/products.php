@@ -1,7 +1,5 @@
 <link rel="stylesheet" href="public/style/admin/admin.css">
 
-<!-- TODO: Sistemare modifica -->
-
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar per Desktop -->
@@ -109,61 +107,7 @@
             <?php include('products/addproduct.php'); ?>
 
             <!-- Modal per modificare un prodotto -->
-            <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editProductModalLabel">Modifica Prodotto</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST" enctype="multipart/form-data" class="edit-product-form">
-                                <input type="hidden" id="editProductId" name="id">
-                                <div class="mb-3">
-                                    <label class="form-label">Nome Prodotto</label>
-                                    <input type="text" class="form-control product-name" id="editProductName" name="nome" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Descrizione</label>
-                                    <textarea class="form-control product-description" id="editProductDescription" name="descrizione" required></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Quantità</label>
-                                    <input type="number" class="form-control product-quantity" id="editProductQuantity" name="quantita" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Prezzo</label>
-                                    <input type="number" step="0.01" class="form-control product-price" id="editProductPrice" name="prezzo" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Sconto (%)</label>
-                                    <input type="number" step="0.01" class="form-control product-discount" id="editProductDiscount" name="sconto" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Fine Sconto</label>
-                                    <input type="date" class="form-control product-enddiscount" id="editProductEndDiscount" name="fineSconto" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Immagine 1</label>
-                                    <input type="file" class="form-control product-image" id="editProductImage" name="img1" accept="image/*" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Anteprima Immagine</label>
-                                    <img class="img-fluid product-image-preview d-block" id="editProductImagePreview" style="max-height: 200px;" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Tipo Prodotto</label>
-                                    <input type="number" class="form-control product-type" id="editProductType" name="tipoProdottoId" required>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                                    <button type="submit" class="btn btn-primary">Salva modifiche</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php include('products/edit_product.php'); ?>
         </main>
     </div>
 </div>
