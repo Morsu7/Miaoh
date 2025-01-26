@@ -63,7 +63,7 @@
                             <div class="row mt-3 text-center"> <!-- Aggiunto text-center qui -->
                                 <!-- Ordini da Consegnare -->
                                 <div class="col-md-4">
-                                    <h6>Ordini da Consegnare</h6>
+                                    <h6>Ordini da Spedire</h6>
                                     <ul class="list-unstyled mt-3">
                                         <li><strong>In attesa:</strong> <?php echo $orders_pending; ?></li>
                                     </ul>
